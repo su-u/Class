@@ -19,3 +19,5 @@ int main(void){
     }
     return 0;
 }   
+
+//int printf(const char * restrict, ...) __attribute__((__format__ (__printf__, 1, 2)));
