@@ -69,4 +69,44 @@ FILE *fopen(
     const char * restrict mode
 );
 
+int fgetc(
+    FILE *stream
+);
+
+int getc(
+    FILE *stream
+);
+
+int fputs (
+    const char * restrict s,
+    FILE * restrict stream
+);
+
+int puts(
+    char * s
+);
+
+int getchar(void);
+
+int putchar(
+    int c
+);
+
+char *fgets(
+    char * restrict s,
+    int n,
+    FILE * restrict stream
+);
+
+int fscanf(FILE *stream, const char *format, ...);
+int fprintf(FILE *stream, const char *format, ...);
+int sscanf(
+    const char * restrict s,
+    const char * restrict format,
+    ...
+);
+
+size_t strlen( const char *str );
+size_t型はunsigned int
+
 */
