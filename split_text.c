@@ -4,8 +4,7 @@ int main(void){
     char text[] = "It is good to see you. Thank you for coming.";
     int i = 0;
     
-    while (text[i] != '\0')
-    {
+    while (text[i] != '\0'){
         if(text[i] == ' ' || text[i] == '.'){
             i++;
             continue;
