@@ -11,7 +11,7 @@ int main(void){
             continue;
         }
         printf("[");
-        while(text[i] != ' ' && text[i] != '.'){
+        while(text[i] != ' ' && text[i] != '.' && text[i] != '\0'){
             printf("%c", text[i]);
             i++;
         }
