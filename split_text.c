@@ -43,4 +43,18 @@ int main(void){
 	
 	return 0;
 }
+
+char *strcat(char *s1, const char *s2);
+char *strcpy(char *s1, const char *s2);
+int strcmp(const char *s1, const char *s2);
+typedef struct {
+char mode;
+char *ptr;
+int rcount;
+int wcount;
+char *base;
+unsigned bufsiz;
+int fd;
+char smallbuf[1];
+} FILE;
 */
