@@ -46,7 +46,8 @@ int main(void){
 
 char *strcat(char *s1, const char *s2);
 char *strcpy(char *s1, const char *s2);
-int strcmp(const char *s1, const char *s2);
+int strcmp(const char *s1, const char *s2
+
 typedef struct {
 char mode;
 char *ptr;
@@ -57,4 +58,15 @@ unsigned bufsiz;
 int fd;
 char smallbuf[1];
 } FILE;
+
+#define EOF (-1)
+
+int fclose(
+    FILE *stream
+);
+FILE *fopen(
+    const char * restrict filename,
+    const char * restrict mode
+);
+
 */
