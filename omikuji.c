@@ -8,7 +8,7 @@ int main(void){
 	unsigned int seed;
 	
 	printf("seed>>");
-	scanf("%d",&seed);
+	scanf("%u",&seed);
 		
 	switch(fortune(seed)){
 		case 0:
@@ -52,20 +52,20 @@ int fortune(unsigned int seed){
 }
 
 /*
-s1732087@mv8d:~> gcc omikuji.c
-s1732087@mv8d:~> ./a.out 
+@mv8d:~> gcc omikuji.c
+@mv8d:~> ./a.out 
 seed>>222
 Bad luck
-s1732087@mv8d:~> ./a.out 
+@mv8d:~> ./a.out 
 seed>>111
 Good luck
-s1732087@mv8d:~> ./a.out 
+@mv8d:~> ./a.out 
 seed>>14252353
 Good luck
-s1732087@mv8d:~> ./a.out 
+@mv8d:~> ./a.out 
 seed>>2244
 Good luck
-s1732087@mv8d:~> ./a.out 
+@mv8d:~> ./a.out 
 seed>>44567
 Good luck
  */

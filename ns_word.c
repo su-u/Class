@@ -46,6 +46,6 @@ int main(void){
 }
 
 /*
-s1732087@mv8d:~> gcc ns_word.c
-s1732087@mv8d:~> ./a.out
+@mv8d:~> gcc ns_word.c
+@mv8d:~> ./a.out
 */

@@ -32,16 +32,16 @@ double deg2rad(double degree){
 }
 
 /*
-s1732087@mv8d:~> gcc trigon.c -lm
-s1732087@mv8d:~> ./a.out 
+@mv8d:~> gcc trigon.c -lm
+@mv8d:~> ./a.out 
 degree>>30
-s1732087@mv8d:~> cat result.txt
+@mv8d:~> cat result.txt
 sin = 0.500000
 cos = 0.866025
 tan = 0.577350
-s1732087@mv8d:~> ./a.out 
+@mv8d:~> ./a.out 
 degree>>90
-s1732087@mv8d:~> cat result.txt
+@mv8d:~> cat result.txt
 sin = 1.000000
 cos = 0.000000
 Not defined

@@ -20,8 +20,8 @@ int main(void){
     return 0;
 }
 /*
-s1732087@mv8d:~> gcc split_text.c
-s1732087@mv8d:~> ./a.out 
+@mv8d:~> gcc split_text.c
+@mv8d:~> ./a.out 
 [It]
 [is]
 [good]
