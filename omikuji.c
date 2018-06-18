@@ -38,13 +38,13 @@ int fortune(unsigned int seed){
 	srand(seed);
 	int ran = rand() % 100;
 	
-	if(ran <= 5){
+	if(ran < 5){
 		return 4;
-	}else if(ran <= 25){
+	}else if(ran < 25){
 		return 3;
-	}else if(ran <= 75){
+	}else if(ran < 75){
 		return 2;
-	}else if(ran <= 95){
+	}else if(ran < 95){
 		return 1;
 	}else{
 		return 0;
