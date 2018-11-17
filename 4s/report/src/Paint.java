@@ -6,12 +6,14 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 class Paint extends Frame implements MouseListener, MouseMotionListener{
+
 	int x, y;
 	ArrayList<Figure> objList;
 	Figure obj;
+
 	public static void main(String[] args){
 		Paint f = new Paint();
-		f.setSize(640, 480);
+		f.setSize(1280, 720);
 		f.setTitle("Paint Sample");
 		f.addWindowListener(new WindowAdapter(){
 			@Override public void windowClosing(WindowEvent e){
@@ -20,7 +22,7 @@ class Paint extends Frame implements MouseListener, MouseMotionListener{
 		f.setVisible(true);
 	}
 
-	Paint(){
+	Paint() {
 		objList = new ArrayList<Figure>();
 		addMouseListener(this);
 		addMouseMotionListener(this);
@@ -28,14 +30,41 @@ class Paint extends Frame implements MouseListener, MouseMotionListener{
 
 	@Override public void paint(Graphics g){
 		Figure f;
+		Image back = back = createImage(getSize().width, getSize().height);
+		Graphics buffer = back.getGraphics();
+
 		for(int i = 0;i < objList.size();i++){
 			f = objList.get(i);
-			f.paint(g);
+			f.paint(buffer);
 		}
-		if(obj != null) obj.paint(g);
+		if(obj != null) obj.paint(buffer);
+
+		g.drawImage(back, 0, 0, this);
 	}
 
 	@Override public void mousePressed(MouseEvent e){
+		x = e.getX();
+		y = e.getY();
+		obj = new Circle();
+		obj.moveto(x,y);
+		repaint();
+	}
+	@Override public void mouseReleased(MouseEvent e){
+		x = e.getX();
+		y = e.getY();
+		obj.moveto(x,y);
+		objList.add(obj);
+		repaint();
+		System.out.println(this.objList.size());
+	}
+	@Override public void mouseClicked(MouseEvent e){
+		x = e.getX();
+		y = e.getY();
+		if(obj != null)obj.moveto(x,y);
+	}
+	@Override public void mouseEntered(MouseEvent e){}
+	@Override public void mouseExited(MouseEvent e){}
+	@Override public void mouseDragged(MouseEvent e){
 		x = e.getX();
 		y = e.getY();
 		obj = new Circle();
@@ -44,22 +73,11 @@ class Paint extends Frame implements MouseListener, MouseMotionListener{
 		obj = null;
 		repaint();
 	}
-	@Override public void mouseReleased(MouseEvent e){}
-	@Override public void mouseClicked(MouseEvent e){
-		x = e.getX();
-		y = e.getY();
-		if(obj != null)obj.moveto(x,y);
-		repaint();
-	}
-	@Override public void mouseEntered(MouseEvent e){}
-	@Override public void mouseExited(MouseEvent e){}
-	@Override public void mouseDragged(MouseEvent e){
 
+	@Override public void update(Graphics g){
+		paint(g);
 	}
 
-//	@Override public void update(Graphics g){
-//		paint(g);
-//	}
 	@Override public void mouseMoved(MouseEvent e){}	
 }
 
@@ -98,12 +116,14 @@ class Figure extends Coord {
 
 
 class Circle extends Figure {
-	int color, size;
+	int size;
 	int color_flag;
-	
+	Color color;
+
 	Circle(){
-		color = 0;
 		size = 30;
+		Random rnd = new Random();
+		this.color = new Color(rnd.nextInt(255), rnd.nextInt(255), rnd.nextInt(255));
 	}
 	
 	Circle(int x, int y){
@@ -112,9 +132,7 @@ class Circle extends Figure {
 	}
 
 	@Override public void paint(Graphics g){
-		Random rnd = new Random();
-		Color col = new Color(rnd.nextInt(255), rnd.nextInt(255), rnd.nextInt(255));
-		g.setColor(col);
+		g.setColor(this.color);
 		g.fillOval(x - size / 2, y - size / 2, size, size);
 	}
 }
@@ -132,6 +150,8 @@ class Box extends Coord {
 		this.size = 5000;
 	}
 	@Override public void paint(Graphics g){
+
+
 		g.fillRect(x - size / 2, y - size / 2, size, size);
 	}
 }
