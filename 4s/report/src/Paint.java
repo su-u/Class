@@ -3,38 +3,167 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.File;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
+import javax.swing.*;
 
-class Paint extends Frame implements MouseListener, MouseMotionListener{
+class Paint extends Frame implements MouseListener, MouseMotionListener,ActionListener{
 
 	private int x, y;
 	private ArrayList<Figure> objList;
 	private Figure obj;
 	private static int visibleCount = 0;
-	private boolean isDoragge = false;
-	private Figure PressBuffer = null;
+	BufferedImage img = null;
+	Graphics pngbuff;
+	private static final int width = 1920;
+	private static final int height = 1080;
+	public enum PaintColor{
+		Black,
+		White,
+		Red,
+		Blue,
+		Green,
+		Gray,
+		Gradation
+	}
+	private int paintSize = 30;
+	private PaintColor paintColor = PaintColor.Gradation;
+
 
 	public static void main(String[] args){
+
+		if(args.length != 0){
+			Paint.visibleCount = Integer.parseInt(args[0]);
+		}
+		if(visibleCount < 0)Paint.visibleCount = 0;
+
 		Paint f = new Paint();
+		//f = new Frame();
 //		f.setSize(1280, 720);
-		f.setBounds(500, 500, 1920, 1080);
+		f.setBounds(500, 500, Paint.width, Paint.height);
 		f.setTitle("Paint");
 		//f.setBackground(Color.BLACK);
 		f.addWindowListener(new WindowAdapter(){
 			@Override public void windowClosing(WindowEvent e){
 				System.exit(0);
 			}});
+
 		f.setVisible(true);
-		if(args.length != 0){
-			Paint.visibleCount = Integer.parseInt(args[0]);
-		}
-		if(visibleCount < 0)Paint.visibleCount = 0;
+
 	}
 
 	Paint() {
 		objList = new ArrayList<Figure>();
+
 		addMouseListener(this);
 		addMouseMotionListener(this);
+
+		this.img = new BufferedImage(Paint.width,Paint.height, BufferedImage.TYPE_3BYTE_BGR);
+		this.pngbuff = img.getGraphics();
+
+		MenuBar mb = new MenuBar();
+
+		Menu backColor = mb.add(new Menu("背景色"));
+
+		MenuItem backBlack = backColor.add(new MenuItem(	"backBlack"	));
+		MenuItem backWhite = backColor.add(new MenuItem(	"backWhite"	));
+		MenuItem backRed = backColor.add(new MenuItem(		"backRed"		));
+		MenuItem backBlue = backColor.add(new MenuItem(		"backBlue"		));
+		MenuItem backGreen = backColor.add(new MenuItem(	"backGreen"	));
+
+		backRed.addActionListener(this);
+		backBlue.addActionListener(this);
+		backGreen.addActionListener(this);
+		backBlack.addActionListener(this);
+		backWhite.addActionListener(this);
+
+
+		Menu PaintColor = mb.add(new Menu("描画色"));
+
+		MenuItem paintBlack = PaintColor.add(new MenuItem(	"paintBlack"	));
+		MenuItem paintWhite = PaintColor.add(new MenuItem(	"paintWhite"	));
+		MenuItem paintRed = PaintColor.add(new MenuItem(		"paintRed"		));
+		MenuItem paintBlue = PaintColor.add(new MenuItem(	"paintBlue"		));
+		MenuItem paintGreen = PaintColor.add(new MenuItem(	"paintGreen"	));
+		MenuItem paintGray = PaintColor.add(new MenuItem(	"paintGray"		));
+		MenuItem paintGradation = PaintColor.add(new MenuItem(	"paintGradation"	));
+
+		paintBlack.addActionListener(this);
+		paintWhite.addActionListener(this);
+		paintRed.addActionListener(this);
+		paintBlue.addActionListener(this);
+		paintGreen.addActionListener(this);
+		paintGray.addActionListener(this);
+		paintGradation.addActionListener(this);
+
+
+		Menu OtherSystem = mb.add(new Menu("その他"));
+
+		MenuItem clear = OtherSystem.add(new MenuItem(	"全消去"	));
+		MenuItem writePng = OtherSystem.add(new MenuItem(	"png書き出し"	));
+		MenuItem writeJpg = OtherSystem.add(new MenuItem(	"jpg書き出し"	));
+		MenuItem paintSize = OtherSystem.add(new MenuItem(	"ペイントサイズ"	));
+
+		clear.addActionListener(this);
+		writePng.addActionListener(this);
+		writeJpg.addActionListener(this);
+		paintSize.addActionListener(this);
+
+		setMenuBar(mb);
+
 	}
+
+
+	public void actionPerformed(ActionEvent e) {
+		if (e.getActionCommand() == "backBlack"	) setBackground(Color.BLACK);
+		if (e.getActionCommand() == "backWhite"	) setBackground(Color.WHITE);
+		if (e.getActionCommand() == "backRed"	) setBackground(Color.RED);
+		if (e.getActionCommand() == "backBlue"	) setBackground(Color.BLUE);
+		if (e.getActionCommand() == "backGreen"	) setBackground(Color.GREEN);
+
+		if (e.getActionCommand() == "paintBlack"	) this.paintColor = PaintColor.Black;
+		if (e.getActionCommand() == "paintWhite"	) this.paintColor = PaintColor.White;
+		if (e.getActionCommand() == "paintRed"	) this.paintColor = PaintColor.Red;
+		if (e.getActionCommand() == "paintBlue"	) this.paintColor = PaintColor.Blue;
+		if (e.getActionCommand() == "paintGreen"	) this.paintColor = PaintColor.Green;
+		if (e.getActionCommand() == "paintGray"	) this.paintColor = PaintColor.Gray;
+		if (e.getActionCommand() == "paintGradation"	) this.paintColor = PaintColor.Gradation;
+
+		if (e.getActionCommand() == "png書き出し"	){
+			try {
+				System.out.println("write png");
+				ImageIO.write(this.img,"png",new File("./pant.png"));
+
+			}catch (Exception ex){
+				ex.printStackTrace();
+			}
+		}
+		if (e.getActionCommand() == "jpg書き出し"	){
+			try {
+				System.out.println("write jpg");
+				ImageIO.write(this.img,"jpg",new File("./pant.jpg"));
+
+			}catch (Exception ex){
+				ex.printStackTrace();
+			}
+		}
+		if (e.getActionCommand() == "全消去"	) {
+			objList.clear();
+			repaint();
+			System.out.println("--clear");
+		}
+		if (e.getActionCommand() == "ペイントサイズ"	){
+			JFrame frame = new JFrame();
+			String value = JOptionPane.showInputDialog(frame, "ペイントサイズ(0 ~ 10000)",this.paintSize);
+			if(value != null && value != "") {
+				this.paintSize = Integer.parseInt(value);
+				if (this.paintSize < 0) this.paintSize = 0;
+				else if (this.paintSize > 10000) this.paintSize = 10000;
+			}
+		}
+	}
+
 
 	@Override public void paint(Graphics g){
 		Figure f;
@@ -44,6 +173,7 @@ class Paint extends Frame implements MouseListener, MouseMotionListener{
 		if(objList.size() >= Paint.visibleCount && Paint.visibleCount != 0){
 			start = objList.size() - Paint.visibleCount;
 		}
+
 		for(int i = start;i < objList.size();i++){
 			f = objList.get(i);
 			f.paint(buffer);
@@ -54,58 +184,46 @@ class Paint extends Frame implements MouseListener, MouseMotionListener{
 	}
 
 	@Override public void mousePressed(MouseEvent e){
-		this.isDoragge = false;
-		x = e.getX();
-		y = e.getY();
-		obj = new Circle();
-		obj.moveto(x,y);
-		PressBuffer = obj;
-		repaint();
+		if(e.getButton() == MouseEvent.BUTTON1) {
+			x = e.getX();
+			y = e.getY();
+			obj = new Circle(this.paintColor, paintSize);
+			obj.moveto(x, y);
+			repaint();
+		}
 	}
 	@Override public void mouseReleased(MouseEvent e){
-		x = e.getX();
-		y = e.getY();
-		if(isDoragge == false){
-			obj = this.PressBuffer;
-		}else {
-			obj = new Circle();
-			obj.moveto(x,y);
+		if(e.getButton() == MouseEvent.BUTTON1) {
+			x = e.getX();
+			y = e.getY();
+			objList.add(obj);
+			obj = null;
+			repaint();
+			System.out.println("count\t:" + this.objList.size());
 		}
-		objList.add(obj);
-		obj = null;
-		repaint();
-		System.out.println("count\t\t:" + this.objList.size());
 	}
 	@Override public void mouseClicked(MouseEvent e){
-		int btn = e.getButton();
-		if (btn == MouseEvent.BUTTON3){
-			objList.clear();
-		}
-		System.out.println("--clear--");
 	}
 	@Override public void mouseEntered(MouseEvent e){}
 	@Override public void mouseExited(MouseEvent e){}
 	@Override public void mouseDragged(MouseEvent e){
 		x = e.getX();
 		y = e.getY();
-		if(this.isDoragge == false){
-			obj = this.PressBuffer;
-		}else {
-			obj = new Circle();
-			obj.moveto(x,y);
-		}
-		this.isDoragge = true;
+		obj = new Circle(this.paintColor, paintSize);
+		obj.moveto(x, y);
 		objList.add(obj);
-		obj = null;
 		repaint();
-		System.out.println("count\t\t:" + this.objList.size());
+		System.out.println("count\t:" + this.objList.size());
 	}
 
 	@Override public void update(Graphics g){
 		paint(g);
+		paint(pngbuff);
 	}
 
-	@Override public void mouseMoved(MouseEvent e){}
+	@Override public void mouseMoved(MouseEvent e){
+
+	}
 
 }
 
@@ -146,6 +264,23 @@ class Figure extends Coord {
 		super(x,y);
 		this.color = Color.getHSBColor(Figure.hue, Figure.saturation, Figure.brightness);
 		this.NextColor();
+}
+
+	Figure(Paint.PaintColor color_){
+		switch (color_){
+			case Red:	this.color = Color.RED;		break;
+			case Blue:	this.color = Color.BLUE;	break;
+			case Green:	this.color = Color.GREEN;	break;
+			case White:	this.color = Color.WHITE;	break;
+			case Gray: 	this.color = Color.GRAY;	break;
+			case Black:	this.color = Color.BLACK;	break;
+			case Gradation:
+				this.color = Color.getHSBColor(Figure.hue, Figure.saturation, Figure.brightness);
+				NextColor();
+				break;
+		}
+
+		System.out.println("this color \t:" + this.color.toString());
 	}
 
 	void NextColor(){
@@ -175,6 +310,12 @@ class Circle extends Figure {
 
 	Circle(int x, int y){
 		super(x, y);
+		this.size = 30;
+	}
+	Circle(Paint.PaintColor color_ , int size_){
+		super(color_);
+		this.size = size_;
+		System.out.println("size\t\t:" + this.size);
 	}
 
 	@Override public void paint(Graphics g){
