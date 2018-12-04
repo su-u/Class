@@ -8,14 +8,14 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-class Paint extends Frame implements MouseListener, MouseMotionListener,ActionListener{
+class Paint extends Frame implements MouseListener, MouseMotionListener,ActionListener,KeyListener{
 
 	private int x, y;
 	private ArrayList<Figure> objList;
 	private Figure obj;
 	private static int visibleCount = 0;
-	BufferedImage img = null;
-	Graphics pngbuff;
+	private BufferedImage img = null;
+	private Graphics pngbuff = null;
 	private static final int width = 1920;
 	private static final int height = 1080;
 	public enum PaintColor{
@@ -39,11 +39,9 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
 		if(visibleCount < 0)Paint.visibleCount = 0;
 
 		Paint f = new Paint();
-		//f = new Frame();
-//		f.setSize(1280, 720);
+		f.setResizable(false);
 		f.setBounds(500, 500, Paint.width, Paint.height);
 		f.setTitle("Paint");
-		//f.setBackground(Color.BLACK);
 		f.addWindowListener(new WindowAdapter(){
 			@Override public void windowClosing(WindowEvent e){
 				System.exit(0);
@@ -58,6 +56,7 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
 
 		addMouseListener(this);
 		addMouseMotionListener(this);
+		addKeyListener(this);
 
 		this.img = new BufferedImage(Paint.width,Paint.height, BufferedImage.TYPE_3BYTE_BGR);
 		this.pngbuff = img.getGraphics();
@@ -116,11 +115,11 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
 
 
 	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand() == "backBlack"	) setBackground(Color.BLACK);
-		if (e.getActionCommand() == "backWhite"	) setBackground(Color.WHITE);
-		if (e.getActionCommand() == "backRed"	) setBackground(Color.RED);
-		if (e.getActionCommand() == "backBlue"	) setBackground(Color.BLUE);
-		if (e.getActionCommand() == "backGreen"	) setBackground(Color.GREEN);
+		if (e.getActionCommand() == "backBlack"	) {setBackground(Color.BLACK); repaint();}
+		if (e.getActionCommand() == "backWhite"	) {setBackground(Color.WHITE); repaint();}
+		if (e.getActionCommand() == "backRed"	) {setBackground(Color.RED); repaint();}
+		if (e.getActionCommand() == "backBlue"	) {setBackground(Color.BLUE); repaint();}
+		if (e.getActionCommand() == "backGreen"	) {setBackground(Color.GREEN); repaint();}
 
 		if (e.getActionCommand() == "paintBlack"	) this.paintColor = PaintColor.Black;
 		if (e.getActionCommand() == "paintWhite"	) this.paintColor = PaintColor.White;
@@ -133,7 +132,7 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
 		if (e.getActionCommand() == "png書き出し"	){
 			try {
 				System.out.println("write png");
-				ImageIO.write(this.img,"png",new File("./pant.png"));
+				ImageIO.write(this.img,"png",new File("./paint.png"));
 
 			}catch (Exception ex){
 				ex.printStackTrace();
@@ -142,7 +141,7 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
 		if (e.getActionCommand() == "jpg書き出し"	){
 			try {
 				System.out.println("write jpg");
-				ImageIO.write(this.img,"jpg",new File("./pant.jpg"));
+				ImageIO.write(this.img,"jpg",new File("./paint.jpg"));
 
 			}catch (Exception ex){
 				ex.printStackTrace();
@@ -174,6 +173,9 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
 			start = objList.size() - Paint.visibleCount;
 		}
 
+		var visible = objList.size() - start;
+        System.out.println("Visible\t:" + visible);
+
 		for(int i = start;i < objList.size();i++){
 			f = objList.get(i);
 			f.paint(buffer);
@@ -202,8 +204,7 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
 			System.out.println("count\t:" + this.objList.size());
 		}
 	}
-	@Override public void mouseClicked(MouseEvent e){
-	}
+	@Override public void mouseClicked(MouseEvent e){}
 	@Override public void mouseEntered(MouseEvent e){}
 	@Override public void mouseExited(MouseEvent e){}
 	@Override public void mouseDragged(MouseEvent e){
@@ -216,13 +217,29 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
 		System.out.println("count\t:" + this.objList.size());
 	}
 
+
+	@Override public void mouseMoved(MouseEvent e){
+	}
+
 	@Override public void update(Graphics g){
 		paint(g);
 		paint(pngbuff);
 	}
 
-	@Override public void mouseMoved(MouseEvent e){
+	@Override public void keyPressed(KeyEvent e){
+		int mod = e.getModifiersEx();
+		if((e.getKeyCode() == KeyEvent.VK_Z) && (mod & InputEvent.CTRL_DOWN_MASK) != 0){
+			if(objList.size() <= 0)return;
+			objList.remove(objList.size() - 1);
+			System.out.println("--undo--");
+            repaint();
+		}
+	}
 
+	@Override public void keyReleased(KeyEvent e){
+	}
+
+	@Override public void keyTyped(KeyEvent e){
 	}
 
 }

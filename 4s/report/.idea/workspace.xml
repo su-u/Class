@@ -45,12 +45,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="4542" />
+          <entry key="java" value="4853" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="4542" />
+          <entry key="JAVA" value="4853" />
         </counts>
       </usages-collector>
     </session>
@@ -69,13 +69,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Paint.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="594">
-              <caret line="147" column="24" selection-start-line="147" selection-start-column="24" selection-end-line="147" selection-end-column="24" />
+            <state relative-caret-position="1115">
+              <caret line="163" column="5" lean-forward="true" selection-start-line="163" selection-start-column="5" selection-end-line="163" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#998#1099#0" expanded="true" />
                 <element signature="e#1098#1099#0" expanded="true" />
-                <marker date="1543914230426" expanded="true" signature="6412:6465" ph="..." />
+                <marker date="1543940936733" expanded="true" signature="6573:6626" ph="..." />
               </folding>
             </state>
           </provider>
@@ -108,10 +108,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="800" />
-    <option name="y" value="173" />
+    <option name="x" value="384" />
+    <option name="y" value="155" />
     <option name="width" value="1827" />
-    <option name="height" value="1878" />
+    <option name="height" value="1868" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -146,7 +146,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543914327403" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543944055237" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
@@ -170,7 +170,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Unnamed">
+    <configuration name="Unnamed" type="Applet" factoryName="Applet">
+      <module name="report" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Unnamed" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Paint" />
+      <module name="report" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Paint" type="JarApplication" factoryName="JAR Application">
       <option name="WORKING_DIRECTORY" value="G:\マイドライブ\file\GitHub\Class\4s\report" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -178,6 +191,11 @@
       <module name="report" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Applet.Unnamed" />
+      <item itemvalue="Application.Unnamed" />
+      <item itemvalue="JAR Application.Paint" />
+    </list>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -194,12 +212,12 @@
       <workItem from="1542359550908" duration="6870000" />
       <workItem from="1542627836758" duration="3975000" />
       <workItem from="1543827379989" duration="18071000" />
-      <workItem from="1543906778184" duration="7500000" />
+      <workItem from="1543906778184" duration="26560000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36985000" />
+    <option name="totallyTimeSpent" value="56045000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -211,10 +229,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="800" y="173" width="1827" height="1878" extended-state="0" />
-    <editor active="true" />
+    <frame x="384" y="155" width="1827" height="1868" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26259196" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26259196" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -223,16 +240,16 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4968874" weight="0.23337156" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4995206" weight="0.3996697" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49518958" visible="true" weight="0.23298731" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4991511" weight="0.39965397" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4995206" weight="0.32947975" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49858516" weight="0.3292964" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49898374" weight="0.32955974" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50537634" side_tool="true" visible="true" weight="0.23337156" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49801925" weight="0.3292964" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5048104" side_tool="true" visible="true" weight="0.23298731" />
       <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49462366" weight="0.32626146" />
+      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49405771" weight="0.3258362" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -313,13 +330,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Paint.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="147" column="24" selection-start-line="147" selection-start-column="24" selection-end-line="147" selection-end-column="24" />
+        <state relative-caret-position="1115">
+          <caret line="163" column="5" lean-forward="true" selection-start-line="163" selection-start-column="5" selection-end-line="163" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#998#1099#0" expanded="true" />
             <element signature="e#1098#1099#0" expanded="true" />
-            <marker date="1543914230426" expanded="true" signature="6412:6465" ph="..." />
+            <marker date="1543940936733" expanded="true" signature="6573:6626" ph="..." />
           </folding>
         </state>
       </provider>
