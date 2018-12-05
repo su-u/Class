@@ -1,67 +1,73 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
     <head>
-            <script>
-                const time = 10;
-                var t = document.title;
-                var n = 0;
-                var interbalID;
-                function startInterval(){
-	                setInterval(function(){
-                        //document.title = ++n + " " + t;
-                        document.getElementById("time").innerHTML = "経過時間:" + ++n + " " + t;
-                        if(n >= time){
-                            window.location.href = "end.html";
-                        }
-                    }, 1000);
-                    document.getElementById("img").innerHTML = "<img src=\"単語.png\">";
-                    document.getElementById("wrapper").innerHTML = "";
-                }
+        <script>
+            const time = 10;
+            var t = document.title;
+            var n = 0;
+            var interbalID;
+            function startInterval() {
+                setInterval(function() {
+                    //document.title = ++n + " " + t;
+                    document.getElementById('time').innerHTML =
+                        '経過時間:' + ++n + ' ' + t;
+                    if (n >= time) {
+                        window.location.href = 'end.html';
+                    }
+                }, 1000);
+                document.getElementById('img').innerHTML =
+                    '<img src="単語.png">';
+                document.getElementById('wrapper').innerHTML = '';
+            }
 
-                //stopボタンを押すとタイマーを停止
-                function stopInterval(){
-                    clearInterval(intervalID);
-                }
-            </script>
-            <style>
-                #time{
-                    font-size: 60px;
-                }
-                .hoge{
-                    padding:50px;
-                    font-size: 200px;
-                    display:inline-block;
-                    background:#9b4dca;
-                    color:#fff;
-                    border-radius:20px;
-                    text-decoration:none;
-                    line-height:1;
-                }
-                #wrapper{
-                }
-                .center{
-                    text-align: center;
-                }
-
-            </style>
-            <title>実験試料</title>
+            //stopボタンを押すとタイマーを停止
+            function stopInterval() {
+                clearInterval(intervalID);
+            }
+        </script>
+        <style>
+            #time {
+                font-size: 60px;
+            }
+            .hoge {
+                padding: 50px;
+                font-size: 200px;
+                display: inline-block;
+                background: #9b4dca;
+                color: #fff;
+                border-radius: 20px;
+                text-decoration: none;
+                line-height: 1;
+            }
+            #wrapper {
+            }
+            .center {
+                text-align: center;
+            }
+        </style>
+        <title>実験試料</title>
         <!-- <meta http-equiv="refresh" content="10;URL=end.html"> -->
     </head>
     <body>
-
-            <div id="time">経過時間:</div>
-            <div id="wrapper">
-                <h2>注意事項</h2>
-                <ul>
-                    <li>準備ができたら「start」をクリックする。
-                    </li>
-                    <li>一定時間が経過したのち自動的にページが遷移します。それが終了の合図です。</li>
-                </ul>
-                <div class="center">
-                    <input type="button" class="hoge" value="start" onclick="startInterval();">
-
-                </div>
+        <div id="time">経過時間:</div>
+        <div id="wrapper">
+            <h2>注意事項</h2>
+            <ul>
+                <li>準備ができたら「start」をクリックする。</li>
+                <li>
+                    一定時間が経過したのち自動的にページが遷移します。それが終了の合図です。
+                </li>
+                <li>時間は10秒(仮)</li>
+            </ul>
+            <div class="center">
+                <input
+                    type="button"
+                    class="hoge"
+                    value="start"
+                    onclick="startInterval();"
+                />
             </div>
-            <div id="img"></div>   
+        </div>
+        <div id="img"></div>
     </body>
 </html>
