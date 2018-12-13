@@ -115,21 +115,22 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
 
 
 	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand() == "backBlack"	) {setBackground(Color.BLACK); repaint();}
-		if (e.getActionCommand() == "backWhite"	) {setBackground(Color.WHITE); repaint();}
-		if (e.getActionCommand() == "backRed"	) {setBackground(Color.RED); repaint();}
-		if (e.getActionCommand() == "backBlue"	) {setBackground(Color.BLUE); repaint();}
-		if (e.getActionCommand() == "backGreen"	) {setBackground(Color.GREEN); repaint();}
+		String cmd = e.getActionCommand();
+		if (cmd.equals("backBlack")) 	{setBackground(Color.BLACK); repaint();}
+		if (cmd.equals("backWhite")) 	{setBackground(Color.WHITE); repaint();}
+		if (cmd.equals("backRed")) 		{setBackground(Color.RED); repaint();}
+		if (cmd.equals("backBlue")) 	{setBackground(Color.BLUE); repaint();}
+		if (cmd.equals("backGreen")) 	{setBackground(Color.GREEN); repaint();}
 
-		if (e.getActionCommand() == "paintBlack"	) this.paintColor = PaintColor.Black;
-		if (e.getActionCommand() == "paintWhite"	) this.paintColor = PaintColor.White;
-		if (e.getActionCommand() == "paintRed"	) this.paintColor = PaintColor.Red;
-		if (e.getActionCommand() == "paintBlue"	) this.paintColor = PaintColor.Blue;
-		if (e.getActionCommand() == "paintGreen"	) this.paintColor = PaintColor.Green;
-		if (e.getActionCommand() == "paintGray"	) this.paintColor = PaintColor.Gray;
-		if (e.getActionCommand() == "paintGradation"	) this.paintColor = PaintColor.Gradation;
+		if (cmd.equals("paintBlack")) 		this.paintColor = PaintColor.Black;
+		if (cmd.equals("paintWhite")) 		this.paintColor = PaintColor.White;
+		if (cmd.equals("paintRed")) 		this.paintColor = PaintColor.Red;
+		if (cmd.equals("paintBlue")) 		this.paintColor = PaintColor.Blue;
+		if (cmd.equals("paintGreen")) 		this.paintColor = PaintColor.Green;
+		if (cmd.equals("paintGray")) 		this.paintColor = PaintColor.Gray;
+		if (cmd.equals("paintGradation")) 	this.paintColor = PaintColor.Gradation;
 
-		if (e.getActionCommand() == "png書き出し"	){
+		if (cmd.equals("png書き出し")){
 			try {
 				System.out.println("write png");
 				ImageIO.write(this.img,"png",new File("./paint.png"));
@@ -138,7 +139,7 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
 				ex.printStackTrace();
 			}
 		}
-		if (e.getActionCommand() == "jpg書き出し"	){
+		if (cmd.equals("jpg書き出し")){
 			try {
 				System.out.println("write jpg");
 				ImageIO.write(this.img,"jpg",new File("./paint.jpg"));
@@ -147,12 +148,12 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
 				ex.printStackTrace();
 			}
 		}
-		if (e.getActionCommand() == "全消去"	) {
+		if (cmd.equals("全消去")) {
 			objList.clear();
 			repaint();
 			System.out.println("--clear");
 		}
-		if (e.getActionCommand() == "ペイントサイズ"	){
+		if (cmd.equals("ペイントサイズ")){
 			JFrame frame = new JFrame();
 			String value = JOptionPane.showInputDialog(frame, "ペイントサイズ(0 ~ 10000)",this.paintSize);
 			if(value != null && value != "") {
@@ -210,7 +211,7 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
 	@Override public void mouseDragged(MouseEvent e){
 		x = e.getX();
 		y = e.getY();
-		obj = new Circle(this.paintColor, paintSize);
+		obj = new Circle(this.paintColor,  paintSize);
 		obj.moveto(x, y);
 		objList.add(obj);
 		repaint();
