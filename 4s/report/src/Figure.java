@@ -31,13 +31,13 @@ class Figure extends Coord implements java.io.Serializable{
                 break;
         }
 
-        System.out.println("this color \t:" + this.color.toString());
+//        System.out.println("this color \t:" + this.color.toString());
     }
 
     void NextColor(){
-        System.out.println("hue\t\t:" + Figure.hue);
-        System.out.println("saturation\t:" + Figure.saturation);
-        System.out.println("brightness\t:" + Figure.brightness);
+//        System.out.println("hue\t\t:" + Figure.hue);
+//        System.out.println("saturation\t:" + Figure.saturation);
+//        System.out.println("brightness\t:" + Figure.brightness);
         Figure.hue += this.DIFF;
         if(Figure.hue > 1.0f)Figure.hue = 0.0f;
     }

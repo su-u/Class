@@ -15,7 +15,7 @@ class Circle extends Figure implements java.io.Serializable {
     Circle(Paint.PaintColor color_ , int size_){
         super(color_);
         this.size = size_;
-        System.out.println("size\t\t:" + this.size);
+//        System.out.println("size\t\t:" + this.size);
     }
 
     @Override public void paint(Graphics g){

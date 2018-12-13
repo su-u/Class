@@ -8,14 +8,14 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-class Paint extends Frame implements MouseListener, MouseMotionListener,ActionListener,KeyListener{
+class Paint extends JFrame implements MouseListener, MouseMotionListener,ActionListener,KeyListener{
 
     private int x, y;
     private ArrayList<Figure> objList;
     private Figure obj;
     private static int visibleCount = 0;
-    private BufferedImage img = null;
-    private Graphics imgBuffer = null;
+    private BufferedImage img;
+    private Graphics imgBuffer;
     private static final int width = 1920;
     private static final int height = 1080;
     public enum PaintColor{
@@ -43,6 +43,7 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
         f.setBounds(500, 500, Paint.width, Paint.height);
         f.setTitle("Paint");
         f.addWindowListener(new WindowAdapter(){
+
             @Override public void windowClosing(WindowEvent e){
                 System.exit(0);
             }});
@@ -53,6 +54,7 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
 
     Paint() {
         objList = new ArrayList<Figure>();
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         addMouseListener(this);
         addMouseMotionListener(this);
@@ -65,11 +67,11 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
 
         Menu backColor = mb.add(new Menu("背景色"));
 
-        MenuItem backBlack = backColor.add(new MenuItem(	"backBlack"	));
-        MenuItem backWhite = backColor.add(new MenuItem(	"backWhite"	));
-        MenuItem backRed = backColor.add(new MenuItem(		"backRed"		));
-        MenuItem backBlue = backColor.add(new MenuItem(		"backBlue"		));
-        MenuItem backGreen = backColor.add(new MenuItem(	"backGreen"	));
+        MenuItem backBlack = backColor.add(new MenuItem("backBlack"));
+        MenuItem backWhite = backColor.add(new MenuItem("backWhite"));
+        MenuItem backRed = backColor.add(new MenuItem(  "backRed"));
+        MenuItem backBlue = backColor.add(new MenuItem( "backBlue"));
+        MenuItem backGreen = backColor.add(new MenuItem("backGreen"));
 
         backRed.addActionListener(this);
         backBlue.addActionListener(this);
@@ -80,13 +82,13 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
 
         Menu PaintColor = mb.add(new Menu("描画色"));
 
-        MenuItem paintBlack = PaintColor.add(new MenuItem(	"paintBlack"	));
-        MenuItem paintWhite = PaintColor.add(new MenuItem(	"paintWhite"	));
-        MenuItem paintRed = PaintColor.add(new MenuItem(		"paintRed"		));
-        MenuItem paintBlue = PaintColor.add(new MenuItem(	"paintBlue"		));
-        MenuItem paintGreen = PaintColor.add(new MenuItem(	"paintGreen"	));
-        MenuItem paintGray = PaintColor.add(new MenuItem(	"paintGray"		));
-        MenuItem paintGradation = PaintColor.add(new MenuItem(	"paintGradation"	));
+        MenuItem paintBlack = PaintColor.add(new MenuItem(  "paintBlack"));
+        MenuItem paintWhite = PaintColor.add(new MenuItem(  "paintWhite"));
+        MenuItem paintRed = PaintColor.add(new MenuItem(    "paintRed"));
+        MenuItem paintBlue = PaintColor.add(new MenuItem(   "paintBlue"));
+        MenuItem paintGreen = PaintColor.add(new MenuItem(  "paintGreen"));
+        MenuItem paintGray = PaintColor.add(new MenuItem(   "paintGray"));
+        MenuItem paintGradation = PaintColor.add(new MenuItem("paintGradation"));
 
         paintBlack.addActionListener(this);
         paintWhite.addActionListener(this);
@@ -99,17 +101,38 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
 
         Menu OtherSystem = mb.add(new Menu("その他"));
 
-        MenuItem clear = OtherSystem.add(new MenuItem(	"全消去"	));
-        MenuItem writePng = OtherSystem.add(new MenuItem(	"png書き出し"	));
-        MenuItem writeJpg = OtherSystem.add(new MenuItem(	"jpg書き出し"	));
-        MenuItem paintSize = OtherSystem.add(new MenuItem(	"ペイントサイズ"	));
+        MenuItem clear = OtherSystem.add(new MenuItem("全消去"));
+        MenuItem writePng = OtherSystem.add(new MenuItem("png書き出し"));
+        MenuItem writeJpg = OtherSystem.add(new MenuItem("jpg書き出し"));
+        MenuItem paintSize = OtherSystem.add(new MenuItem("ペイントサイズ"));
 
         clear.addActionListener(this);
         writePng.addActionListener(this);
         writeJpg.addActionListener(this);
         paintSize.addActionListener(this);
 
-        setMenuBar(mb);
+        this.setMenuBar(mb);
+
+
+        JPanel panel = new JPanel();
+
+        getContentPane().setLayout(new BorderLayout());
+
+        JToolBar toolBar = new JToolBar();
+        toolBar.setFloatable(true);
+        panel.add(toolBar, BorderLayout.NORTH);
+
+        JButton bt1 = new JButton(new ImageIcon("./test1.jpg"));
+        bt1.setActionCommand("New");
+        bt1.addActionListener(this);
+        toolBar.add(bt1);
+
+        JButton bt2 = new JButton(new ImageIcon("./test2.jpg"));
+        bt2.setActionCommand("New");
+        bt2.addActionListener(this);
+        toolBar.add(bt2);
+
+        this.getContentPane().add(panel);
 
     }
 
@@ -169,22 +192,31 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
         Figure f;
         Image back = back = createImage(getSize().width, getSize().height);
         Graphics buffer = back.getGraphics();
-        int start;
+        int start;  
         start = 0;
         if(objList.size() >= Paint.visibleCount && Paint.visibleCount != 0){
             start = objList.size() - Paint.visibleCount;
         }
 
         var visible = objList.size() - start;
-        System.out.println("Visible\t:" + visible);
+//        System.out.println("Visible\t:" + visible);
 
         for(int i = start;i < objList.size();i++){
             f = objList.get(i);
             f.paint(buffer);
+            f.paint(g);
+
         }
         if(obj != null) obj.paint(buffer);
 
-        g.drawImage(back, 0, 0, this);
+//        g.drawImage(back, 0, 0, this);
+        imgBuffer.drawImage(back, 0, 0, this);
+    }
+
+    @Override public void paintComponents(Graphics g){
+        super.paintComponents(g);
+        this.paint(g);
+        System.out.println("paint");
     }
 
     @Override public void mousePressed(MouseEvent e){
@@ -203,7 +235,7 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
             objList.add(obj);
             obj = null;
             repaint();
-            System.out.println("count\t:" + this.objList.size());
+//            System.out.println("count\t:" + this.objList.size());
         }
     }
     @Override public void mouseClicked(MouseEvent e){}
@@ -216,17 +248,19 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
         obj.moveto(x, y);
         objList.add(obj);
         repaint();
-        System.out.println("count\t:" + this.objList.size());
+//        System.out.println("count\t:" + this.objList.size());
     }
 
 
     @Override public void mouseMoved(MouseEvent e){
     }
 
-    @Override public void update(Graphics g){
-        paint(g);
-        paint(imgBuffer);
-    }
+//    @Override public void update(Graphics g){
+//        this.paint(g);
+//        this.paint(imgBuffer);
+//        super.paintComponents(imgBuffer);
+//        System.out.println("update");
+//    }
 
     @Override public void keyPressed(KeyEvent e){
         int mod = e.getModifiersEx();
