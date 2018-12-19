@@ -192,7 +192,7 @@ class Paint extends JFrame implements MouseListener, MouseMotionListener,ActionL
         Figure f;
         Image back = back = createImage(getSize().width, getSize().height);
         Graphics buffer = back.getGraphics();
-        int start;  
+        int start;
         start = 0;
         if(objList.size() >= Paint.visibleCount && Paint.visibleCount != 0){
             start = objList.size() - Paint.visibleCount;
