@@ -6,18 +6,22 @@ class Figure extends Coord implements java.io.Serializable{
     private static final float saturation = 1.0f,brightness = 1.0f;
     private static final float DIFF = (1.0f / 360);
 
+    protected int w,h;
+
     Figure(){
         this.color = Color.getHSBColor(Figure.hue, Figure.saturation, Figure.brightness);
         this.NextColor();
+        w = h = 0;
     }
 
     Figure(int x, int y){
         super(x,y);
         this.color = Color.getHSBColor(Figure.hue, Figure.saturation, Figure.brightness);
         this.NextColor();
+        w = h = 0;
     }
 
-    Figure(Paint.PaintColor color_){
+    Figure(PaintManager.PaintColor color_){
         switch (color_){
             case Red:	this.color = Color.RED;		break;
             case Blue:	this.color = Color.BLUE;	break;
@@ -40,5 +44,10 @@ class Figure extends Coord implements java.io.Serializable{
 //        System.out.println("brightness\t:" + Figure.brightness);
         Figure.hue += this.DIFF;
         if(Figure.hue > 1.0f)Figure.hue = 0.0f;
+    }
+
+    public void setWH(int w,int y){
+        this.w = w;
+        this.y = y;
     }
 }

@@ -1,18 +1,15 @@
 import java.awt.*;
 
-
 class Circle extends Figure implements java.io.Serializable {
-    private int size;
+    private int size = 30;
 
     Circle() {
-        this.size = 30;
     }
 
     Circle(int x, int y){
         super(x, y);
-        this.size = 30;
     }
-    Circle(Paint.PaintColor color_ , int size_){
+    Circle(PaintManager.PaintColor color_ , int size_){
         super(color_);
         this.size = size_;
 //        System.out.println("size\t\t:" + this.size);

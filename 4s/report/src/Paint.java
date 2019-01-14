@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-class Paint extends JFrame implements MouseListener, MouseMotionListener,ActionListener,KeyListener{
+class Paint extends Frame implements MouseListener, MouseMotionListener,ActionListener,KeyListener{
 
     private int x, y;
     private ArrayList<Figure> objList;
@@ -16,8 +16,8 @@ class Paint extends JFrame implements MouseListener, MouseMotionListener,ActionL
     private static int visibleCount = 0;
     private BufferedImage img;
     private Graphics imgBuffer;
-    private static final int width = 1920;
-    private static final int height = 1080;
+    private static final int width = 1280;
+    private static final int height = 720;
     public enum PaintColor{
         Black,
         White,
@@ -29,6 +29,10 @@ class Paint extends JFrame implements MouseListener, MouseMotionListener,ActionL
     }
     private int paintSize = 30;
     private PaintColor paintColor = PaintColor.Gradation;
+    CheckboxGroup cbg;
+    Checkbox shapeCB1, shapeCB2, shapeCB3, shapeCB4;
+    Button endButton;
+
 
 
     public static void main(String[] args){
@@ -54,7 +58,7 @@ class Paint extends JFrame implements MouseListener, MouseMotionListener,ActionL
 
     Paint() {
         objList = new ArrayList<Figure>();
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         addMouseListener(this);
         addMouseMotionListener(this);
@@ -112,27 +116,6 @@ class Paint extends JFrame implements MouseListener, MouseMotionListener,ActionL
         paintSize.addActionListener(this);
 
         this.setMenuBar(mb);
-
-
-        JPanel panel = new JPanel();
-
-        getContentPane().setLayout(new BorderLayout());
-
-        JToolBar toolBar = new JToolBar();
-        toolBar.setFloatable(true);
-        panel.add(toolBar, BorderLayout.NORTH);
-
-        JButton bt1 = new JButton(new ImageIcon("./test1.jpg"));
-        bt1.setActionCommand("New");
-        bt1.addActionListener(this);
-        toolBar.add(bt1);
-
-        JButton bt2 = new JButton(new ImageIcon("./test2.jpg"));
-        bt2.setActionCommand("New");
-        bt2.addActionListener(this);
-        toolBar.add(bt2);
-
-        this.getContentPane().add(panel);
 
     }
 
@@ -204,12 +187,12 @@ class Paint extends JFrame implements MouseListener, MouseMotionListener,ActionL
         for(int i = start;i < objList.size();i++){
             f = objList.get(i);
             f.paint(buffer);
-            f.paint(g);
+            //f.paint(g);
 
         }
         if(obj != null) obj.paint(buffer);
 
-//        g.drawImage(back, 0, 0, this);
+        g.drawImage(back, 0, 0, this);
         imgBuffer.drawImage(back, 0, 0, this);
     }
 
@@ -232,6 +215,7 @@ class Paint extends JFrame implements MouseListener, MouseMotionListener,ActionL
         if(e.getButton() == MouseEvent.BUTTON1) {
             x = e.getX();
             y = e.getY();
+            obj.setWH(x - obj.x, y - obj.y);
             objList.add(obj);
             obj = null;
             repaint();
@@ -255,12 +239,10 @@ class Paint extends JFrame implements MouseListener, MouseMotionListener,ActionL
     @Override public void mouseMoved(MouseEvent e){
     }
 
-//    @Override public void update(Graphics g){
-//        this.paint(g);
-//        this.paint(imgBuffer);
-//        super.paintComponents(imgBuffer);
-//        System.out.println("update");
-//    }
+    @Override public void update(Graphics g){
+        this.paint(g);
+        this.paint(imgBuffer);
+    }
 
     @Override public void keyPressed(KeyEvent e){
         int mod = e.getModifiersEx();
