@@ -2,7 +2,9 @@ public class PaintManager {
     public enum PaintMode{
         DOT,
         CIRCLE,
+        FILL_CIRCLE,
         RECT,
+        FILL_RECT,
         LINE,
     }
 
@@ -17,10 +19,10 @@ public class PaintManager {
     }
 
     int paintSize = 30;
-    PaintMode paintMode = PaintMode.CIRCLE;
+    PaintMode paintMode = PaintMode.DOT;
     PaintColor paintColor = PaintColor.BLACK;
 
-    public Figure GetObject(){
+    public Figure getObject(){
         switch (paintMode){
             case DOT:
                 return new Dot(paintColor, paintSize);
@@ -34,13 +36,13 @@ public class PaintManager {
         return new Figure();
     }
 
-    public void SetPaintMode(PaintMode mode){
+    public void setPaintMode(PaintMode mode){
         this.paintMode = mode;
     }
-    public  PaintMode GetPaintMode(){
+    public  PaintMode getPaintMode(){
         return this.paintMode;
     }
-    public  void SetPaintColor(PaintColor color){
+    public  void setPaintColor(PaintColor color){
         this.paintColor = color;
     }
 

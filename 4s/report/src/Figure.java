@@ -9,15 +9,12 @@ class Figure extends Coord implements java.io.Serializable{
     protected int w,h;
 
     Figure(){
-        this.color = Color.getHSBColor(Figure.hue, Figure.saturation, Figure.brightness);
-        this.NextColor();
         w = h = 0;
     }
 
     Figure(int x, int y){
-        super(x,y);
-        this.color = Color.getHSBColor(Figure.hue, Figure.saturation, Figure.brightness);
-        this.NextColor();
+
+        this.nextColor();
         w = h = 0;
     }
 
@@ -31,14 +28,14 @@ class Figure extends Coord implements java.io.Serializable{
             case BLACK:	this.color = Color.BLACK;	break;
             case GRADATION:
                 this.color = Color.getHSBColor(Figure.hue, Figure.saturation, Figure.brightness);
-                NextColor();
+                nextColor();
                 break;
         }
 
 //        System.out.println("this color \t:" + this.color.toString());
     }
 
-    void NextColor(){
+    void nextColor(){
 //        System.out.println("hue\t\t:" + Figure.hue);
 //        System.out.println("saturation\t:" + Figure.saturation);
 //        System.out.println("brightness\t:" + Figure.brightness);
@@ -46,8 +43,8 @@ class Figure extends Coord implements java.io.Serializable{
         if(Figure.hue > 1.0f)Figure.hue = 0.0f;
     }
 
-    public void setWH(int w,int y){
+    public void setWH(int w,int h){
         this.w = w;
-        this.y = y;
+        this.h = h;
     }
 }

@@ -33,6 +33,9 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
     Checkbox shapeCB1, shapeCB2, shapeCB3, shapeCB4;
     Button endButton;
 
+    CheckboxGroup fillModeCBG;
+    Checkbox fillModeCB1,fillModeCB2;
+
     PaintManager pm;
 
 
@@ -125,7 +128,11 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
         shapeCB3 = new Checkbox("四角",shapeCBG,false);
         shapeCB4 = new Checkbox("線",shapeCBG,false);
 
-        final int cbWidth = 60;
+        fillModeCBG = new CheckboxGroup();
+        fillModeCB1 = new Checkbox("unfill",fillModeCBG,true);
+        fillModeCB2 = new Checkbox("fill",fillModeCBG,false);
+
+        final int cbWidth = 80;
 
 
         shapeCB1.setBounds(Paint.width - cbWidth,50,cbWidth,20);
@@ -133,11 +140,19 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
         shapeCB3.setBounds(Paint.width - cbWidth,90,cbWidth,20);
         shapeCB4.setBounds(Paint.width - cbWidth,110,cbWidth,20);
 
+        fillModeCB1.setBounds(Paint.width - cbWidth, 180,cbWidth,20);
+        fillModeCB2.setBounds(Paint.width - cbWidth, 200,cbWidth,20);
+
         final int fontSize = 16;
-        shapeCB1.setFont(new Font("ＭＳ ゴシック", Font.BOLD, fontSize));   this.add(shapeCB1);   shapeCB1.addItemListener(this);
-        shapeCB2.setFont(new Font("ＭＳ ゴシック", Font.BOLD, fontSize));   this.add(shapeCB2);   shapeCB2.addItemListener(this);
-        shapeCB3.setFont(new Font("ＭＳ ゴシック", Font.BOLD, fontSize));   this.add(shapeCB3);   shapeCB3.addItemListener(this);
-        shapeCB4.setFont(new Font("ＭＳ ゴシック", Font.BOLD, fontSize));   this.add(shapeCB4);   shapeCB4.addItemListener(this);
+        final Font checkBoxFont = new Font("ＭＳ ゴシック", Font.BOLD, fontSize);
+
+        shapeCB1.setFont(checkBoxFont);   this.add(shapeCB1);   shapeCB1.addItemListener(this);
+        shapeCB2.setFont(checkBoxFont);   this.add(shapeCB2);   shapeCB2.addItemListener(this);
+        shapeCB3.setFont(checkBoxFont);   this.add(shapeCB3);   shapeCB3.addItemListener(this);
+        shapeCB4.setFont(checkBoxFont);   this.add(shapeCB4);   shapeCB4.addItemListener(this);
+
+        fillModeCB1.setFont(checkBoxFont);   this.add(fillModeCB1);   fillModeCB1.addItemListener(this);
+        fillModeCB2.setFont(checkBoxFont);   this.add(fillModeCB2);   fillModeCB2.addItemListener(this);
 
         setLayout(null);
 
@@ -147,10 +162,12 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
         Checkbox ch = (Checkbox)e.getItemSelectable();
         String cmd = ch.getLabel();
 
-        if(cmd.equals("丸"))     {pm.SetPaintMode(PaintManager.PaintMode.DOT);repaint();System.out.println("Mode Change:丸");}
-        if(cmd.equals("円"))     {pm.SetPaintMode(PaintManager.PaintMode.CIRCLE);repaint();System.out.println("Mode Change:円");}
-        if(cmd.equals("四角"))   {pm.SetPaintMode(PaintManager.PaintMode.RECT);repaint();System.out.println("Mode Change:四角");}
-        if(cmd.equals("線"))     {pm.SetPaintMode(PaintManager.PaintMode.LINE);repaint();System.out.println("Mode Change:線");}
+        if(cmd.equals("丸"))     {pm.setPaintMode(PaintManager.PaintMode.DOT);repaint();System.out.println("Mode Change:丸");}
+        if(cmd.equals("円"))     {pm.setPaintMode(PaintManager.PaintMode.CIRCLE);repaint();System.out.println("Mode Change:円");}
+        if(cmd.equals("四角"))   {pm.setPaintMode(PaintManager.PaintMode.RECT);repaint();System.out.println("Mode Change:四角");}
+        if(cmd.equals("線"))     {pm.setPaintMode(PaintManager.PaintMode.LINE);repaint();System.out.println("Mode Change:線");}
+        if(cmd.equals("unfill"))    {Rect.setUnFill();repaint();System.out.println("Mode Change:unfill");}
+        if(cmd.equals("fill"))      {Rect.setFill();repaint();System.out.println("Mode Change:fill");}
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -161,13 +178,13 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
         if (cmd.equals("backBlue"))     {setBackground(Color.BLUE); repaint();}
         if (cmd.equals("backGreen"))    {setBackground(Color.GREEN); repaint();}
 
-        if (cmd.equals("paintBlack"))       pm.SetPaintColor(PaintManager.PaintColor.BLACK);
-        if (cmd.equals("paintWhite"))       pm.SetPaintColor(PaintManager.PaintColor.WHITE);
-        if (cmd.equals("paintRed"))         pm.SetPaintColor(PaintManager.PaintColor.RED);
-        if (cmd.equals("paintBlue"))        pm.SetPaintColor(PaintManager.PaintColor.BLUE);
-        if (cmd.equals("paintGreen"))       pm.SetPaintColor(PaintManager.PaintColor.GREEN);
-        if (cmd.equals("paintGray"))        pm.SetPaintColor(PaintManager.PaintColor.GRAY);
-        if (cmd.equals("paintGradation"))   pm.SetPaintColor(PaintManager.PaintColor.GRADATION);
+        if (cmd.equals("paintBlack"))       pm.setPaintColor(PaintManager.PaintColor.BLACK);
+        if (cmd.equals("paintWhite"))       pm.setPaintColor(PaintManager.PaintColor.WHITE);
+        if (cmd.equals("paintRed"))         pm.setPaintColor(PaintManager.PaintColor.RED);
+        if (cmd.equals("paintBlue"))        pm.setPaintColor(PaintManager.PaintColor.BLUE);
+        if (cmd.equals("paintGreen"))       pm.setPaintColor(PaintManager.PaintColor.GREEN);
+        if (cmd.equals("paintGray"))        pm.setPaintColor(PaintManager.PaintColor.GRAY);
+        if (cmd.equals("paintGradation"))   pm.setPaintColor(PaintManager.PaintColor.GRADATION);
 
         if (cmd.equals("png書き出し")){
             try {
@@ -240,8 +257,10 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
         if(e.getButton() == MouseEvent.BUTTON1) {
             x = e.getX();
             y = e.getY();
-            obj = pm.GetObject();
-            obj.moveto(x, y);
+            obj = pm.getObject();
+            if(obj != null){
+                obj.moveto(x, y);
+            }
             repaint();
         }
     }
@@ -249,10 +268,14 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
         if(e.getButton() == MouseEvent.BUTTON1) {
             x = e.getX();
             y = e.getY();
-            if(pm.GetPaintMode() == PaintManager.PaintMode.DOT) {
+            if(pm.getPaintMode() == PaintManager.PaintMode.DOT) {
                 obj.moveto(x,y);
-            } else if(pm.GetPaintMode() == PaintManager.PaintMode.CIRCLE){
+            } else if(pm.getPaintMode() == PaintManager.PaintMode.CIRCLE){
                 obj.setWH(x - obj.x, y - obj.y);
+            }
+            if(pm.getPaintMode() != PaintManager.PaintMode.DOT){
+                objList.add(obj);
+                obj = null;
             }
             if(obj != null){
                 objList.add(obj);
@@ -268,10 +291,13 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
     @Override public void mouseDragged(MouseEvent e){
         x = e.getX();
         y = e.getY();
-        if(pm.GetPaintMode() == PaintManager.PaintMode.DOT){
+        if(pm.getPaintMode() == PaintManager.PaintMode.DOT){
             obj.moveto(x,y);
 //            objList.add(obj);
-        }else if(pm.GetPaintMode() == PaintManager.PaintMode.CIRCLE){
+        }else if(
+                pm.getPaintMode() == PaintManager.PaintMode.CIRCLE ||
+                pm.getPaintMode() == PaintManager.PaintMode.RECT ||
+                pm.getPaintMode() == PaintManager.PaintMode.LINE){
             obj.setWH(x - obj.x,y - obj.y);
         }
         repaint();
