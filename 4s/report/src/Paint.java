@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-class Paint extends Frame implements MouseListener, MouseMotionListener,ActionListener,KeyListener{
+class Paint extends Frame implements MouseListener, MouseMotionListener,ActionListener,KeyListener,ItemListener{
 
     private int x, y;
     private ArrayList<Figure> objList;
@@ -29,10 +29,11 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
     }
     private int paintSize = 30;
     private PaintColor paintColor = PaintColor.Gradation;
-    CheckboxGroup cbg;
+    CheckboxGroup shapeCBG;
     Checkbox shapeCB1, shapeCB2, shapeCB3, shapeCB4;
     Button endButton;
 
+    PaintManager pm;
 
 
     public static void main(String[] args){
@@ -117,8 +118,40 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
 
         this.setMenuBar(mb);
 
-    }
 
+        shapeCBG = new CheckboxGroup();
+        shapeCB1 = new Checkbox("丸", shapeCBG,true);
+        shapeCB2 = new Checkbox("円", shapeCBG,false);
+        shapeCB3 = new Checkbox("四角",shapeCBG,false);
+        shapeCB4 = new Checkbox("線",shapeCBG,false);
+
+        final int cbWidth = 60;
+
+
+        shapeCB1.setBounds(Paint.width - cbWidth,50,cbWidth,20);
+        shapeCB2.setBounds(Paint.width - cbWidth,70,cbWidth,20);
+        shapeCB3.setBounds(Paint.width - cbWidth,90,cbWidth,20);
+        shapeCB4.setBounds(Paint.width - cbWidth,110,cbWidth,20);
+
+        final int fontSize = 16;
+        shapeCB1.setFont(new Font("ＭＳ ゴシック", Font.BOLD, fontSize));   this.add(shapeCB1);   shapeCB1.addItemListener(this);
+        shapeCB2.setFont(new Font("ＭＳ ゴシック", Font.BOLD, fontSize));   this.add(shapeCB2);   shapeCB2.addItemListener(this);
+        shapeCB3.setFont(new Font("ＭＳ ゴシック", Font.BOLD, fontSize));   this.add(shapeCB3);   shapeCB3.addItemListener(this);
+        shapeCB4.setFont(new Font("ＭＳ ゴシック", Font.BOLD, fontSize));   this.add(shapeCB4);   shapeCB4.addItemListener(this);
+
+        setLayout(null);
+
+        pm = new PaintManager();
+    }
+    public void itemStateChanged(ItemEvent e) {
+        Checkbox ch = (Checkbox)e.getItemSelectable();
+        String cmd = ch.getLabel();
+
+        if(cmd.equals("丸"))     {pm.SetPaintMode(PaintManager.PaintMode.DOT);repaint();System.out.println("Mode Change:丸");}
+        if(cmd.equals("円"))     {pm.SetPaintMode(PaintManager.PaintMode.CIRCLE);repaint();System.out.println("Mode Change:円");}
+        if(cmd.equals("四角"))   {pm.SetPaintMode(PaintManager.PaintMode.RECT);repaint();System.out.println("Mode Change:四角");}
+        if(cmd.equals("線"))     {pm.SetPaintMode(PaintManager.PaintMode.LINE);repaint();System.out.println("Mode Change:線");}
+    }
 
     public void actionPerformed(ActionEvent e) {
         String cmd = e.getActionCommand();
@@ -128,13 +161,13 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
         if (cmd.equals("backBlue"))     {setBackground(Color.BLUE); repaint();}
         if (cmd.equals("backGreen"))    {setBackground(Color.GREEN); repaint();}
 
-        if (cmd.equals("paintBlack"))       this.paintColor = PaintColor.Black;
-        if (cmd.equals("paintWhite"))       this.paintColor = PaintColor.White;
-        if (cmd.equals("paintRed"))         this.paintColor = PaintColor.Red;
-        if (cmd.equals("paintBlue"))        this.paintColor = PaintColor.Blue;
-        if (cmd.equals("paintGreen"))       this.paintColor = PaintColor.Green;
-        if (cmd.equals("paintGray"))        this.paintColor = PaintColor.Gray;
-        if (cmd.equals("paintGradation"))   this.paintColor = PaintColor.Gradation;
+        if (cmd.equals("paintBlack"))       pm.SetPaintColor(PaintManager.PaintColor.BLACK);
+        if (cmd.equals("paintWhite"))       pm.SetPaintColor(PaintManager.PaintColor.WHITE);
+        if (cmd.equals("paintRed"))         pm.SetPaintColor(PaintManager.PaintColor.RED);
+        if (cmd.equals("paintBlue"))        pm.SetPaintColor(PaintManager.PaintColor.BLUE);
+        if (cmd.equals("paintGreen"))       pm.SetPaintColor(PaintManager.PaintColor.GREEN);
+        if (cmd.equals("paintGray"))        pm.SetPaintColor(PaintManager.PaintColor.GRAY);
+        if (cmd.equals("paintGradation"))   pm.SetPaintColor(PaintManager.PaintColor.GRADATION);
 
         if (cmd.equals("png書き出し")){
             try {
@@ -203,10 +236,11 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
     }
 
     @Override public void mousePressed(MouseEvent e){
+        obj  = null;
         if(e.getButton() == MouseEvent.BUTTON1) {
             x = e.getX();
             y = e.getY();
-            obj = new Circle(this.paintColor, paintSize);
+            obj = pm.GetObject();
             obj.moveto(x, y);
             repaint();
         }
@@ -215,8 +249,14 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
         if(e.getButton() == MouseEvent.BUTTON1) {
             x = e.getX();
             y = e.getY();
-            obj.setWH(x - obj.x, y - obj.y);
-            objList.add(obj);
+            if(pm.GetPaintMode() == PaintManager.PaintMode.DOT) {
+                obj.moveto(x,y);
+            } else if(pm.GetPaintMode() == PaintManager.PaintMode.CIRCLE){
+                obj.setWH(x - obj.x, y - obj.y);
+            }
+            if(obj != null){
+                objList.add(obj);
+            }
             obj = null;
             repaint();
 //            System.out.println("count\t:" + this.objList.size());
@@ -228,9 +268,12 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
     @Override public void mouseDragged(MouseEvent e){
         x = e.getX();
         y = e.getY();
-        obj = new Circle(this.paintColor,  paintSize);
-        obj.moveto(x, y);
-        objList.add(obj);
+        if(pm.GetPaintMode() == PaintManager.PaintMode.DOT){
+            obj.moveto(x,y);
+//            objList.add(obj);
+        }else if(pm.GetPaintMode() == PaintManager.PaintMode.CIRCLE){
+            obj.setWH(x - obj.x,y - obj.y);
+        }
         repaint();
 //        System.out.println("count\t:" + this.objList.size());
     }

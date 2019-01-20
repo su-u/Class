@@ -23,13 +23,13 @@ class Figure extends Coord implements java.io.Serializable{
 
     Figure(PaintManager.PaintColor color_){
         switch (color_){
-            case Red:	this.color = Color.RED;		break;
-            case Blue:	this.color = Color.BLUE;	break;
-            case Green:	this.color = Color.GREEN;	break;
-            case White:	this.color = Color.WHITE;	break;
-            case Gray: 	this.color = Color.GRAY;	break;
-            case Black:	this.color = Color.BLACK;	break;
-            case Gradation:
+            case RED:	this.color = Color.RED;		break;
+            case BLUE:	this.color = Color.BLUE;	break;
+            case GREEN:	this.color = Color.GREEN;	break;
+            case WHITE:	this.color = Color.WHITE;	break;
+            case GRAY: 	this.color = Color.GRAY;	break;
+            case BLACK:	this.color = Color.BLACK;	break;
+            case GRADATION:
                 this.color = Color.getHSBColor(Figure.hue, Figure.saturation, Figure.brightness);
                 NextColor();
                 break;

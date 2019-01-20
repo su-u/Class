@@ -12,7 +12,8 @@ public class Dot extends Figure implements Serializable {
     }
 
     @Override public void paint(Graphics g){
-        g.drawOval(this.x - size / 2, this.y - size / 2, size, size);
+        g.setColor(this.color);
+        g.fillOval(x - size / 2, y - size / 2, size, size);
     }
 
 }

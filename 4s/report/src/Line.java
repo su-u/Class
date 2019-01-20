@@ -8,6 +8,7 @@ public class Line extends Figure implements Serializable {
 
     }
     @Override public void paint(Graphics g){
+
         g.drawLine(this.x, this.y,this.x + this.w, this.y + this.h);
     }
 

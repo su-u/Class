@@ -1,38 +1,47 @@
 public class PaintManager {
     public enum PaintMode{
-        Dot,
-        Circle,
-        Rect,
-        line,
+        DOT,
+        CIRCLE,
+        RECT,
+        LINE,
     }
 
     public enum PaintColor{
-        Black,
-        White,
-        Red,
-        Blue,
-        Green,
-        Gray,
-        Gradation
+        BLACK,
+        WHITE,
+        RED,
+        BLUE,
+        GREEN,
+        GRAY,
+        GRADATION
     }
 
     int paintSize = 30;
-    PaintMode paintMode = PaintMode.Circle;
-    PaintColor paintColor = PaintColor.Gradation;
+    PaintMode paintMode = PaintMode.CIRCLE;
+    PaintColor paintColor = PaintColor.BLACK;
 
     public Figure GetObject(){
         switch (paintMode){
-            case Dot:
+            case DOT:
                 return new Dot(paintColor, paintSize);
-            case Circle:
+            case CIRCLE:
                 return new Circle(paintColor, paintSize);
-            case line:
+            case LINE:
                 return new Line();
-            case Rect:
+            case RECT:
                 return new Rect();
         }
         return new Figure();
     }
 
+    public void SetPaintMode(PaintMode mode){
+        this.paintMode = mode;
+    }
+    public  PaintMode GetPaintMode(){
+        return this.paintMode;
+    }
+    public  void SetPaintColor(PaintColor color){
+        this.paintColor = color;
+    }
 
 }
