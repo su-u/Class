@@ -2,47 +2,48 @@ import java.awt.*;
 import java.io.Serializable;
 
 public class Rect extends Figure implements Serializable {
-    int x1 = 0,y1 = 0,x2 = 0,y2 = 0;
-    private static boolean isFill = false;
+    private boolean isFill = false;
     Rect(){}
+    Rect(boolean isFill_){
+        this.isFill = isFill_;
+    }
     @Override public void paint(Graphics g){
-        this.setPosition();
-        if(Rect.isFill){
+        int x1 = 0,y1 = 0,x2 = 0,y2 = 0;
+        x1 = this.x;
+        y1 = this.y;
+        x2 = this.w;
+        y2 = this.h;
+
+        if(this.w <= 0) {
+            x1 = this.x + this.w;
+            x2 = -this.w;
+        }
+        if(this.h <= 0) {
+            y1 = this.y + this.h;
+            y2 = -this.h;
+        }
+        if(this .isFill){
             g.fillRect(x1,y1,x2,y2);
         }else {
             g.drawRect(x1,y1,x2,y2);
         }
     }
 
-    protected void setPosition(){
-        this.x1 = this.x;
-        this.y1 = this.y;
-        this.x2 = this.w;
-        this.y2 = this.h;
 
-        if(this.w <= 0) {
-            this.x1 = this.x + this.w;
-            this.x2 = -this.w;
-        }
-        if(this.h <= 0) {
-            this.y1 = this.y + this.h;
-            this.y2 = -this.h;
-        }
-    }
-
-    public static void changeFillMode(){
-        if(Rect.isFill){
-            Rect.isFill = false;
+    public void changeFillMode(){
+        if(this.isFill){
+            this.isFill = false;
         } else {
-            Rect.isFill = true;
+            this.isFill = true;
         }
     }
-    public static void setUnFill(){
-        Rect.isFill = false;
+    public void setUnFill(){
+
+        this.isFill = false;
     }
 
-    public static void setFill(){
-        Rect.isFill = true;
+    public void setFill(){
+        this.isFill = true;
     }
 
 }

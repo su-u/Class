@@ -12,25 +12,16 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
 
     private int x, y;
     private ArrayList<Figure> objList;
+    private ArrayList<Figure> undoList;
     private Figure obj;
     private static int visibleCount = 0;
     private BufferedImage img;
     private Graphics imgBuffer;
     private static final int width = 1280;
     private static final int height = 720;
-    public enum PaintColor{
-        Black,
-        White,
-        Red,
-        Blue,
-        Green,
-        Gray,
-        Gradation
-    }
-    private int paintSize = 30;
-    private PaintColor paintColor = PaintColor.Gradation;
+
     CheckboxGroup shapeCBG;
-    Checkbox shapeCB1, shapeCB2, shapeCB3, shapeCB4;
+    Checkbox shapeCB1, shapeCB2, shapeCB3, shapeCB4,shapeCB5;
     Button endButton;
 
     CheckboxGroup fillModeCBG;
@@ -62,6 +53,7 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
 
     Paint() {
         objList = new ArrayList<Figure>();
+        undoList = new ArrayList<Figure>();
 //        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         addMouseListener(this);
@@ -125,8 +117,9 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
         shapeCBG = new CheckboxGroup();
         shapeCB1 = new Checkbox("丸", shapeCBG,true);
         shapeCB2 = new Checkbox("円", shapeCBG,false);
-        shapeCB3 = new Checkbox("四角",shapeCBG,false);
-        shapeCB4 = new Checkbox("線",shapeCBG,false);
+        shapeCB3 = new Checkbox("四角", shapeCBG,false);
+        shapeCB4 = new Checkbox("線", shapeCBG,false);
+        shapeCB5 = new Checkbox("ペン", shapeCBG, false);
 
         fillModeCBG = new CheckboxGroup();
         fillModeCB1 = new Checkbox("unfill",fillModeCBG,true);
@@ -139,6 +132,7 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
         shapeCB2.setBounds(Paint.width - cbWidth,70,cbWidth,20);
         shapeCB3.setBounds(Paint.width - cbWidth,90,cbWidth,20);
         shapeCB4.setBounds(Paint.width - cbWidth,110,cbWidth,20);
+        shapeCB5.setBounds(Paint.width - cbWidth, 130, cbWidth, 20);
 
         fillModeCB1.setBounds(Paint.width - cbWidth, 180,cbWidth,20);
         fillModeCB2.setBounds(Paint.width - cbWidth, 200,cbWidth,20);
@@ -150,6 +144,7 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
         shapeCB2.setFont(checkBoxFont);   this.add(shapeCB2);   shapeCB2.addItemListener(this);
         shapeCB3.setFont(checkBoxFont);   this.add(shapeCB3);   shapeCB3.addItemListener(this);
         shapeCB4.setFont(checkBoxFont);   this.add(shapeCB4);   shapeCB4.addItemListener(this);
+        shapeCB5.setFont(checkBoxFont);   this.add(shapeCB5);   shapeCB5.addItemListener(this);
 
         fillModeCB1.setFont(checkBoxFont);   this.add(fillModeCB1);   fillModeCB1.addItemListener(this);
         fillModeCB2.setFont(checkBoxFont);   this.add(fillModeCB2);   fillModeCB2.addItemListener(this);
@@ -166,8 +161,10 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
         if(cmd.equals("円"))     {pm.setPaintMode(PaintManager.PaintMode.CIRCLE);repaint();System.out.println("Mode Change:円");}
         if(cmd.equals("四角"))   {pm.setPaintMode(PaintManager.PaintMode.RECT);repaint();System.out.println("Mode Change:四角");}
         if(cmd.equals("線"))     {pm.setPaintMode(PaintManager.PaintMode.LINE);repaint();System.out.println("Mode Change:線");}
-        if(cmd.equals("unfill"))    {Rect.setUnFill();repaint();System.out.println("Mode Change:unfill");}
-        if(cmd.equals("fill"))      {Rect.setFill();repaint();System.out.println("Mode Change:fill");}
+        if(cmd.equals("ペン"))     {pm.setPaintMode(PaintManager.PaintMode.PEN);repaint();System.out.println("Mode Change:ペン");}
+
+        if(cmd.equals("unfill"))    {pm.setUnFillMode();repaint();System.out.println("Mode Change:unfill");}
+        if(cmd.equals("fill"))      {pm.setFillMode();repaint();System.out.println("Mode Change:fill");}
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -211,11 +208,11 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
         }
         if (cmd.equals("ペイントサイズ")){
             JFrame frame = new JFrame();
-            String value = JOptionPane.showInputDialog(frame, "ペイントサイズ(0 ~ 10000)",this.paintSize);
+            String value = JOptionPane.showInputDialog(frame, "ペイントサイズ(0 ~ 10000)", pm.getPaintSize());
             if(value != null && value != "") {
-                this.paintSize = Integer.parseInt(value);
-                if (this.paintSize < 0) this.paintSize = 0;
-                else if (this.paintSize > 10000) this.paintSize = 10000;
+                pm.setPaintSize(Integer.parseInt(value));
+                if (pm.getPaintSize() < 0) pm.setPaintSize(0);
+                else if (pm.getPaintSize() > 10000) pm.setPaintSize(10000);
             }
         }
     }
@@ -272,11 +269,15 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
                 obj.moveto(x,y);
             } else if(pm.getPaintMode() == PaintManager.PaintMode.CIRCLE){
                 obj.setWH(x - obj.x, y - obj.y);
+            } else if(pm.getPaintMode() == PaintManager.PaintMode.PEN){
+                objList.add(obj);
             }
+
             if(pm.getPaintMode() != PaintManager.PaintMode.DOT){
                 objList.add(obj);
                 obj = null;
             }
+
             if(obj != null){
                 objList.add(obj);
             }
@@ -299,6 +300,10 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
                 pm.getPaintMode() == PaintManager.PaintMode.RECT ||
                 pm.getPaintMode() == PaintManager.PaintMode.LINE){
             obj.setWH(x - obj.x,y - obj.y);
+        }else if(pm.getPaintMode() == PaintManager.PaintMode.PEN){
+            obj = pm.getObject();
+            obj.moveto(x, y);
+            objList.add(obj);
         }
         repaint();
 //        System.out.println("count\t:" + this.objList.size());
@@ -317,8 +322,16 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
         int mod = e.getModifiersEx();
         if((e.getKeyCode() == KeyEvent.VK_Z) && (mod & InputEvent.CTRL_DOWN_MASK) != 0){
             if(objList.size() <= 0)return;
+            undoList.add(objList.get(objList.size() - 1));
             objList.remove(objList.size() - 1);
             System.out.println("--undo--");
+            repaint();
+        }
+        if((e.getKeyCode() == KeyEvent.VK_Y) && (mod & InputEvent.CTRL_DOWN_MASK) != 0){
+            if(undoList.size() <= 0)return;
+            objList.add(undoList.get(undoList.size() - 1));
+            undoList.remove(undoList.size() - 1);
+            System.out.println("--redo--");
             repaint();
         }
     }
