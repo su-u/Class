@@ -3,7 +3,7 @@ import java.io.Serializable;
 
 public class Line extends Figure implements Serializable {
     Line(){}
-    Line(PaintManager.PaintColor color, int size){
+    Line(PaintManager.PaintColor color){
         super(color);
 
     }

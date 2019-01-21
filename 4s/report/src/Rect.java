@@ -4,6 +4,11 @@ import java.io.Serializable;
 public class Rect extends Figure implements Serializable {
     private boolean isFill = false;
     Rect(){}
+    Rect(PaintManager.PaintColor color, boolean isFill_){
+        super(color);
+        this.isFill = isFill_;
+
+    }
     Rect(boolean isFill_){
         this.isFill = isFill_;
     }

@@ -30,15 +30,15 @@ public class PaintManager {
     public Figure getObject(){
         switch (paintMode){
             case DOT:
-                return new Dot(paintColor, paintSize);
+                return new Dot(this.paintColor, this.paintSize);
             case CIRCLE:
-                return new Circle(paintColor, paintSize, this.isfillMode());
+                return new Circle(this.paintColor, this.paintSize, this.isfillMode());
             case LINE:
-                return new Line();
+                return new Line(paintColor);
             case RECT:
-                return new Rect(this.isfillMode());
+                return new Rect(this.paintColor, this.isfillMode());
             case PEN:
-                return new Circle(paintColor,paintSize,true);
+                return new Dot(this.paintColor,this.paintSize);
         }
         return new Figure();
     }
