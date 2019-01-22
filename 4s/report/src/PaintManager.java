@@ -27,6 +27,8 @@ public class PaintManager {
     PaintColor paintColor = PaintColor.BLACK;
     PaintFillMode fillMode = PaintFillMode.UNFILL;
 
+    PaintManager(){}
+
     public Figure getObject(){
         switch (paintMode){
             case DOT:
@@ -46,15 +48,16 @@ public class PaintManager {
     public void setPaintMode(PaintMode mode){
 
         this.paintMode = mode;
+        Log.debug("mode:" + this.paintMode.toString());
     }
 
     public  PaintMode getPaintMode(){
-
         return this.paintMode;
     }
-    public  void setPaintColor(PaintColor color){
-
+    public  void setPaintColor(PaintManager.PaintColor color){
         this.paintColor = color;
+        Log.debug("color:" + this.paintColor.toString());
+
     }
 
     public void setUnFillMode(){
@@ -78,6 +81,7 @@ public class PaintManager {
 
     public void setPaintSize(int size_){
         this.paintSize = size_;
+        Log.debug("size:" + this.paintSize);
     }
 
     public int getPaintSize(){

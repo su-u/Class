@@ -2,7 +2,7 @@ import java.awt.*;
 
 class Circle extends Figure implements java.io.Serializable {
     private int size = 30;
-    private boolean isFill = false;
+    private boolean isFill = true;
 
     Circle() {
     }
@@ -14,7 +14,7 @@ class Circle extends Figure implements java.io.Serializable {
         super(color_);
         this.size = size_;
         this.isFill = isFill_;
-//        System.out.println("size\t\t:" + this.size);
+        Log.info("size\t\t:" + this.size);
     }
 
 
@@ -29,7 +29,6 @@ class Circle extends Figure implements java.io.Serializable {
     }
 
     public void setUnFill(){
-
         this.isFill = false;
     }
 
