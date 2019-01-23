@@ -332,69 +332,69 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
                 fileDialog = new FileDialog(new Frame(), "セーブ", FileDialog.SAVE);
                 fileDialog.setFile("save.dat");
                 fileDialog.setVisible(true);
-            }catch (IllegalAccessError ex){
+            } catch (IllegalAccessError ex) {
                 ex.printStackTrace();
                 Log.error("ex");
-            }catch (Exception ex){
+            } catch (Exception ex) {
                 ex.printStackTrace();
                 Log.error("ex");
             }
 
             String fileName = fileDialog.getFile();
-            if (fileName == null)return;
-            if(this.save(fileName)) {
+            if (fileName == null) return;
+            if (this.save(fileName)) {
                 Log.info("save:" + fileName);
             }
         }
 
         if (cmd.equals("ロード")) {
             FileDialog fileDialog = null;
-            try{
-                fileDialog = new FileDialog(new Frame(),"ロード",FileDialog.LOAD);
+            try {
+                fileDialog = new FileDialog(new Frame(), "ロード", FileDialog.LOAD);
                 fileDialog.setFile("save.dat");
                 fileDialog.setVisible(true);
 
-            }catch (IllegalAccessError ex){
+            } catch (IllegalAccessError ex) {
                 ex.printStackTrace();
                 Log.error("ex");
-            }catch (Exception ex){
+            } catch (Exception ex) {
                 ex.printStackTrace();
                 Log.error("ex");
             }
 
             String fileName = fileDialog.getFile();
-            if (fileName == null)return;
-            if(this.load(fileName)){
+            if (fileName == null) return;
+            if (this.load(fileName)) {
                 Log.info("load:" + fileName);
             }
         }
     }
 
-    public boolean save(String fileName_){
+    public boolean save(String fileName_) {
         try {
             FileOutputStream fos = new FileOutputStream(fileName_);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(objList);
             oos.close();
             fos.close();
-        } catch(IOException ex){
+        } catch (IOException ex) {
             ex.printStackTrace();
             return false;
         }
         return true;
     }
 
-    public boolean load(String fileName_){
+    public boolean load(String fileName_) {
         try {
             FileInputStream fis = new FileInputStream(fileName_);
             ObjectInputStream ois = new ObjectInputStream(fis);
-            objList = (ArrayList<Figure>)ois.readObject();
+            objList = (ArrayList<Figure>) ois.readObject();
             ois.close();
             fis.close();
-        } catch(IOException ex){
+        } catch (IOException ex) {
             ex.printStackTrace();
             return false;
-        } catch(ClassNotFoundException ex){
+        } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
             return false;
         }
@@ -403,57 +403,60 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
     }
 
 
-
-    @Override public void paint(Graphics g){
+    @Override
+    public void paint(Graphics g) {
         Figure f;
         Image back = back = createImage(getSize().width, getSize().height);
         Graphics buffer = back.getGraphics();
         int start;
         start = 0;
-        if(objList.size() >= Paint.visibleCount && Paint.visibleCount != 0){
+        if (objList.size() >= Paint.visibleCount && Paint.visibleCount != 0) {
             start = objList.size() - Paint.visibleCount;
         }
 
         var visible = objList.size() - start;
         Log.debug("Visible\t:" + visible);
 
-        for(int i = start;i < objList.size();i++){
+        for (int i = start; i < objList.size(); i++) {
             f = objList.get(i);
             f.paint(buffer);
             //f.paint(g);
 
         }
-        if(obj != null) obj.paint(buffer);
+        if (obj != null) obj.paint(buffer);
 
         g.drawImage(back, 0, 0, this);
         imgBuffer.drawImage(back, 0, 0, this);
     }
 
-    @Override public void mousePressed(MouseEvent e){
-        obj  = null;
-        if(e.getButton() == MouseEvent.BUTTON1) {
+    @Override
+    public void mousePressed(MouseEvent e) {
+        obj = null;
+        if (e.getButton() == MouseEvent.BUTTON1) {
             x = e.getX();
             y = e.getY();
             obj = pm.getObject();
-            if(obj != null){
+            if (obj != null) {
                 obj.moveto(x, y);
             }
             repaint();
         }
     }
-    @Override public void mouseReleased(MouseEvent e){
-        if(e.getButton() == MouseEvent.BUTTON1) {
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        if (e.getButton() == MouseEvent.BUTTON1) {
             x = e.getX();
             y = e.getY();
-            if(pm.getPaintMode() == PaintManager.PaintMode.DOT) {
-                obj.moveto(x,y);
-            } else if(pm.getPaintMode() == PaintManager.PaintMode.CIRCLE){
+            if (pm.getPaintMode() == PaintManager.PaintMode.DOT) {
+                obj.moveto(x, y);
+            } else if (pm.getPaintMode() == PaintManager.PaintMode.CIRCLE) {
                 obj.setWH(x - obj.x, y - obj.y);
-            } else if(pm.getPaintMode() == PaintManager.PaintMode.PEN){
-                obj.moveto(x,y);
+            } else if (pm.getPaintMode() == PaintManager.PaintMode.PEN) {
+                obj.moveto(x, y);
             }
 
-            if(obj != null){
+            if (obj != null) {
                 objList.add(obj);
             }
             obj = null;
@@ -461,20 +464,31 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
             Log.debug("count\t:" + this.objList.size());
         }
     }
-    @Override public void mouseClicked(MouseEvent e){}
-    @Override public void mouseEntered(MouseEvent e){}
-    @Override public void mouseExited(MouseEvent e){}
-    @Override public void mouseDragged(MouseEvent e){
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
         x = e.getX();
         y = e.getY();
-        if(pm.getPaintMode() == PaintManager.PaintMode.DOT){
-            obj.moveto(x,y);
-        }else if(
+        if (pm.getPaintMode() == PaintManager.PaintMode.DOT) {
+            obj.moveto(x, y);
+        } else if (
                 pm.getPaintMode() == PaintManager.PaintMode.CIRCLE ||
-                pm.getPaintMode() == PaintManager.PaintMode.RECT ||
-                pm.getPaintMode() == PaintManager.PaintMode.LINE){
-            obj.setWH(x - obj.x,y - obj.y);
-        }else if(pm.getPaintMode() == PaintManager.PaintMode.PEN){
+                        pm.getPaintMode() == PaintManager.PaintMode.RECT ||
+                        pm.getPaintMode() == PaintManager.PaintMode.LINE) {
+            obj.setWH(x - obj.x, y - obj.y);
+        } else if (pm.getPaintMode() == PaintManager.PaintMode.PEN) {
             obj = pm.getObject();
             obj.moveto(x, y);
             objList.add(obj);
@@ -484,63 +498,61 @@ class Paint extends Frame implements MouseListener, MouseMotionListener,ActionLi
     }
 
 
-    @Override public void mouseMoved(MouseEvent e){
+    @Override
+    public void mouseMoved(MouseEvent e) {
     }
 
-    @Override public void update(Graphics g){
+    @Override
+    public void update(Graphics g) {
         this.paint(g);
         this.paint(imgBuffer);
     }
 
-    @Override public void keyPressed(KeyEvent e){
+    @Override
+    public void keyPressed(KeyEvent e) {
         Log.debug("key");
         int mod = e.getModifiersEx();
-        if((e.getKeyCode() == KeyEvent.VK_Z) && (mod & InputEvent.CTRL_DOWN_MASK) != 0){
+        if ((e.getKeyCode() == KeyEvent.VK_Z) && (mod & InputEvent.CTRL_DOWN_MASK) != 0) {
             this.undo();
         }
-        if((e.getKeyCode() == KeyEvent.VK_Y) && (mod & InputEvent.CTRL_DOWN_MASK) != 0){
+        if ((e.getKeyCode() == KeyEvent.VK_Y) && (mod & InputEvent.CTRL_DOWN_MASK) != 0) {
             this.redo();
         }
     }
 
-    @Override public void keyReleased(KeyEvent e){
+    @Override
+    public void keyReleased(KeyEvent e) {}
+
+    @Override
+    public void keyTyped(KeyEvent e) {}
+
+    private void undo() {
+        if (objList.size() <= 0) return;
+        undoList.add(objList.get(objList.size() - 1));
+        objList.remove(objList.size() - 1);
+        Log.info("--undo--:" + objList.size());
+        repaint();
     }
 
-    @Override public void keyTyped(KeyEvent e){
+
+    private void redo(){
+        if(undoList.size() <= 0)return;
+        objList.add(undoList.get(undoList.size() - 1));
+        undoList.remove(undoList.size() - 1);
+        Log.info("--redo--" + undoList.size());
+        repaint();
     }
 
-    private void undo(){
-        if(objList.size() <= 0)return;
-            undoList.add(objList.get(objList.size() - 1));
-            objList.remove(objList.size() - 1);
-            Log.info("--undo--:" + objList.size());
-            repaint();
+    private boolean checkDigit(String s){
+        if(s == null || s == "") return false;
+        boolean isDigit = true;
+
+        for (int i = 0; i < s.length(); i++) {
+            isDigit = Character.isDigit(s.charAt(i));
+            if (!isDigit) {
+                break;
+            }
         }
-
-        private void redo(){
-            if(undoList.size() <= 0)return;
-            objList.add(undoList.get(undoList.size() - 1));
-            undoList.remove(undoList.size() - 1);
-            Log.info("--redo--" + undoList.size());
-            repaint();
-        }
-
-        private boolean checkDigit(String s){
-            if(s == null || s == "") return false;
-            boolean isDigit = true;
-
-            for (int i = 0; i < s.length(); i++) {
-                isDigit = Character.isDigit(s.charAt(i));
-                if (!isDigit) {
-                    break;
-                }
-        }
-
         return isDigit;
     }
 }
-
-
-
-
-
