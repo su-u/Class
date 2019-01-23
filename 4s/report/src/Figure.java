@@ -9,6 +9,7 @@ class Figure extends Coord implements java.io.Serializable{
     protected int w,h;
 
     Figure(){
+
         w = h = 0;
     }
 
