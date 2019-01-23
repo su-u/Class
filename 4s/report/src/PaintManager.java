@@ -52,8 +52,10 @@ public class PaintManager {
     }
 
     public  PaintMode getPaintMode(){
+
         return this.paintMode;
     }
+
     public  void setPaintColor(PaintManager.PaintColor color){
         this.paintColor = color;
         Log.debug("color:" + this.paintColor.toString());
@@ -61,6 +63,7 @@ public class PaintManager {
     }
 
     public void setUnFillMode(){
+
         this.fillMode = PaintFillMode.UNFILL;
     }
 
@@ -85,6 +88,7 @@ public class PaintManager {
     }
 
     public int getPaintSize(){
+
         return this.paintSize;
     }
 
