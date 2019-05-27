@@ -23,6 +23,11 @@ namespace Poker
             return RemoveAt(0);
         }
 
+        public void Sort()
+        {
+            this.cards.Sort();
+        }
+
 
     }
 }
