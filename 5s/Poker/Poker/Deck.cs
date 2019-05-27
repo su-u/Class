@@ -6,7 +6,6 @@ namespace Poker
 {
     public class Deck : Cards
     {
-        private Cards cards;
         public string Name { get; private set; }
 
         public Deck(string _name)
@@ -16,12 +15,12 @@ namespace Poker
         }
         public Card RemoveFirst()
         {
-            return cards.RemoveAt(0);
+            return RemoveAt(0);
         }
 
         public Card GetNextCard()
         {
-            return cards.RemoveAt(0);
+            return RemoveAt(0);
         }
 
 
