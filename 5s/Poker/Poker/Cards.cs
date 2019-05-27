@@ -39,6 +39,10 @@ namespace Poker
             }
         }
 
+        public void Reverse()
+        {
+            cards.Reverse();
+        }
 
     }
 }
