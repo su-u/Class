@@ -8,7 +8,7 @@ namespace Poker
 {
     public class Cards
     {
-        private List<Card> cards;
+        protected List<Card> cards;
 
         public Cards()
         {
