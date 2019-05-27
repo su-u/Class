@@ -4,7 +4,16 @@ using System.Text;
 
 namespace Poker
 {
-    class Deck
+    public class Deck
     {
+        private Cards cards;
+        public string Name { get; private set; }
+
+        public Deck(string _name)
+        {
+            this.Name = _name;
+
+        }
+
     }
 }
