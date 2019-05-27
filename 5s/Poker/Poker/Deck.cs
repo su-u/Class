@@ -14,6 +14,10 @@ namespace Poker
             this.Name = _name;
 
         }
-
+        public Card RemoveFirst {
+            get {
+                return cards.RemoveAt(0);
+            }
+        }
     }
 }
