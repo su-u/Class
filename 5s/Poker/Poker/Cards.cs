@@ -43,17 +43,5 @@ namespace Poker
         {
             cards.Reverse();
         }
-
-        public Card RemoveFirst {
-            get {
-                Card c = null;
-                if(this.cards.Count >= 1) c = this.cards[0];
-                this.cards.RemoveAt(0);
-                return c;
-            }
-        }
-
-
-
     }
 }
