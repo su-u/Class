@@ -6,7 +6,7 @@ using System.Collections;
 
 namespace Poker
 {
-    class Cards
+    public class Cards
     {
         private List<Card> cards;
 

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Poker
 {
-    public class Deck
+    public class Deck : Cards
     {
         private Cards cards;
         public string Name { get; private set; }
@@ -23,5 +23,6 @@ namespace Poker
         {
             return cards.RemoveAt(0);
         }
+
     }
 }
