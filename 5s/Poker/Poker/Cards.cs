@@ -49,8 +49,8 @@ namespace Poker
         public Card RemoveAt(int index)
         {
             Card c = null;
-            if (this.cards.Count >= 1) c = this.cards[0];
-            this.cards.RemoveAt(0);
+            if (this.cards.Count >= 1) c = this.cards[index];
+            this.cards.RemoveAt(index);
             return c;
         }
 
