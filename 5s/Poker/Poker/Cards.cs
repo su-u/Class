@@ -43,5 +43,8 @@ namespace Poker
         {
             cards.Reverse();
         }
+
+        public int Count => this.cards.Count;
+
     }
 }
