@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using System.Collections;
 
 namespace Poker
 {
@@ -54,5 +55,27 @@ namespace Poker
             return c;
         }
 
+        public void Shuffle()
+        {
+            this.cards.Shuffle();
+        }
+    }
+
+    static class Ex
+    {
+        public static List<T> Shuffle<T>(this List<T> list)
+        {
+
+            Random rnd = new System.Random();    // インスタンスを生成
+            for (int i = 0; i < list.Count; i++)
+            {
+                T temp = list[i];
+                int randomIndex = rnd.Next(list.Count);
+                list[i] = list[randomIndex];
+                list[randomIndex] = temp;
+            }
+
+            return list;
+        }
     }
 }
