@@ -17,7 +17,7 @@ namespace Poker
         public void AddCard(int _num) => cards.Add(new Card(_num));
         public void AddCard(params int[] _num)
         {
-            foreach(var i in Enumerable.Range(0, _num.Length))
+            foreach (var i in Enumerable.Range(0, _num.Length))
             {
                 cards.Add(new Card(_num[i]));
             }
