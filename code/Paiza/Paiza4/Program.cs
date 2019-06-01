@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using static System.Console;
+//using System.Numerics;
+using System.Text.RegularExpressions;
 
 namespace Paiza4
 {
@@ -11,7 +13,18 @@ namespace Paiza4
     {
         static void Main(string[] args)
         {
-
+            var n = ReadLine().TryParse<uint>();
+            ulong a = 1;
+            for (uint i = n; i > 0; i--)
+            {
+                a *= i;
+            }
+            var strA = a.ToString();
+            WriteLine(strA);
+            var aa = Regex.Replace(strA,"[0]*$", "");
+            var aa1 = Regex.Match(aa, ".{0,9}$");
+            var aa2 = Regex.Match(aa1.Value, "^*[^0].*");
+            WriteLine(aa2.Value);
         }
 
         public static T TryParse<T>(this String input)

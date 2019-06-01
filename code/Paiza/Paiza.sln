@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Paiza2", "Paiza2\Paiza2.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Paiza3", "Paiza3\Paiza3.csproj", "{98E772C0-76B9-4CC1-97A7-32C917EAEF0B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Paiza4", "Paiza4\Paiza4.csproj", "{63DAE28D-10B3-403A-951C-5EE72C515C7D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{98E772C0-76B9-4CC1-97A7-32C917EAEF0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98E772C0-76B9-4CC1-97A7-32C917EAEF0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{98E772C0-76B9-4CC1-97A7-32C917EAEF0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63DAE28D-10B3-403A-951C-5EE72C515C7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63DAE28D-10B3-403A-951C-5EE72C515C7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63DAE28D-10B3-403A-951C-5EE72C515C7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63DAE28D-10B3-403A-951C-5EE72C515C7D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
