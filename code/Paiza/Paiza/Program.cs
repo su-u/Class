@@ -12,8 +12,15 @@ namespace Paiza
         static void Main(string[] args)
         {
             var s = ReadLine().TryParse<int>();
+            var list = new List<int>() {1};
+            list.AddRange(ReadLineOne<int>(s));
 
-            WriteLine(s * 60);
+            int a = 0;
+            for (int i = 1; i < list.Count;i++)
+            {
+                a += Math.Abs(list[i] - list[i - 1]);
+            }
+            WriteLine(a);
         }
         public static T TryParse<T>(this String input)
         {
