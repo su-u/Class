@@ -12,15 +12,27 @@ namespace Paiza
         static void Main(string[] args)
         {
             var s = ReadLine().TryParse<int>();
-            var list = new List<int>() {1};
-            list.AddRange(ReadLineOne<int>(s));
-
-            int a = 0;
-            for (int i = 1; i < list.Count;i++)
+            var list = new List<List<int>>();
+            var takai = new List<int>();
+            var yasu = new List<int>();
+            for (int i = 0; i < s; i++)
             {
-                a += Math.Abs(list[i] - list[i - 1]);
+                list.Add(ReadLine().SplitTryParseToList<int>());
+                takai.Add(list[i][2]);
+                yasu.Add(list[i][3]);
+
             }
-            WriteLine(a);
+
+            var kaisi = list[0][0];
+            var owari = list.LastOrDefault()[1];
+
+            
+
+
+            WriteLine($"{kaisi} {owari} {takai.Max()} {yasu.Min()}");
+
+
+
         }
         public static T TryParse<T>(this String input)
         {
