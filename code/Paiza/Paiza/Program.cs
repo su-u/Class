@@ -12,34 +12,28 @@ namespace Paiza
     {
         static void Main(string[] args)
         {
-            var oya = ReadLine().SplitTryParseToList<int>();
+            var a = ReadLine().SplitTryParseToList<int>();
             var n = ReadLine().TryParse<int>();
+
             var list = new List<List<int>>();
+            var alist = new List<int>();
             for (int i = 0; i < n; i++)
             {
                 list.Add(ReadLine().SplitTryParseToList<int>());
             }
 
-            for (int i = 0; i < n; i++)
+            foreach (var i in list)
             {
-                if (oya[0] > list[i][0])
-                {
-                    WriteLine("High");
-                }
-                else if(oya[0] ==  list[i][0] && oya[1] < list[i][1])
-                {
-                    WriteLine("High");
-                }
-                else if (oya[0] == list[i][0] && oya[1] > list[i][1])
-                {
-                    WriteLine("Low");
-                }
-                else
-                {
-                    WriteLine("Low");
-                }
+                var c = i.Where(r => a.Contains(r));
+                alist.Add(c.Count());
             }
+            
 
+            foreach (var i in alist)
+            {
+                WriteLine(i);
+            }
+            
 
 
         }
