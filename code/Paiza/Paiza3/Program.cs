@@ -11,7 +11,17 @@ namespace Paiza3
     {
         static void Main(string[] args)
         {
-
+            var list = ReadLineOne<string>(5);
+            var c = list.Count(x => x == "yes");
+            var k = 5 - c;
+            if (c > k)
+            {
+                WriteLine("yes");
+            }
+            else
+            {
+                WriteLine("no");
+            }
         }
 
         public static T TryParse<T>(this String input)
