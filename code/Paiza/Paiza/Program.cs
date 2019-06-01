@@ -11,7 +11,13 @@ namespace Paiza
     {
         static void Main(string[] args)
         {
+            var n = ReadLine().TryParse<int>();
 
+            foreach (var i in Enumerable.Range(0,n))
+            {
+                Write("Ann");
+            }
+            WriteLine();
         }
 
         public static T TryParse<T>(this String input)
