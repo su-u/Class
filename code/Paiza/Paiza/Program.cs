@@ -11,9 +11,8 @@ namespace Paiza
     {
         static void Main(string[] args)
         {
-            var s = ReadLine();
-            var ss = s.Where((x, i) => i % 2 == 0).ToArray();
-            WriteLine(ss);
+            var s = ReadLine().SplitTryParseToList<int>();
+            WriteLine((s[0] + s[1]) % 10);
 
         }
 
