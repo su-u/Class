@@ -11,17 +11,9 @@ namespace Paiza
     {
         static void Main(string[] args)
         {
-            var s = ReadLineOne<int>(2);
-            string a = "";
-            if (s[0] - s[1] <= 0)
-            {
-                a = "error";
-            }
-            else
-            {
-                a = $"{s[0] - s[1]}";
-            }
-            WriteLine(a);
+            var s = ReadLine().TryParse<int>();
+
+            WriteLine(s * 60);
         }
         public static T TryParse<T>(this String input)
         {
