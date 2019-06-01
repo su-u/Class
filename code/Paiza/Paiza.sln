@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.156
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Paiza", "Paiza\Paiza.csproj", "{19A0BFAC-2BE0-48A2-9364-FC75380537C6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{19A0BFAC-2BE0-48A2-9364-FC75380537C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19A0BFAC-2BE0-48A2-9364-FC75380537C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19A0BFAC-2BE0-48A2-9364-FC75380537C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19A0BFAC-2BE0-48A2-9364-FC75380537C6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EBD0F5A4-17A1-4EDE-A2C2-96763CB84FF5}
+	EndGlobalSection
+EndGlobal
