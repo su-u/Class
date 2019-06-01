@@ -11,11 +11,18 @@ namespace Paiza
     {
         static void Main(string[] args)
         {
-            var s = ReadLine().SplitTryParseToList<int>();
-            WriteLine((s[0] + s[1]) % 10);
-
+            var s = ReadLineOne<int>(2);
+            string a = "";
+            if (s[0] - s[1] <= 0)
+            {
+                a = "error";
+            }
+            else
+            {
+                a = $"{s[0] - s[1]}";
+            }
+            WriteLine(a);
         }
-
         public static T TryParse<T>(this String input)
         {
             try
