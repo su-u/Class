@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using static System.Console;
@@ -11,25 +12,33 @@ namespace Paiza
     {
         static void Main(string[] args)
         {
-            var s = ReadLine().TryParse<int>();
+            var oya = ReadLine().SplitTryParseToList<int>();
+            var n = ReadLine().TryParse<int>();
             var list = new List<List<int>>();
-            var takai = new List<int>();
-            var yasu = new List<int>();
-            for (int i = 0; i < s; i++)
+            for (int i = 0; i < n; i++)
             {
                 list.Add(ReadLine().SplitTryParseToList<int>());
-                takai.Add(list[i][2]);
-                yasu.Add(list[i][3]);
-
             }
 
-            var kaisi = list[0][0];
-            var owari = list.LastOrDefault()[1];
-
-            
-
-
-            WriteLine($"{kaisi} {owari} {takai.Max()} {yasu.Min()}");
+            for (int i = 0; i < n; i++)
+            {
+                if (oya[0] > list[i][0])
+                {
+                    WriteLine("High");
+                }
+                else if(oya[0] ==  list[i][0] && oya[1] < list[i][1])
+                {
+                    WriteLine("High");
+                }
+                else if (oya[0] == list[i][0] && oya[1] > list[i][1])
+                {
+                    WriteLine("Low");
+                }
+                else
+                {
+                    WriteLine("Low");
+                }
+            }
 
 
 
