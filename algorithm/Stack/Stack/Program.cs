@@ -2,10 +2,11 @@
 using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace Stack
 {
-    class Program
+    internal class Program
     {
         private static void Main(string[] args)
         {
@@ -16,43 +17,30 @@ namespace Stack
             foreach (var s in line ?? Enumerable.Empty<string>())
             {
                 stack.Push(s);
-                switch (stack.Peek())
+
+                if(!Regex.IsMatch(stack.Peek(), "[+\\-*/]")) continue;
+
+                var p = stack.Pop();
+                var t1 = stack.Pop();
+                var t2 = stack.Pop();
+
+                switch (p)
                 {
                     case "+":
-                        {
-                            stack.Pop();
-                            var t1 = stack.Pop();
-                            var t2 = stack.Pop();
-                            Console.WriteLine($"{t2} + {t1}");
-                            stack.Push(Convert.ToString(int.Parse(t2) + int.Parse(t1)));
-                            break;
-                        }
+                        Console.WriteLine($"{t2} + {t1}");
+                        stack.Push(Convert.ToString(int.Parse(t2) + int.Parse(t1)));
+                        break;
                     case "-":
-                    {
-                        stack.Pop();
-                        var t1 = stack.Pop();
-                        var t2 = stack.Pop();
                         Console.WriteLine($"{t2} - {t1}");
                         stack.Push(Convert.ToString(int.Parse(t2) - int.Parse(t1)));
-                    }
                         break;
                     case "*":
-                    {
-                        stack.Pop();
-                        var t1 = stack.Pop();
-                        var t2 = stack.Pop();
                         Console.WriteLine($"{t2} * {t1}");
                         stack.Push(Convert.ToString(int.Parse(t2) * int.Parse(t1)));
-                    }
                         break;
                     case "/":
-                    {
-                        stack.Pop();
-                        var t1 = stack.Pop();
-                        var t2 = stack.Pop();
                         Console.WriteLine($"{t2} * {t1}");
                         stack.Push(Convert.ToString(int.Parse(t2) * int.Parse(t1)));
-                    }
                         break;
                     default:
                         break;
