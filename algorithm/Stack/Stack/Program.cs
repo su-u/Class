@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace Stack
 {
@@ -6,7 +9,14 @@ namespace Stack
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Stack<int> stack = new Stack<int>();
+
+            stack.Push(1);
+
+            Console.WriteLine(stack.Peek());
+            
+            Console.WriteLine(stack.Pop());
+            Console.WriteLine(stack.Count);
         }
     }
 }
