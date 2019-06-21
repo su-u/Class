@@ -1,4 +1,4 @@
-var Enumerable = require('./node_modules/linq');
+var Enumerable = require('linq');
 
 class Student{
     constructor (name, number, gpa, _satisfaction){
