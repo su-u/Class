@@ -1,4 +1,4 @@
-var Enumerable = require('linq');
+let Enumerable = require('linq');
 
 class Laboratory {
     constructor (number, name, max){
@@ -33,6 +33,8 @@ class Laboratory {
     AddStudent(student){
         this.students[this.students.length - 1] = student;
     }
+
+
 }
 
 
