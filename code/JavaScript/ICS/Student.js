@@ -1,17 +1,17 @@
 let Enumerable = require('linq');
 
-class Student{
-    constructor (name, number, gpa, _satisfaction){
+class Student {
+    constructor(name, number, gpa, _satisfaction) {
         this.name = name;
         this.number = number;
         this.gpa = gpa;
         this.satisfaction = [];
 
 
-        for(let i = 0, l = _satisfaction.length;i < l;i++){
+        for (let i = 0, l = _satisfaction.length; i < l; i++) {
             this.satisfaction[i] = [i + 1, _satisfaction[i]]
         }
-        this.satisfaction =  Enumerable.from(this.satisfaction).orderByDescending(x => x[1]).toArray();
+        this.satisfaction = Enumerable.from(this.satisfaction).orderByDescending(x => x[1]).toArray();
     }
 
     get Gpa() {
@@ -21,11 +21,13 @@ class Student{
         this.gpa = value;
     }
 
-    GetSati(index){
-        if(index >= 0 && index < this.satisfaction.length)return undefined;
+    GetSati(index) {
+        if (index >= 0 && index < this.satisfaction.length) return undefined;
         return this.satisfaction[index][1];
     }
+
+    
 }
 
-s = new Student("a", 1, 2.5, [1,6,10]);
+s = new Student("a", 1, 2.5, [1, 6, 10]);
 console.log(s.satisfaction);
