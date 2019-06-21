@@ -1,4 +1,4 @@
-var Enumerable = require('linq');
+let Enumerable = require('linq');
 
 class Student{
     constructor (name, number, gpa, _satisfaction){
