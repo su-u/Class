@@ -1,45 +1,39 @@
 let Enumerable = require('linq');
 
-class Laboratory {
-    constructor (number, name, max){
+module.exports = class Laboratory {
+    constructor(number, name, max) {
         this.number = number;
         this.name = name;
         this.max = max;
-        this.DT = 0;
+        this.Dt = 0;
         this.students = [];
     }
 
-    get Number(){
+    get Number() {
         return this.number;
     }
 
-    get DT(){
-        return this.DT;
+    get DT() {
+        return this.Dt;
     }
 
-    set DT(value){
-        this.DT = value;
+    set DT(value) {
+        this.Dt = value;
     }
 
-    get Size(){
+    get Size() {
         return this.students.length;
     }
 
     IsMax() {
-        if(this.Size >= this.max)return true;
+        if (this.Size >= this.max) return true;
         return false;
     }
 
-    AddStudent(student){
+    AddStudent(student) {
         this.students[this.students.length - 1] = student;
     }
 
 
 }
 
-
-var t1 = new Laboratory(1,"a", 1);
-var t2 = new Laboratory(2,"fwf", 5);
-
-console.log(t1.number);
-console.log(t2.number);
