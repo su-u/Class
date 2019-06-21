@@ -5,7 +5,7 @@ class Student{
         this.name = name;
         this.number = number;
         this.gpa = gpa;
-        this.satisfaction = []
+        this.satisfaction = [];
 
 
         for(let i = 0, l = _satisfaction.length;i < l;i++){
@@ -22,10 +22,10 @@ class Student{
     }
 
     GetSati(index){
-        if(index >= 0 && index < this.satisfaction.length)return undefined
+        if(index >= 0 && index < this.satisfaction.length)return undefined;
         return this.satisfaction[index][1];
     }
 }
 
-s = new Student("a", 1, 2.5, [1,6,10])
-console.log(s.satisfaction)
+s = new Student("a", 1, 2.5, [1,6,10]);
+console.log(s.satisfaction);
