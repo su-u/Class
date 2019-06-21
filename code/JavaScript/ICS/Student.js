@@ -27,7 +27,12 @@ module.exports = class Student {
     }
 
     get ToString() {
-        return `number:${this.number} name:${this.name} gpa:${this.gpa}`
+        let text = "";
+        this.satisfaction.forEach(element => {
+            text += ` ${element}`
+        });
+
+        return `number:${this.number} name:${this.name} gpa:${this.gpa} ` + text
     }
 
 
