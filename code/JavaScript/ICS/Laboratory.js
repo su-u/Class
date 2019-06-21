@@ -34,6 +34,10 @@ module.exports = class Laboratory {
         this.students[this.students.length - 1] = student;
     }
 
+    get ToString() {
+        return `number:${this.number} name:${this.name} max:${this.max}`
+    }
+
 
 }
 
