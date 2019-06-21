@@ -1,6 +1,6 @@
 let Enumerable = require('linq');
 
-class Student {
+module.exports = class Student {
     constructor(name, number, gpa, _satisfaction) {
         this.name = name;
         this.number = number;
@@ -26,8 +26,10 @@ class Student {
         return this.satisfaction[index][1];
     }
 
-    
+    get ToString() {
+        return `number:${this.number} name:${this.name} gpa:${this.gpa}`
+    }
+
+
 }
 
-s = new Student("a", 1, 2.5, [1, 6, 10]);
-console.log(s.satisfaction);
