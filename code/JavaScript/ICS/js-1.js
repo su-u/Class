@@ -1,4 +1,4 @@
-import Enumerable from 'linq';
+var Enumerable = require('./node_modules/linq');
 
 class Student{
     constructor (name, number, gpa, _satisfaction){
@@ -11,7 +11,7 @@ class Student{
         for(let i = 0, l = _satisfaction.length;i < l;i++){
             this.satisfaction[i] = [i + 1, _satisfaction[i]]
         }
-        this.satisfaction =  Enumerable.from(this.satisfaction).orderByDescending(x => x[1]);
+        this.satisfaction =  Enumerable.from(this.satisfaction).orderByDescending(x => x[1]).toArray();
     }
 
     get Gpa() {
@@ -19,6 +19,11 @@ class Student{
     }
     set Gpa(value) {
         this.gpa = value;
+    }
+
+    GetSati(index){
+        if(index >= 0 && index < this.satisfaction.length)return undefined
+        return this.satisfaction[index][1];
     }
 }
 
