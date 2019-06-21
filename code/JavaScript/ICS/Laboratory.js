@@ -35,7 +35,7 @@ module.exports = class Laboratory {
     }
 
     get ToString() {
-        return `number:${this.number} name:${this.name} max:${this.max}`
+        return `number:${this.number} name:${this.name} DT:${this.Dt} max:${this.max}`
     }
 
 
