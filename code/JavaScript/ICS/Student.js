@@ -11,7 +11,7 @@ module.exports = class Student {
         for (let i = 0, l = _satisfaction.length; i < l; i++) {
             this.satisfaction[i] = [i + 1, _satisfaction[i]]
         }
-        this.satisfaction = Enumerable.from(this.satisfaction).orderByDescending(x => x[1]).toArray();
+        // this.satisfaction = Enumerable.from(this.satisfaction).orderByDescending(x => x[1]).toArray();
     }
 
     get Gpa() {
@@ -28,6 +28,10 @@ module.exports = class Student {
     GetSati(number) {
         if (number < 0 || number > this.satisfaction.length) return undefined;
         return Enumerable.from(this.satisfaction).single(x => x[0] == parseInt(number))[1];
+    }
+
+    get Satisfaction() {
+        return this.satisfaction;
     }
 
     get SatisfactionToString() {
