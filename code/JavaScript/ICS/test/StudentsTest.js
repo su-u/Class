@@ -7,13 +7,13 @@ describe("StudentTest", function () {
     it("Gpa", function () {
         assert(s.gpa === 2.5);
         assert.equal(s.gpa, 2.5);
-    })
+    });
     it("name", function () {
         assert(s.Name === "testName");
         assert.equal(s.Name, "testName");
-    })
+    });
     it("satisfaction", function () {
         assert(s.SatisfactionToString === " 3,10 10,10 7,9 8,8 4,7 1,4 2,4 6,2 5,1 9,1");
         assert.equal(s.SatisfactionToString, " 3,10 10,10 7,9 8,8 4,7 1,4 2,4 6,2 5,1 9,1");
-    })
+    });
 })
