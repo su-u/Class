@@ -20,4 +20,9 @@ describe("StudentTest", function () {
         assert(s.SatisfactionSum === 56);
         assert.equal(s.SatisfactionSum, 56);
     });
+    it("get satifaction", function () {
+        const n = s.GetSati(1);
+        assert(n === 4);
+        assert.equal(n, 4);
+    });
 })
