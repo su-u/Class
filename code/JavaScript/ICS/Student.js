@@ -26,7 +26,7 @@ module.exports = class Student {
     }
 
     GetSati(index) {
-        if (index >= 0 && index < this.satisfaction.length) return undefined;
+        if (index < 0 && index < this.satisfaction.length) return undefined;
         return Enumerable.from(this.satisfaction).single(x => x.key == index).value;
     }
 
