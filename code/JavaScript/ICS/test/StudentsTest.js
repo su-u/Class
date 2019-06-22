@@ -25,4 +25,15 @@ describe("StudentTest", function () {
         assert(n === 4);
         assert.equal(n, 4);
     });
+    it("SumStudentsSatisfaction", function () {
+        let _students = [];
+        for (let index = 0; index < 123; index++) {
+            let list = [4, 4, 10, 7, 1, 2, 9, 8, 1, 10];
+            _students[index] = new Student("test", index + 1, 3.3, list);
+        }
+        for (let index = 0; index < _students.length; index++) {
+            const element = _students[index];
+            assert.equal(element.SatisfactionSum, 56);
+        }
+    });
 })
