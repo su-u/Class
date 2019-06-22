@@ -1,16 +1,16 @@
-class Random{
+class Random {
     constructor(m, s) {
         this.m = m;
         this.s = s;
     }
 
-    get Random(){
+    get Random() {
         var a = 1 - Math.random();
         var b = 1 - Math.random();
         var c = Math.sqrt(-2 * Math.log(a));
-        if(0.5 - Math.random() > 0) {
+        if (0.5 - Math.random() > 0) {
             return c * Math.sin(Math.PI * 2 * b) * this.s + this.m;
-        }else{
+        } else {
             return c * Math.cos(Math.PI * 2 * b) * this.s + this.m;
         }
     }
@@ -26,9 +26,9 @@ var normRand = function (m, s) {
     var a = 1 - Math.random();
     var b = 1 - Math.random();
     var c = Math.sqrt(-2 * Math.log(a));
-    if(0.5 - Math.random() > 0) {
+    if (0.5 - Math.random() > 0) {
         return c * Math.sin(Math.PI * 2 * b) * s + m;
-    }else{
+    } else {
         return c * Math.cos(Math.PI * 2 * b) * s + m;
     }
 };
