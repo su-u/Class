@@ -21,13 +21,13 @@ module.exports = class Student {
         this.gpa = value;
     }
 
+    get Name() {
+        return this.name;
+    }
+
     GetSati(index) {
         if (index >= 0 && index < this.satisfaction.length) return undefined;
         return this.satisfaction[index][1];
-    }
-
-    get Name() {
-        return this.name;
     }
 
     get SatisfactionToString() {
@@ -38,11 +38,13 @@ module.exports = class Student {
         return text;
     }
 
-
     get ToString() {
         return `number:${this.number} name:${this.name} gpa:${this.gpa} ` + this.SatisfactionToString;
     }
 
+    get SatisfactionSum() {
+        return Enumerable.from(this.satisfaction).sum(x => x[1]);
+    }
 
 }
 
