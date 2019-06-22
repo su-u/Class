@@ -26,6 +26,10 @@ module.exports = class Student {
         return this.satisfaction[index][1];
     }
 
+    get Name() {
+        return this.name;
+    }
+
     get SatisfactionToString() {
         let text = "";
         this.satisfaction.forEach(element => {
