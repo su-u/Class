@@ -18,10 +18,29 @@ class Assignmment {
 
 
     Run() {
+        this.PrintLabolatories();
+        this.students = Enumerable.from(this.students).orderByDescending(x => x.Gpa).toArray();
+
+        this.laboratories.forEach(element => {
+            element.DT = Enumerable.from(this.students).sum(x => x.GetSati(element.Number));
+        });
+
+        this.PrintLabolatories();
+    }
+
+    Print() {
+        this.PrintStudents();
+        this.PrintLabolatories();
+    }
+
+    PrintStudents() {
         console.log("Students");
         this.students.forEach(element => {
             console.log(element.ToString);
         });
+    }
+
+    PrintLabolatories() {
         console.log("Labo");
         this.laboratories.forEach(element => {
             console.log(element.ToString);
