@@ -1,5 +1,8 @@
 const assert = require("assert");
-const Student = require("../Laboratory");
+const Student = require("../Student");
+const Laboratory = require("../Laboratory");
+const Enumerable = require("linq");
+
 
 describe("LaboratoryTest", function () {
     let students = [];
@@ -10,9 +13,8 @@ describe("LaboratoryTest", function () {
 
     laboratory = new Laboratory(1, "Test", 14);
     it("DT", function () {
-        laboratory.forEach(element => {
-            element.DT = Enumerable.from(this.students).sum(x => x.GetSati(element.Number));
-        });
-        assert.equal(laboratory.DT, 1230)
+        laboratory.DT = Enumerable.from(this.students).sum(x => x.GetSati(element.Number));
+        console.log(laboratory.DT);
+        assert.equal(laboratory.DT, 1230);
     });
 })
