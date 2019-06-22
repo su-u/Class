@@ -7,6 +7,7 @@ module.exports = class Laboratory {
         this.max = max;
         this.Dt = 0;
         this.students = [];
+        this.size = 0;
     }
 
     get Number() {
@@ -22,16 +23,17 @@ module.exports = class Laboratory {
     }
 
     get Size() {
-        return this.students.length;
+        return this.size;
     }
 
     IsMax() {
-        if (this.Size >= this.max) return true;
+        if (this.size >= this.max) return true;
         return false;
     }
 
     AddStudent(student) {
-        this.students[this.students.length] = student;
+        this.students[this.size] = student;
+        this.size++;
     }
 
     get ToString() {
