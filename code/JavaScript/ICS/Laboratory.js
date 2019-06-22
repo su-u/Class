@@ -32,8 +32,10 @@ module.exports = class Laboratory {
     }
 
     AddStudent(student) {
-        this.students[this.size] = student;
-        this.size++;
+        if (!this.IsMax()) {
+            this.students[this.size] = student;
+            this.size++;
+        }
     }
 
     get ToString() {
