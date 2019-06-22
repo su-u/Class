@@ -1,6 +1,6 @@
-const Enumerable = require('linq');
-const Student = require('./Student');
-const Laboratory = require('./Laboratory');
+const Enumerable = require("linq");
+const Student = require("./Student");
+const Laboratory = require("./Laboratory");
 
 class Assignmment {
     constructor() {
