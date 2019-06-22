@@ -1,4 +1,4 @@
-let Enumerable = require('linq');
+let Enumerable = require("linq");
 
 module.exports = class Laboratory {
     constructor(number, name, max) {
