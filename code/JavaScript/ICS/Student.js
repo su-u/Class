@@ -25,9 +25,9 @@ module.exports = class Student {
         return this.name;
     }
 
-    GetSati(index) {
-        if (index < 0 && index < this.satisfaction.length) return undefined;
-        return Enumerable.from(this.satisfaction).single(x => x.key == index).value;
+    GetSati(number) {
+        if (number < 0 || number > this.satisfaction.length) return undefined;
+        return Enumerable.from(this.satisfaction).single(x => x[0] == parseInt(number))[1];
     }
 
     get SatisfactionToString() {
