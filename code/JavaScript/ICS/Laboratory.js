@@ -31,7 +31,7 @@ module.exports = class Laboratory {
     }
 
     AddStudent(student) {
-        this.students[this.students.length - 1] = student;
+        this.students[this.students.length] = student;
     }
 
     get ToString() {
