@@ -29,7 +29,7 @@ describe("LaboratoryTest", function () {
         assert.equal(laboratory.DT, 1230);
     });
 })
-describe("LaboratoryIsMaxTest", function () {
+describe("LaboratorySizeTest", function () {
     let list = [10, 4, 10, 7, 1, 2, 9, 8, 1, 10];
     let laboratory = new Laboratory(1, "Test", 2);
     it("0", function () {
@@ -47,5 +47,23 @@ describe("LaboratoryIsMaxTest", function () {
         laboratory.AddStudent(new Student("test", 3, 3.3, list));
         assert.equal(laboratory.Size, 3);
     });
-
+})
+describe("LaboratoryIsMaxTest", function () {
+    let list = [10, 4, 10, 7, 1, 2, 9, 8, 1, 10];
+    let laboratory = new Laboratory(1, "Test", 2);
+    it("0", function () {
+        assert.equal(laboratory.IsMax(), false);
+    });
+    it("1", function () {
+        laboratory.AddStudent(new Student("test", 1, 3.3, list));
+        assert.equal(laboratory.IsMax(), false);
+    });
+    it("2", function () {
+        laboratory.AddStudent(new Student("test", 2, 3.3, list));
+        assert.equal(laboratory.IsMax(), true);
+    });
+    it("3", function () {
+        laboratory.AddStudent(new Student("test", 3, 3.3, list));
+        assert.equal(laboratory.IsMax(), true);
+    });
 })
