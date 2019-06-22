@@ -35,6 +35,10 @@ class Assignmment {
         });
     }
 
+    StudentSatisfactionLaboratories(student) {
+        let s = Enumerable.from(student.Satisfaction).orderByDescending(x => x[1]).thenBy(y => this.laboratories[y[0]].DT).toArray();
+    }
+
     Run() {
         this.students = Enumerable.from(this.students).orderByDescending(x => x.Gpa).toArray();
 
@@ -43,7 +47,7 @@ class Assignmment {
         });
 
         this.students.forEach(student => {
-            
+
         });
 
     }
