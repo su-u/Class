@@ -2,7 +2,9 @@
   "name": "JavaScript",
   "version": "1.0.0",
   "main": "js-1.js",
-  "dependencies": {},
+  "dependencies": {
+    "mocha": "^6.1.4"
+  },
   "devDependencies": {
     "linq": "^3.2.0"
   },
