@@ -16,4 +16,8 @@ describe("StudentTest", function () {
         assert(s.SatisfactionToString === " 3,10 10,10 7,9 8,8 4,7 1,4 2,4 6,2 5,1 9,1");
         assert.equal(s.SatisfactionToString, " 3,10 10,10 7,9 8,8 4,7 1,4 2,4 6,2 5,1 9,1");
     });
+    it("satisfactionSum", function () {
+        assert(s.SatisfactionSum === 56);
+        assert.equal(s.SatisfactionSum, 56);
+    });
 })
