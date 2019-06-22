@@ -16,18 +16,6 @@ class Assignmment {
         }
     }
 
-
-    Run() {
-        this.PrintLabolatories();
-        this.students = Enumerable.from(this.students).orderByDescending(x => x.Gpa).toArray();
-
-        this.laboratories.forEach(element => {
-            element.DT = Enumerable.from(this.students).sum(x => x.GetSati(element.Number));
-        });
-
-        this.PrintLabolatories();
-    }
-
     Print() {
         this.PrintStudents();
         this.PrintLabolatories();
@@ -47,6 +35,18 @@ class Assignmment {
         });
     }
 
+    Run() {
+        this.students = Enumerable.from(this.students).orderByDescending(x => x.Gpa).toArray();
+
+        this.laboratories.forEach(element => {
+            element.DT = Enumerable.from(this.students).sum(x => x.GetSati(element.Number));
+        });
+
+        this.students.forEach(student => {
+            
+        });
+
+    }
 
 }
 
