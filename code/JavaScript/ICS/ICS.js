@@ -53,8 +53,10 @@ class Assignmment {
         this.PrintLabolatories();
         this.students.forEach(student => {
             let l = Enumerable.from(this.GetAssignmentlaboratory(student.Satisfaction)).firstOrDefault();
-            this.laboratories[l[0] - 1].AddStudents(student);
+            this.laboratories[l[0] - 1].AddStudent(student);
         });
+
+        this.PrintLabolatories();
 
     }
 
