@@ -38,8 +38,9 @@ class Assignmment {
         });
     }
 
-    GetSignedLaboratory(array) {
-        return Enumerable.from(array).take(this.CanAssignLaboCount).orderByDescending(x => x[1]).thenBy(y => this.laboratories[y[0] - 1]).toArray();
+    GetAssignmentlaboratory(array) {
+        return Enumerable.from(array).take(this.CanAssignLaboCount)
+            .orderByDescending(x => x[1]).thenBy(y => this.laboratories[y[0] - 1]).toArray();
     }
 
     Run() {
@@ -51,9 +52,8 @@ class Assignmment {
 
         this.PrintLabolatories();
         this.students.forEach(student => {
-            let l = this.StudentSatisfactionLaboratories(student.Satisfaction);
-            
-
+            let l = Enumerable.from(this.GetAssignmentlaboratory(student.Satisfaction)).firstOrDefault();
+            this.laboratories[l[0] - 1].AddStudents(student);
         });
 
     }
