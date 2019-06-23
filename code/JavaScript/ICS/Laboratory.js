@@ -5,7 +5,7 @@ module.exports = class Laboratory {
         this.number = number;
         this.name = name;
         this.max = max;
-        this.Dt = 0;
+        this.dt = 0;
         this.students = [];
         this.size = 0;
     }
@@ -15,11 +15,11 @@ module.exports = class Laboratory {
     }
 
     get DT() {
-        return this.Dt;
+        return this.dt;
     }
 
     set DT(value) {
-        this.Dt = value;
+        this.dt = value;
     }
 
     get Size() {
@@ -39,7 +39,7 @@ module.exports = class Laboratory {
     }
 
     get ToString() {
-        return `number:${this.number} name:${this.name} DT:${this.Dt} max:${this.max}`
+        return `number:${this.number} name:${this.name} DT:${this.dt} size:${this.Size} max:${this.max}`
     }
 
 
