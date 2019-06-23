@@ -4,7 +4,8 @@ const Laboratory = require("./Laboratory");
 
 class Assignmment {
     constructor() {
-        this.CanAssignLaboCount = 10;
+        const LaboCount = 10
+        this.CanAssignLaboCount = LaboCount;
 
         this.students = [];
         this.laboratories = [];
@@ -14,8 +15,8 @@ class Assignmment {
             this.students[index] = new Student("test", index + 1, 3.3, list);
         }
 
-        for (let index = 0; index < 10; index++) {
-            this.laboratories[index] = new Laboratory(index + 1, "Test", 14);
+        for (let index = 0; index < LaboCount; index++) {
+            this.laboratories[index] = new Laboratory(index + 1, "Test", 2);
         }
     }
 
@@ -43,6 +44,17 @@ class Assignmment {
             .orderByDescending(x => x[1]).thenBy(y => this.laboratories[y[0] - 1]).toArray();
     }
 
+    CheckMaxLaboratories() {
+        for (let index = 0; index < this.CanAssignLaboCount; index++) {
+            if (this.laboratories[index].IsMax()) {
+                const tmp = this.laboratories[this.CanAssignLaboCount - 1];
+                this.laboratories[this.CanAssignLaboCount - 1] = this.laboratories[index];
+                this.laboratories[index] = tmp;
+                this.CanAssignLaboCount--;
+            }
+        }
+    }
+
     Run() {
         this.students = Enumerable.from(this.students).orderByDescending(x => x.Gpa).toArray();
 
@@ -52,14 +64,13 @@ class Assignmment {
 
         this.PrintLabolatories();
         this.students.forEach(student => {
+            this.CheckMaxLaboratories();
             let l = Enumerable.from(this.GetAssignmentlaboratory(student.Satisfaction)).firstOrDefault();
             this.laboratories[l[0] - 1].AddStudent(student);
         });
 
         this.PrintLabolatories();
-
     }
-
 }
 
 let app = new Assignmment();
