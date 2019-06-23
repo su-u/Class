@@ -45,7 +45,7 @@ describe("LaboratorySizeTest", function () {
     });
     it("3", function () {
         laboratory.AddStudent(new Student("test", 3, 3.3, list));
-        assert.equal(laboratory.Size, 3);
+        assert.equal(laboratory.Size, 2);
     });
 })
 describe("LaboratoryIsMaxTest", function () {
