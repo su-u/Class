@@ -38,7 +38,7 @@ class Assignmment {
         });
     }
 
-    StudentSatisfactionLaboratories(array) {
+    GetSignedLaboratory(array) {
         return Enumerable.from(array).take(this.CanAssignLaboCount).orderByDescending(x => x[1]).thenBy(y => this.laboratories[y[0] - 1]).toArray();
     }
 
@@ -52,6 +52,7 @@ class Assignmment {
         this.PrintLabolatories();
         this.students.forEach(student => {
             let l = this.StudentSatisfactionLaboratories(student.Satisfaction);
+            
 
         });
 
