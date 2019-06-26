@@ -40,8 +40,7 @@ class Assignmment {
     }
 
     GetAssignmentlaboratory(array) {
-        const labolist = Enumerable.from(this.laboratories).take(this.CanAssignLaboCount).select(x => new {x});
-        return Enumerable.from(array).where(a => Enumerable.from(this.labolist).contains(a))
+        return Enumerable.from(array).take(this.CanAssignLaboCount)
             .orderByDescending(x => x[1]).thenBy(y => this.laboratories[y[0] - 1]).toArray();
     }
 
@@ -52,6 +51,13 @@ class Assignmment {
                 const tmp = this.laboratories[this.CanAssignLaboCount - 1];
                 this.laboratories[this.CanAssignLaboCount - 1] = this.laboratories[index];
                 this.laboratories[index] = tmp;
+
+                this.students.forEach(student => {
+                    const tmp = student.Satisfaction[this.CanAssignLaboCount - 1];
+                    student.Satisfaction[this.CanAssignLaboCount - 1] = student.Satisfaction[index];
+                    student.Satisfaction[index] = tmp;
+                });
+
                 this.CanAssignLaboCount--;
             }
         }
@@ -65,10 +71,14 @@ class Assignmment {
         });
 
         this.PrintLabolatories();
+
+
         this.students.forEach(student => {
             this.CheckMaxLaboratories();
+
             const l = Enumerable.from(this.GetAssignmentlaboratory(student.Satisfaction)).firstOrDefault();
             Enumerable.from(this.laboratories).single(x => x.Number == l[0]).AddStudent(student);
+
             console.log(`select:${Enumerable.from(this.laboratories).single(x => x.Number == l[0]).Number}`);
         });
 
