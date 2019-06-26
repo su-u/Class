@@ -40,7 +40,8 @@ class Assignmment {
     }
 
     GetAssignmentlaboratory(array) {
-        return Enumerable.from(array).take(this.CanAssignLaboCount)
+        const labolist = Enumerable.from(this.laboratories).take(this.CanAssignLaboCount).select(x => new {x});
+        return Enumerable.from(array).where(a => Enumerable.from(this.labolist).contains(a))
             .orderByDescending(x => x[1]).thenBy(y => this.laboratories[y[0] - 1]).toArray();
     }
 
