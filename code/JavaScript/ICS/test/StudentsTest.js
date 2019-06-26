@@ -1,5 +1,6 @@
 const assert = require("assert");
 const Student = require("../Student");
+const Enumerable = require("linq");
 
 describe("StudentTest", function () {
     let list = [4, 4, 10, 7, 1, 2, 9, 8, 1, 10];
@@ -10,7 +11,8 @@ describe("StudentTest", function () {
     it("name", function () {
         assert.equal(s.Name, "testName");
     });
-    it("satisfaction", function () {
+    it("satisfactionSort", function () {
+        s.Satisfaction = Enumerable.from(s.Satisfaction).orderByDescending(x => x[1]).toArray();
         assert.equal(s.SatisfactionToString, " 3,10 10,10 7,9 8,8 4,7 1,4 2,4 6,2 5,1 9,1");
     });
     it("satisfactionSum", function () {
