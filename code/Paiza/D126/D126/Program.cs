@@ -11,6 +11,7 @@ namespace D126
     {
         static void Main(string[] args)
         {
+            WriteLine(ReadLine().SplitTryParseToList<int>().Sum());
 
         }
 
