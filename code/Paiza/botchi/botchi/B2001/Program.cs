@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using static System.Console;
@@ -12,12 +13,35 @@ namespace B2001
         static void Main(string[] args)
         {
             var n = ReadLine().TryParse<int>();
-            var list = Enumerable.Range(1, n).Select(x => ReadLine().TryParse<int>()).ToList();
+            var list = Enumerable.Range(1, n).Select(x => ReadLine()).ToList();
 
-            for (int i = 0; i < list.Count; i++)
+            string ans = list[0];
+            for (int i = 0; i < list.Count - 1; i++)
             {
-                
+                int max = -1;
+                var s = list[i].Reversed();
+                for (int j = 1; j < list[i].Length; j++)
+                {
+                    var getS = list[i + 1].Substring(0, j);
+                    var c = s.IndexOf(getS);
+                    if (max < c)
+                    {
+                        max = c;
+                    }
+                }
+
+                WriteLine(ans.Length - max - 1);
+                if (max != -1)
+                {
+                    ans = ans.Substring(0, ans.Length - max - 1) + list[i + 1];
+                }
+                else
+                {
+                    ans += list[i + 1];
+                }
+
             }
+            WriteLine(ans);
 
 
         }
@@ -84,6 +108,11 @@ namespace B2001
             }
 
             Console.WriteLine();
+        }
+
+        public static string Reversed(this string s)
+        {
+            return string.Join("", s.Reverse());
         }
     }
 }
