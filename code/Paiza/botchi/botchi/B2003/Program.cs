@@ -15,9 +15,9 @@ namespace B2003
             var line = ReadLine().SplitTryParseToList<int>();
             var list = Enumerable.Range(0, line[2]).Select(r => ReadLine()?.Trim()).ToList();
 
-            int x = 0;
-            int y = 0;
-            string ans = "valid";
+            var x = 0;
+            var y = 0;
+            var ans = "valid";
 
 
             foreach (var i in list)
@@ -25,13 +25,13 @@ namespace B2003
                 switch(i)
                 {
                     case "U":
-                        x++;break;
-                    case "D":
-                        x--;break;
-                    case "R":
                         y++;break;
-                    case "L":
+                    case "D":
                         y--;break;
+                    case "R":
+                        x++;break;
+                    case "L":
+                        x--;break;
                 };
                 if (x < 0 || x > line[0] || y < 0 || y > line[1])
                 {
