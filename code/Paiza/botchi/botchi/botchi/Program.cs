@@ -13,26 +13,6 @@ namespace botchi
         {
         }
 
-        public static int Judge(string a1, string b1)
-        {
-            var a = a1 == "g" ? 0 : a1 == "c" ? 1 : 2;
-            var b = b1 == "g" ? 0 : b1 == "c" ? 1 : 2;
-            var c = (a - b + 3) % 3;
-            if (c == 0)
-            {
-                return 0;
-            }
-            else if (c == 2)
-            {
-                return 1;
-            }
-            else
-            {
-                return 2;
-            }
-            
-        }
-
 
         public static T TryParse<T>(this String input)
         {
