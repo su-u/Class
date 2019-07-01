@@ -11,15 +11,6 @@ namespace botchi
     {
         static void Main(string[] args)
         {
-            var n = ReadLine().TryParse<int>();
-
-            var list = new List<List<string>>(new List<List<string>>(+10));
-            list.AddRange(Enumerable.Range(0, n).Select(i => ReadLine()?.Split().ToList()));
-
-            var win = list.Select(x => new { Winner = Judge(x[0], x[1])}).ToList();
-
-            WriteLine(win.Count(x => x.Winner == 1));
-            WriteLine(win.Count(x => x.Winner == 2));
         }
 
         public static int Judge(string a1, string b1)
