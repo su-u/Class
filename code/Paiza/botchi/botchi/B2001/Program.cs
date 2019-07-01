@@ -19,15 +19,9 @@ namespace B2001
             for (int i = 0; i < list.Count - 1; i++)
             {
                 int max = -1;
-                var s = list[i].Reversed();
-                for (int j = 1; j < list[i].Length; j++)
+                string s = list[i];
+                for (int j = 0; j < list[i].Length || j < s.Length; j++)
                 {
-                    var getS = list[i + 1].Substring(0, j);
-                    var c = s.IndexOf(getS);
-                    if (max < c)
-                    {
-                        max = c;
-                    }
                 }
 
                 WriteLine(ans.Length - max - 1);
@@ -45,6 +39,21 @@ namespace B2001
 
 
         }
+
+        private static string StringDisc(string s1, string s2)
+        {
+            for (int i = s1.Length - 1; i > 0; i++)
+            {
+                for (int j = 0; j < s2.Length; j++)
+                {
+                    if(s1[i] == s2[j])
+                }
+            }
+
+
+            return "";
+        }
+
 
         public static T TryParse<T>(this String input)
         {
