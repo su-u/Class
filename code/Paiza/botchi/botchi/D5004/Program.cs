@@ -11,7 +11,10 @@ namespace D5004
     {
         static void Main(string[] args)
         {
+            var n = ReadLine().TryParse<int>();
+            var list = ReadLine()?.SplitTryParseToList<int>().ToList();
 
+            WriteLine($"{list.Count(x => x > 5)}");
         }
 
         public static T TryParse<T>(this String input)
@@ -34,9 +37,9 @@ namespace D5004
             }
         }
 
-        public static List<T> SplitTryParseToList<T>(this String input)
+        public static IEnumerable<T> SplitTryParseToList<T>(this String input)
         {
-            return input.Split().Select(n => n.TryParse<T>()).ToList();
+            return input.Split().Select(n => n.TryParse<T>());
         }
 
         public static List<T> ListSwap<T>(this List<T> list, Int32 index1, Int32 index2)
