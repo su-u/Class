@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using static System.Console;
 
 namespace C3002
@@ -11,7 +12,20 @@ namespace C3002
     {
         static void Main(string[] args)
         {
+            var pass = ReadLine();
+            bool isUp = Regex.IsMatch(pass, @"[A-Za-z]");
+            bool isLow = Regex.IsMatch(pass, @"[0-9]");
 
+            bool isleng = Regex.IsMatch(pass ,@"(.)\1{2,}");
+
+            if (pass.ToList().Count < 6 || !isUp || !isLow || isleng)
+            {
+                WriteLine("Invalid");
+            }
+            else
+            {
+                WriteLine("Valid");
+            }
         }
 
         public static T TryParse<T>(this String input)
