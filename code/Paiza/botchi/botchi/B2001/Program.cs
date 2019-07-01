@@ -11,6 +11,14 @@ namespace B2001
     {
         static void Main(string[] args)
         {
+            var n = ReadLine().TryParse<int>();
+            var list = Enumerable.Range(1, n).Select(x => ReadLine().TryParse<int>()).ToList();
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                
+            }
+
 
         }
 
