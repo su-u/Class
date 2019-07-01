@@ -11,7 +11,22 @@ namespace B2002
     {
         static void Main(string[] args)
         {
+            var n = ReadLine().TryParse<int>();
+            var list = Enumerable.Range(1, n).Select(x => ReadLine()?.ToList()).ToList();
+            var data = new List<List<int>>(new List<List<int>>(n + 10));
+            int i = 1;
+            foreach (var line in list)
+            {
+                var w = line.Count(x => x == 'W');
+                var d = line.Count(x => x == 'D');
+                var l = line.Count(x => x == 'L');
+                var t = (2 * w) + d;
+                data.Add(new List<int>(){i, t, w, d, l});
+                i++;
+            }
 
+            var max = data.OrderByDescending(x => x[1]).FirstOrDefault();
+            WriteLine($"{max[0]} {max[1]} {max[2]} {max[3]} {max[4]}");
         }
 
         public static T TryParse<T>(this String input)
