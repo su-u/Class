@@ -11,6 +11,34 @@ namespace C3003
     {
         static void Main(string[] args)
         {
+            var n = ReadLine().TryParse<int>();
+
+            var list = new List<List<string>>(new List<List<string>>(+10));
+            list.AddRange(Enumerable.Range(0, n).Select(i => ReadLine()?.Split().ToList()));
+
+            var win = list.Select(x => new { Winner = Judge(x[0], x[1]) }).ToList();
+
+            WriteLine(win.Count(x => x.Winner == 1));
+            WriteLine(win.Count(x => x.Winner == 2));
+        }
+
+        public static int Judge(string a1, string b1)
+        {
+            var a = a1 == "g" ? 0 : a1 == "c" ? 1 : 2;
+            var b = b1 == "g" ? 0 : b1 == "c" ? 1 : 2;
+            var c = (a - b + 3) % 3;
+            if (c == 0)
+            {
+                return 0;
+            }
+            else if (c == 2)
+            {
+                return 1;
+            }
+            else
+            {
+                return 2;
+            }
 
         }
 
