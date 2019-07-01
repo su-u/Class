@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using static System.Console;
 
@@ -11,7 +12,37 @@ namespace B2003
     {
         static void Main(string[] args)
         {
+            var line = ReadLine().SplitTryParseToList<int>();
+            var list = Enumerable.Range(0, line[2]).Select(r => ReadLine()?.Trim()).ToList();
 
+            int x = 0;
+            int y = 0;
+            string ans = "valid";
+
+
+            foreach (var i in list)
+            {
+                switch(i)
+                {
+                    case "U":
+                        x++;break;
+                    case "D":
+                        x--;break;
+                    case "R":
+                        y++;break;
+                    case "L":
+                        y--;break;
+                };
+                if (x < 0 || x > line[0] || y < 0 || y > line[1])
+                {
+                    ans = "invalid";
+                    break;
+                }
+
+            }
+
+
+            WriteLine(ans);
         }
 
         public static T TryParse<T>(this String input)
