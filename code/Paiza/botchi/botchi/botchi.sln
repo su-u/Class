@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.156
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "botchi", "botchi\botchi.csproj", "{59115044-BD28-4F3F-8A7D-118C03487B2C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "botchi", "botchi\botchi.csproj", "{59115044-BD28-4F3F-8A7D-118C03487B2C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "C3003", "C3003\C3003.csproj", "{D1D5667A-1746-42FE-92E7-5A589A72801E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D4002", "D4002\D4002.csproj", "{1F9BA781-DD99-4A48-B9B9-637F9DA72D1D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{59115044-BD28-4F3F-8A7D-118C03487B2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59115044-BD28-4F3F-8A7D-118C03487B2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59115044-BD28-4F3F-8A7D-118C03487B2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1D5667A-1746-42FE-92E7-5A589A72801E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1D5667A-1746-42FE-92E7-5A589A72801E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1D5667A-1746-42FE-92E7-5A589A72801E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1D5667A-1746-42FE-92E7-5A589A72801E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F9BA781-DD99-4A48-B9B9-637F9DA72D1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F9BA781-DD99-4A48-B9B9-637F9DA72D1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F9BA781-DD99-4A48-B9B9-637F9DA72D1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F9BA781-DD99-4A48-B9B9-637F9DA72D1D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
