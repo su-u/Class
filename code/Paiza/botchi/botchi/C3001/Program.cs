@@ -10,7 +10,14 @@ namespace C3001
     static class Program
     {
         static void Main(string[] args)
-        {
+        {   
+            var list = ReadLine()?.SplitTryParseToList<int>();
+            var n = list[0];
+
+            foreach (var i in Enumerable.Range(list[1], list[2] - list[1] + 1))
+            {
+                WriteLine($"{i.ToString().PadLeft(n, '0')}");
+            }
 
         }
 
