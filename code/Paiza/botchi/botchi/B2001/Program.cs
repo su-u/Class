@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Text;
 using static System.Console;
@@ -15,43 +16,40 @@ namespace B2001
             var n = ReadLine().TryParse<int>();
             var list = Enumerable.Range(1, n).Select(x => ReadLine()).ToList();
 
-            string ans = list[0];
-            for (int i = 0; i < list.Count - 1; i++)
-            {
-                int max = -1;
-                string s = list[i];
-                for (int j = 0; j < list[i].Length || j < s.Length; j++)
-                {
-                }
+            
 
-                WriteLine(ans.Length - max - 1);
-                if (max != -1)
-                {
-                    ans = ans.Substring(0, ans.Length - max - 1) + list[i + 1];
-                }
-                else
-                {
-                    ans += list[i + 1];
-                }
-
-            }
-            WriteLine(ans);
+            WriteLine(Search(list[0], list[1]));
 
 
         }
 
-        private static string StringDisc(string s1, string s2)
+        private static int Search(string target, string pattern)
         {
-            for (int i = s1.Length - 1; i > 0; i++)
+            var t = pattern[0];
+            var tList = target.Select((y, i) => new {index = i, c = y}).Where(x => x.c == t) .ToList();
+
+            foreach (var VARIABLE in tList)
             {
-                for (int j = 0; j < s2.Length; j++)
-                {
-                    if(s1[i] == s2[j])
-                }
+                WriteLine(VARIABLE.index);
             }
 
+            if (!tList.Any()) return -1;
 
-            return "";
+            foreach (var i in tList)
+            {
+                int j = i.index, k = 0;
+                while(j < target.Length && k < pattern.Length)
+                {
+                    if (target[j] != pattern[k]) break;
+
+
+                }
+
+                if (j == target.Length - 1 || k == pattern.Length - 1) return i.index;
+
+            }
+
+            return -1;
         }
 
 
