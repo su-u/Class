@@ -11,7 +11,19 @@ namespace Paiza043
     {
         static void Main(string[] args)
         {
+            var n = ReadLine()?.Trim().TryParse<int>();
 
+            var list = ReadLine()?.Trim().SplitTryParseToList<int>();
+
+            var l = list.DuplicateCount();
+            var maximum = l.FirstOrDefault()?.Item2;
+
+            string a = string.Empty;
+            foreach (var i in l.Where(x => x.Item2 == maximum).OrderBy(y => y.Item1))
+            {
+                a += $" {i.Item1}";
+            }
+            WriteLine(a.Trim());
         }
 
         public static T TryParse<T>(this String input)
@@ -51,7 +63,6 @@ namespace Paiza043
         {
             return list
                 .GroupBy(i => i)
-                .Where(g => g.Any())
                 .Select(g => Tuple.Create(g.Key, g.Count()))
                 .ToList();
         }
