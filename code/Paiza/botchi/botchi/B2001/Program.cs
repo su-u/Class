@@ -18,12 +18,12 @@ namespace B2001
 
             
 
-            WriteLine($"ans: {Search(list[0], list[1])}");
+            WriteLine($"ans: {SearchOfIndex(list[0], list[1])}");
 
 
         }
 
-        private static int Search(string target, string pattern = "")
+        private static int SearchOfIndex(string target, string pattern = "")
         {
             if (pattern == "") return -1;
 
@@ -39,10 +39,9 @@ namespace B2001
 
 
             int result = 0;
-            foreach (var i in tList)
-            {
-                int j = i.index, k = 0;
-                while(j < target.Length && k < pattern.Length)
+            foreach (var i in tList) { 
+                
+                for (int j = i.index, k = 0;j < target.Length && k < pattern.Length; j++,k++)
                 {
                     WriteLine($"compare: {target[j]} : {pattern[k]}");
                     if (target[j] != pattern[k])
@@ -50,14 +49,12 @@ namespace B2001
                         WriteLine("failed");
                         break;
                     }
-                    j++;
-                    k++;
+                    else
+                    {
+                        result = i.index;
+                    }
                 }
-
-                if (j == target.Length - 1 || k == pattern.Length - 1) result = i.index;
-
             }
-
             return result;
         }
 
