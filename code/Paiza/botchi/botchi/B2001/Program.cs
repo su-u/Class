@@ -18,38 +18,47 @@ namespace B2001
 
             
 
-            WriteLine(Search(list[0], list[1]));
+            WriteLine($"ans: {Search(list[0], list[1])}");
 
 
         }
 
-        private static int Search(string target, string pattern)
+        private static int Search(string target, string pattern = "")
         {
+            if (pattern == "") return -1;
+
             var t = pattern[0];
+            WriteLine($"search: {t}");
             var tList = target.Select((y, i) => new {index = i, c = y}).Where(x => x.c == t) .ToList();
+            if (!tList.Any()) return -1;
 
             foreach (var VARIABLE in tList)
             {
                 WriteLine(VARIABLE.index);
             }
 
-            if (!tList.Any()) return -1;
 
+            int result = 0;
             foreach (var i in tList)
             {
                 int j = i.index, k = 0;
                 while(j < target.Length && k < pattern.Length)
                 {
-                    if (target[j] != pattern[k]) break;
-
-
+                    WriteLine($"compare: {target[j]} : {pattern[k]}");
+                    if (target[j] != pattern[k])
+                    {
+                        WriteLine("failed");
+                        break;
+                    }
+                    j++;
+                    k++;
                 }
 
-                if (j == target.Length - 1 || k == pattern.Length - 1) return i.index;
+                if (j == target.Length - 1 || k == pattern.Length - 1) result = i.index;
 
             }
 
-            return -1;
+            return result;
         }
 
 
