@@ -89,7 +89,7 @@ Bootstrap 4を利用。
 
 # ソース
 ## ファイル構成
-- `Bookmark.java`　　
+- `Bookmark.java`  
     Bookmarkのデータクラス。
 - `Bookmarks.java`  
     Bookmarkの制御を行うサーブレットクラス。
