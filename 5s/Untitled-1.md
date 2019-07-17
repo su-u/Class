@@ -40,7 +40,7 @@
 タイトルや画像などは、自動で取得する。  
 
 ## 要件
-すべての機能はインターンにつながっている前提で動作する。
+すべての機能はインターネットにつながっている前提で動作する。
 
 ## 操作
 ### URLの登録
@@ -89,15 +89,15 @@ Bootstrap 4を利用。
 
 # ソース
 ## ファイル構成
-- `Bookmark.java`
+- `Bookmark.java`　　
     Bookmarkのデータクラス。
-- `Bookmarks.java`
+- `Bookmarks.java`  
     Bookmarkの制御を行うサーブレットクラス。
-- `BookmarksDAO.java`
+- `BookmarksDAO.java`  
     Bookmarkのデータベースにアクセスするクラス。
-- `bookmarks.jsp`
+- `bookmarks.jsp`  
     Bookmarkページに利用されるjspファイル。
-- `style.css`
+- `style.css`  
     Bookmarkページにのデザインを行うcssファイル。
 
 ## Bookmark.java
