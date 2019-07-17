@@ -82,9 +82,9 @@ Bootstrap 4を利用。
 | TITLE | VARCHAR_IGNORECASE(255)| YES	| | NULL |
 | DESCRIPTION| VARCHAR_IGNORECASE(255) | YES	| | 	NULL|
 
-`ID`に`AUTOINCREMENT`を設定することで、IDの操作を意識させなくした。  
-`DESCRIPTION`は未使用。  
-`URL`の最大文字数は255文字。それ以上の場合は切り捨てられる。  
+- `ID`に`AUTOINCREMENT`を設定することで、IDの操作を意識させなくした。  
+- `DESCRIPTION`は未使用。  
+- `URL`の最大文字数は255文字。それ以上の場合は切り捨てられる。  
 
 
 # ソース
