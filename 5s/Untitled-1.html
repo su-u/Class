@@ -386,7 +386,7 @@ blockquote {
 </head>
 <body>
 <h1 id="web%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0%E5%9F%BA%E7%A4%8E%E5%AE%9F%E9%A8%93%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88">Webプログラミング基礎実験ドキュメント</h1>
-<p>1732087
+<p>1732087<br>
 菅原直輝</p>
 <h1 id="%E7%9B%AE%E6%AC%A1">目次</h1>
 <!-- TOC -->
@@ -416,14 +416,27 @@ blockquote {
 <li><a href="#%E5%AE%9F%E8%A3%85">実装</a>
 <ul>
 <li><a href="#%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9%E3%81%AE%E8%A8%AD%E8%A8%88">データベースの設計</a></li>
-<li><a href="#%E3%82%AF%E3%83%A9%E3%82%B9%E8%A8%AD%E8%A8%88">クラス設計</a></li>
+</ul>
+</li>
+<li><a href="#%E3%82%BD%E3%83%BC%E3%82%B9">ソース</a>
+<ul>
+<li><a href="#%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E6%A7%8B%E6%88%90">ファイル構成</a></li>
+<li><a href="#bookmarkjava">Bookmark.java</a></li>
+<li><a href="#bookmarksjava">Bookmarks.java</a></li>
+<li><a href="#bookmarksdaojava">BookmarksDAO.java</a></li>
+<li><a href="#bookmarksjsp">bookmarks.jsp</a>
+<ul>
+<li><a href="#%E6%A6%82%E8%A6%81-1">概要</a></li>
 </ul>
 </li>
 </ul>
+</li>
+<li><a href="#%E5%95%8F%E9%A1%8C%E7%82%B9">問題点</a></li>
+</ul>
 <!-- /TOC -->
 <h1 id="%E6%A6%82%E8%A6%81">概要</h1>
-<p>できる限りの操作を無くしたシンプルなブックマークアプリ。
-操作をURLの登録、ブックマークの削除のみに限定した。
+<p>できる限りの操作を無くしたシンプルなブックマークアプリ。<br>
+操作をURLの登録、ブックマークの削除のみに限定した。<br>
 タイトルや画像などは、自動で取得する。</p>
 <h2 id="%E8%A6%81%E4%BB%B6">要件</h2>
 <p>すべての機能はインターンにつながっている前提で動作する。</p>
@@ -434,23 +447,152 @@ blockquote {
 <p>ブックマークのリストの右下にある削除ボタンを押す。</p>
 <h1 id="%E6%A9%9F%E8%83%BD">機能</h1>
 <h2 id="url%E3%81%AE%E7%99%BB%E9%8C%B2">URLの登録</h2>
-<p>ブックマークに登録したいURLを登録する。
-URLは<code>http://</code>もしくは<code>https://</code>からはじまる。
-一応、<code>ftp://</code>や<code>file:///</code>なども可能だが、動作は保証されない。</p>
+<p>ブックマークに登録したいURLを登録する。<br>
+URLは<code>http://</code>もしくは<code>https://</code>からはじまる。<br>
+一応、<code>ftp://</code>や<code>file:///</code>なども可能だが、動作は保証されない。<br>
+登録されたものは、一番下に追加される。</p>
 <h2 id="url%E3%81%AE%E5%89%8A%E9%99%A4">URLの削除</h2>
-<p>削除されたものはデータベースから削除される。
+<p>削除されたものはデータベースから削除される。<br>
 戻すことはできない。</p>
 <h2 id="%E3%82%BF%E3%82%A4%E3%83%88%E3%83%AB%E3%81%AE%E8%87%AA%E5%8B%95%E5%8F%96%E5%BE%97">タイトルの自動取得</h2>
-<p>URLをDBへ登録する時に自動で取得される。
+<p>URLをDBへ登録する時に自動で取得される。<br>
 登録されたURLへのアクセスを行い<code>title</code>要素を登録する。</p>
 <h2 id="%E3%82%A2%E3%82%A4%E3%82%B3%E3%83%B3%E3%81%AE%E8%87%AA%E5%8B%95%E5%8F%96%E5%BE%97">アイコンの自動取得</h2>
-<p>URLをDBへ登録する時に自動で取得される。
+<p>URLをDBへ登録する時に自動で取得される。<br>
 アクセスし、取得したHTMLファイルを解析し、<code>.ico</code>ファイルを取得する。</p>
 <h1 id="%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3">デザイン</h1>
 <p>Bootstrap 4を利用。</p>
 <h1 id="%E5%AE%9F%E8%A3%85">実装</h1>
 <h2 id="%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9%E3%81%AE%E8%A8%AD%E8%A8%88">データベースの設計</h2>
-<h2 id="%E3%82%AF%E3%83%A9%E3%82%B9%E8%A8%AD%E8%A8%88">クラス設計</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">FIELD</th>
+<th style="text-align:left">TYPE</th>
+<th style="text-align:left">NULL</th>
+<th style="text-align:left">KEY</th>
+<th style="text-align:left">DEFAULT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ID</td>
+<td style="text-align:left">INTEGER(10)</td>
+<td style="text-align:left">NO</td>
+<td style="text-align:left">PRI</td>
+<td style="text-align:left">(NEXT VALUE FOR &quot;PUBLIC&quot;.&quot;SYSTEM_SEQUENCE_9AA39920_169A_4BBD_AFC8_2F887C9A734E&quot;)</td>
+</tr>
+<tr>
+<td style="text-align:left">URI</td>
+<td style="text-align:left">VARCHAR_IGNORECASE(255)</td>
+<td style="text-align:left">YES</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">NULL</td>
+</tr>
+<tr>
+<td style="text-align:left">FAVICONPATH</td>
+<td style="text-align:left">VARCHAR_IGNORECASE(255)</td>
+<td style="text-align:left">YES</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">NULL</td>
+</tr>
+<tr>
+<td style="text-align:left">TITLE</td>
+<td style="text-align:left">VARCHAR_IGNORECASE(255)</td>
+<td style="text-align:left">YES</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">NULL</td>
+</tr>
+<tr>
+<td style="text-align:left">DESCRIPTION</td>
+<td style="text-align:left">VARCHAR_IGNORECASE(255)</td>
+<td style="text-align:left">YES</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">NULL</td>
+</tr>
+</tbody>
+</table>
+<p><code>ID</code>に<code>AUTOINCREMENT</code>を設定することで、IDの操作を意識させなくした。<br>
+<code>DESCRIPTION</code>は未使用。<br>
+<code>URL</code>の最大文字数は255文字。それ以上の場合は切り捨てられる。</p>
+<h1 id="%E3%82%BD%E3%83%BC%E3%82%B9">ソース</h1>
+<h2 id="%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E6%A7%8B%E6%88%90">ファイル構成</h2>
+<ul>
+<li><code>Bookmark.java</code>
+Bookmarkのデータクラス。</li>
+<li><code>Bookmarks.java</code>
+Bookmarkの制御を行うサーブレットクラス。</li>
+<li><code>BookmarksDAO.java</code>
+Bookmarkのデータベースにアクセスするクラス。</li>
+<li><code>bookmarks.jsp</code>
+Bookmarkページに利用されるjspファイル。</li>
+<li><code>style.css</code>
+Bookmarkページにのデザインを行うcssファイル。</li>
+</ul>
+<h2 id="bookmarkjava">Bookmark.java</h2>
+<p>フィールド変数部分。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Bookmark</span> </span>{
+	<span class="hljs-keyword">private</span> Long id;
+	<span class="hljs-keyword">private</span> String uri;
+	<span class="hljs-keyword">private</span> String faviconPath;
+	<span class="hljs-keyword">private</span> String title;
+	<span class="hljs-keyword">private</span> String description;
+}
+</div></code></pre>
+<p>他部分は、getter, setter, constructor。</p>
+<ul>
+<li><code>description</code>は未使用。</li>
+</ul>
+<h2 id="bookmarksjava">Bookmarks.java</h2>
+<p>重要部分。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">if</span> (action.equals(<span class="hljs-string">"create"</span>)) {
+    <span class="hljs-keyword">final</span> String uri = request.getParameter(<span class="hljs-string">"url"</span>);
+    <span class="hljs-keyword">if</span> (uri != <span class="hljs-keyword">null</span> &amp;&amp; uri != <span class="hljs-string">""</span>) {
+        HttpClient client = <span class="hljs-keyword">new</span> HttpClient(uri);
+        client.GetData();
+        String title = client.getTitle();
+        title = title == <span class="hljs-string">""</span> ? <span class="hljs-string">"No Title"</span>: title;
+        String favi = client.getFavicon();
+        System.out.println(favi);
+        dao.create(uri, title, favi);
+    }
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (action.equals(<span class="hljs-string">"delete"</span>)) {
+    <span class="hljs-keyword">int</span> num = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">try</span> {
+        num = Integer.parseInt(request.getParameter(<span class="hljs-string">"number"</span>));
+    } <span class="hljs-keyword">catch</span> (Exception e) {
+        num = -<span class="hljs-number">1</span>;
+        e.printStackTrace();
+    }<span class="hljs-keyword">finally</span> {
+    }
+    <span class="hljs-keyword">if</span> (num != -<span class="hljs-number">1</span>) {
+        System.out.println(num);
+        dao.delete(num);
+    }
+}
+
+</div></code></pre>
+<p>##　BookmarksDAO.java</p>
+<ul>
+<li><code>public List&lt;Bookmark&gt; findAll()</code></li>
+<li><code>public Boolean create(String uri, String title, String favi)</code></li>
+<li><code>public Boolean delete(int num)</code></li>
+</ul>
+<h2 id="bookmarksjsp">bookmarks.jsp</h2>
+<h3 id="%E6%A6%82%E8%A6%81">概要</h3>
+<ul>
+<li>faviconの設定。</li>
+<li>外部cssの読み込み。</li>
+<li>内部cssの読み込み。</li>
+<li>リンクは、別タブで開くようになる。</li>
+</ul>
+<p>すべての処理をこのページのみで行う為、別ページにリダイレクトなどはしない。</p>
+<h1 id="%E5%95%8F%E9%A1%8C%E7%82%B9">問題点</h1>
+<ul>
+<li>SQLインジェクションやXSS対策などのセキュリティ対策は無し。</li>
+<li><code>ico</code>が取得されない場合は、画像がなしになる。</li>
+<li>アクセスしてほしくないサイトにも自動的にアクセスしてしまう(登録しないのがベスト)。</li>
+</ul>
 
 </body>
 </html>
