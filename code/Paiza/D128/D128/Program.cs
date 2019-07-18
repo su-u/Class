@@ -11,7 +11,11 @@ namespace D128
     {
         static void Main(string[] args)
         {
+            var n = ReadLine().TryParse<int>();
 
+            var list = ReadLine().SplitTryParseToList<string>();
+            var a = list.Select(x => x[0]).ToList();
+            WriteLine(string.Join("", a));
         }
 
         public static T TryParse<T>(this String input)
