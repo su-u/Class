@@ -11,6 +11,36 @@ namespace C066
     {
         static void Main(string[] args)
         {
+            var line = ReadLine().SplitTryParseToList<int>();
+            var list = Enumerable.Range(0, line[0]).Select(x => ReadLine().Trim().TryParse<int>()).ToList();
+
+            line[1]--;
+            int poi = line[2];
+            int ans = 0;
+            for (
+                int i = 0; i < list.Count;)
+            {
+                if (poi - list[i] > 0)
+                {
+                    poi = poi - list[i];
+                    ans++;
+                    i++;
+                }
+                else
+                {
+                    if (line[1] > 0)
+                    {
+                        line[1]--;
+                        poi = line[2];
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+
+            WriteLine(ans);
 
         }
 
