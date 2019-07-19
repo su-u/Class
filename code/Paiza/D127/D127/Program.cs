@@ -11,7 +11,19 @@ namespace D127
     {
         static void Main(string[] args)
         {
+            var s = ReadLine().Trim().ToList();
 
+            int c = 0;
+            for (int i = 1; i < s.Count; i++)
+            {
+                if (s[1] == s[i])
+                {
+                    c++;
+                }
+            }
+
+            string a = c == 3 ? "Yes" : "No";
+            WriteLine(a);
         }
 
         public static T TryParse<T>(this String input)
