@@ -11,7 +11,9 @@ namespace C020
     {
         static void Main(string[] args)
         {
+            var line = ReadLine().SplitTryParseToList<int>();
 
+            WriteLine((double)line[0] * (double)((100-line[1]) / 100.0) * (double)((100-line[2]) / 100.0));
         }
 
         public static T TryParse<T>(this String input)
