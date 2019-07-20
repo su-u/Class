@@ -11,7 +11,8 @@ namespace D055
     {
         static void Main(string[] args)
         {
-
+            var line = ReadLine().Trim().Split().ToList();
+            WriteLine($"Best in {line[0]} {line[1]}");
         }
 
         public static T TryParse<T>(this String input)
