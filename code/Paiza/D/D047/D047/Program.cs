@@ -11,7 +11,14 @@ namespace D047
     {
         static void Main(string[] args)
         {
+            var list = ReadLineOne<string>(3);
 
+            var a = new List<string>(){"Gold", "Silver", "Bronze"};
+
+            for (int i = 0; i < 3; i++)
+            {
+                WriteLine($"{a[i]} {list[i].Trim()}");
+            }
         }
 
         public static T TryParse<T>(this String input)
