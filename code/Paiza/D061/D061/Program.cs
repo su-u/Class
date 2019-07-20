@@ -11,7 +11,15 @@ namespace D061
     {
         static void Main(string[] args)
         {
+            var n = ReadLine().Trim().TryParse<int>();
 
+            if(n == 0) { WriteLine(1); }
+
+            else
+            {
+            WriteLine(n * 3);
+                
+            }
         }
 
         public static T TryParse<T>(this String input)
