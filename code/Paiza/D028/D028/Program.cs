@@ -11,7 +11,10 @@ namespace D028
     {
         static void Main(string[] args)
         {
+            var n = ReadLine().ToCharArray();
 
+            //WriteLine(n);
+            WriteLine(n.Length);
         }
 
         public static T TryParse<T>(this String input)
