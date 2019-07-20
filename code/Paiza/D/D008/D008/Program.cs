@@ -11,6 +11,10 @@ namespace D008
     {
         static void Main(string[] args)
         {
+            var line = ReadLine().TryParse<int>();
+
+            var s = line % 2 == 0 ? "even" : "odd";
+            WriteLine(s);
 
         }
 
