@@ -11,6 +11,10 @@ namespace D016
     {
         static void Main(string[] args)
         {
+            var s = ReadLine().Trim().ToCharArray();
+            var n = ReadLine().TryParse<int>();
+
+            WriteLine(new string(s.Take(n).ToArray()));
 
         }
 
