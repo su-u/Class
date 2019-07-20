@@ -11,7 +11,8 @@ namespace D056
     {
         static void Main(string[] args)
         {
-
+            var line = ReadLine().SplitTryParseToList<int>();
+            WriteLine($"{System.Math.Pow(line[0], 3) - System.Math.Pow(line[1], 3)}");
         }
 
         public static T TryParse<T>(this String input)
