@@ -11,7 +11,14 @@ namespace D052
     {
         static void Main(string[] args)
         {
+            var n = ReadLine().TryParse<int>();
 
+            int a = 0;
+            for (int i = 1; i < n; i++)
+            {
+                a += i;
+            }
+            WriteLine(a);
         }
 
         public static T TryParse<T>(this String input)
