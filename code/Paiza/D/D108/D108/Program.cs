@@ -11,7 +11,17 @@ namespace D108
     {
         static void Main(string[] args)
         {
+            var t = ReadLine().TryParse<int>();
+            int a = 0;
+            int i = 1;
+            while (true)
+            {
+                a += t;
+                if (a >= 24) break;
+                i++;
+            }
 
+            WriteLine(i);
         }
 
         public static T TryParse<T>(this String input)
