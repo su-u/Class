@@ -11,7 +11,7 @@ namespace D014
     {
         static void Main(string[] args)
         {
-
+            WriteLine(ReadLine().Trim().ToUpper());
         }
 
         public static T TryParse<T>(this String input)
