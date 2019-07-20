@@ -11,7 +11,12 @@ namespace D015
     {
         static void Main(string[] args)
         {
+            var n = ReadLine().TryParse<int>();
+            foreach (var i in Enumerable.Range(1,n).Reverse())
+            {
+                WriteLine(i);
 
+            }
         }
 
         public static T TryParse<T>(this String input)
