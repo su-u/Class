@@ -11,7 +11,9 @@ namespace D112
     {
         static void Main(string[] args)
         {
-
+            var n = ReadLine().Trim().TryParse<int>();
+            var h = ReadLine().Trim().TryParse<int>();
+            WriteLine(n * h);
         }
 
         public static T TryParse<T>(this String input)
