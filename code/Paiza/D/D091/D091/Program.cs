@@ -11,7 +11,9 @@ namespace D091
     {
         static void Main(string[] args)
         {
+            var line = ReadLine().SplitTryParseToList<int>();
 
+            WriteLine(line.Count(x => x <= 2));
         }
 
         public static T TryParse<T>(this String input)
