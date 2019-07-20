@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using static System.Console;
 
@@ -11,7 +12,9 @@ namespace D102
     {
         static void Main(string[] args)
         {
+            var line = ReadLine().TryParse<int>();
 
+            WriteLine($"{100 + (10 * line)}");
         }
 
         public static T TryParse<T>(this String input)
