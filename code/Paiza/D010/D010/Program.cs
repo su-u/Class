@@ -11,7 +11,10 @@ namespace D010
     {
         static void Main(string[] args)
         {
+            var s = ReadLine().Trim();
+            var t = ReadLine().Trim();
 
+            WriteLine($"{s}@{t}");
         }
 
         public static T TryParse<T>(this String input)
