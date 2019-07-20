@@ -11,7 +11,12 @@ namespace D099
     {
         static void Main(string[] args)
         {
+            var line = ReadLine().Trim().ToCharArray();
 
+            foreach (var VARIABLE in line)
+            {
+                WriteLine(VARIABLE);
+            }
         }
 
         public static T TryParse<T>(this String input)
