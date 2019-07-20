@@ -11,7 +11,7 @@ namespace D120
     {
         static void Main(string[] args)
         {
-
+            WriteLine(ReadLine().TryParse<int>() * 12);
         }
 
         public static T TryParse<T>(this String input)
