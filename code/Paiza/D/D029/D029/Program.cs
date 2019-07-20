@@ -5,14 +5,13 @@ using System.Linq;
 using System.Text;
 using static System.Console;
 
-namespace D060
+namespace D029
 {
     static class Program
     {
         static void Main(string[] args)
         {
-            var line = ReadLine().SplitTryParseToList<int>();
-            WriteLine(line[0] - line[1]);
+
         }
 
         public static T TryParse<T>(this String input)
