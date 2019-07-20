@@ -11,7 +11,7 @@ namespace D060
     {
         static void Main(string[] args)
         {
-
+            var line = ReadLine().SplitTryParseToList<int>();
         }
 
         public static T TryParse<T>(this String input)
