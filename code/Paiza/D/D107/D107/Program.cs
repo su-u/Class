@@ -11,7 +11,9 @@ namespace D107
     {
         static void Main(string[] args)
         {
-
+            var line = ReadLine().Trim();
+            var s = ReadLine().Trim();
+            WriteLine($"{s}{line}{s}");
         }
 
         public static T TryParse<T>(this String input)
