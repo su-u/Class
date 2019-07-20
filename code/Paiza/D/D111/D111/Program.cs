@@ -11,7 +11,9 @@ namespace D111
     {
         static void Main(string[] args)
         {
-
+            var n = ReadLine().TryParse<int>();
+            var s = ReadLine().ToCharArray();
+            WriteLine(new string(s.Take(n).ToArray()));
         }
 
         public static T TryParse<T>(this String input)
