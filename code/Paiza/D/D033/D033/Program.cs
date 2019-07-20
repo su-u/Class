@@ -11,7 +11,8 @@ namespace D033
     {
         static void Main(string[] args)
         {
-
+            var line = ReadLine().Split().ToList();
+            WriteLine($"{line[0][0]}.{line[1][0]}");
         }
 
         public static T TryParse<T>(this String input)
