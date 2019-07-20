@@ -11,7 +11,8 @@ namespace D095
     {
         static void Main(string[] args)
         {
-
+            var n = ReadLineOne<int>(2);
+            WriteLine(n[0] / n[1]);
         }
 
         public static T TryParse<T>(this String input)
