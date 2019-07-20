@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using static System.Console;
+using static System.Math;
 
 namespace D012
 {
@@ -11,7 +12,7 @@ namespace D012
     {
         static void Main(string[] args)
         {
-
+            WriteLine(Abs(ReadLine().Trim().TryParse<int>()));
         }
 
         public static T TryParse<T>(this String input)
