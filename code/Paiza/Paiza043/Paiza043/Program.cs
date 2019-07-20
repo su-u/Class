@@ -15,7 +15,7 @@ namespace Paiza043
 
             var list = ReadLine()?.Trim().SplitTryParseToList<int>();
 
-            var l = list.DuplicateCount();
+            var l = list.DuplicateCount().DuplicateSort();
             var maximum = l.FirstOrDefault()?.Item2;
 
             string a = string.Empty;
