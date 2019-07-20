@@ -11,7 +11,12 @@ namespace D048
     {
         static void Main(string[] args)
         {
+            var list = ReadLineOne<int>(5);
 
+            for (int i = 1; i < list.Count; i++)
+            {
+                WriteLine(list[i] - list[i - 1]);
+            }
         }
 
         public static T TryParse<T>(this String input)
