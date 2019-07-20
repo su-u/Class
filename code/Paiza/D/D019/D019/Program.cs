@@ -11,7 +11,8 @@ namespace D019
     {
         static void Main(string[] args)
         {
-
+            var line = ReadLine().Trim().Split().ToList();
+            WriteLine(line[0][line[1].TryParse<int>() - 1]);
         }
 
         public static T TryParse<T>(this String input)
