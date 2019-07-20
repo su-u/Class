@@ -11,7 +11,10 @@ namespace D042
     {
         static void Main(string[] args)
         {
+            var line1 = ReadLine().SplitTryParseToList<int>();
+            var line2 = ReadLine().SplitTryParseToList<int>();
 
+            WriteLine(line1[0] * line2[1] - line2[0] * line1[1]);
         }
 
         public static T TryParse<T>(this String input)
