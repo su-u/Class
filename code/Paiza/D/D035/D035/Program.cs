@@ -11,7 +11,9 @@ namespace D035
     {
         static void Main(string[] args)
         {
+            var list = ReadLine().Split().ToList();
 
+            WriteLine($"{list[0]}/{list[1]}/{list[2]}");
         }
 
         public static T TryParse<T>(this String input)
