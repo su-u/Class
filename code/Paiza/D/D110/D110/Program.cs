@@ -11,6 +11,9 @@ namespace D110
     {
         static void Main(string[] args)
         {
+            var line = ReadLine().SplitTryParseToList<int>();
+
+            WriteLine(line[0] * line[1] * line[2]);
 
         }
 
