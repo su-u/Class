@@ -11,7 +11,8 @@ namespace D038
     {
         static void Main(string[] args)
         {
-
+            var n = ReadLine().TryParse<int>();
+            WriteLine(n * (n - 1) / 2);
         }
 
         public static T TryParse<T>(this String input)
