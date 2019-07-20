@@ -11,7 +11,9 @@ namespace D067
     {
         static void Main(string[] args)
         {
-
+            var n = ReadLine().TryParse<int>();
+            var a = n % 2 == 0 ? "OFF" : "ON";
+            WriteLine(a);
         }
 
         public static T TryParse<T>(this String input)
