@@ -11,7 +11,8 @@ namespace D115
     {
         static void Main(string[] args)
         {
-
+            var n = ReadLine().TryParse<int>();
+            WriteLine((int)(n / 2));
         }
 
         public static T TryParse<T>(this String input)
