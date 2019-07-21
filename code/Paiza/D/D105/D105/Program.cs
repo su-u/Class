@@ -11,7 +11,13 @@ namespace D105
     {
         static void Main(string[] args)
         {
-
+            var s1 = ReadLine().Trim();
+            var s2 = ReadLine().Trim();
+            if (s2.Length == s1.Length)
+            {
+                WriteLine("Yes");
+            }
+            else { WriteLine("No");}
         }
 
         public static T TryParse<T>(this String input)
