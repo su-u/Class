@@ -18,6 +18,9 @@ namespace D032
     {
         public static void Main(string[] args)
         {
+            var s = ReadLine().TryParse<int>();
+            
+            WriteLine(100 - s);
         }
     }
 }
