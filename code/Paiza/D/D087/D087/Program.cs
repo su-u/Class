@@ -15,9 +15,9 @@ namespace CPL
     {
         private static void Main(string[] args)
         {
-            var s = ReadLine().Trim();
-            var s2 = ReadLine().Trim();
-            WriteLine(s + s2);
+            var list = ReadLineOne<char>(ReadLine().TryParse<int>()).ToArray();
+            WriteLine(new string(list));
+            
         }
     }
 }
