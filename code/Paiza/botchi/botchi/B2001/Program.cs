@@ -18,44 +18,14 @@ namespace B2001
 
             
 
-            WriteLine($"ans: {SearchOfIndex(list[0], list[1])}");
+            WriteLine($"ans: {DuplicateCount(list[0], list[1])}");
 
 
         }
 
-        private static int SearchOfIndex(string target, string pattern = "")
+        private static int DuplicateCount(string target, string pattern = "")
         {
-            if (pattern == "") return -1;
-
-            var t = pattern[0];
-            WriteLine($"search: {t}");
-            var tList = target.Select((y, i) => new {index = i, c = y}).Where(x => x.c == t) .ToList();
-            if (!tList.Any()) return -1;
-
-            foreach (var VARIABLE in tList)
-            {
-                WriteLine(VARIABLE.index);
-            }
-
-
-            int result = 0;
-            foreach (var i in tList) { 
-                
-                for (int j = i.index, k = 0;j < target.Length && k < pattern.Length; j++,k++)
-                {
-                    WriteLine($"compare: {target[j]} : {pattern[k]}");
-                    if (target[j] != pattern[k])
-                    {
-                        WriteLine("failed");
-                        break;
-                    }
-                    else
-                    {
-                        result = i.index;
-                    }
-                }
-            }
-            return result;
+            
         }
 
 
