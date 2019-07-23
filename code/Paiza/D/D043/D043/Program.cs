@@ -18,7 +18,21 @@ namespace Program
     {
         public static void Main(string[] args)
         {
-            
+            var n = ReadLine().TryParse<int>();
+
+            var a = "";
+            if (n <= 30)
+            {
+                a = "sunny";
+            }else if (n <= 70)
+            {
+                a = "cloudy";
+            }
+            else
+            {
+                a = "rainy";
+            }
+            WriteLine(a);
         }
     }
     
