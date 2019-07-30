@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Text.RegularExpressions;
 using static System.Console;
 using static System.Math;
 
@@ -15,6 +16,11 @@ namespace CPL
     {
         private static void Main(string[] args)
         {
+            var s = ReadLine().Trim();
+            var h = Regex.Match(s, @".*(?=:)").Value.TryParse<int>();
+            var m = Regex.Match(s, @"(?<=:).*").Value.TryParse<int>();
+            var hh = (h + 24 - 8) % 24;
+            WriteLine($"{hh}:{m}");
         }
     }
 }
