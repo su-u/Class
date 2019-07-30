@@ -15,6 +15,20 @@ namespace CPL
     {
         private static void Main(string[] args)
         {
+            var n = ReadLine().TrySplitParseToList<string>();
+            var a = 0;
+            if (n[1] == "km")
+            {
+                a = int.Parse(n[0]) * 1000 * 1000;
+            }else if (n[1] == "m")
+            {
+                a = int.Parse(n[0]) * 1000;
+            }
+            else
+            {
+                a = int.Parse(n[0]);
+            }
+            WriteLine(a);
         }
     }
 }
