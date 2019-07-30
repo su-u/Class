@@ -15,6 +15,7 @@ namespace CPL
     {
         private static void Main(string[] args)
         {
+            WriteLine(ReadLineOne<int>(7).Count(x => x <= 30));
         }
     }
 }
