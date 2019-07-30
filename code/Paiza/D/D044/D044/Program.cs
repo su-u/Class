@@ -15,7 +15,8 @@ namespace CPL
     {
         private static void Main(string[] args)
         {
-            WriteLine(Math.Truncate(ReadLine().TryParse<int>() / 100.0) * 100 );
+            var list = ReadLine().TrySplitParseToList<string>();
+            WriteLine(list[1] == "M"?"Hi,Mr.":"Hi, Ms. " + list[0]);
         }
     }
 }
