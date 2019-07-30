@@ -15,6 +15,8 @@ namespace CPL
     {
         private static void Main(string[] args)
         {
+            WriteLine(ReadLine().TrySplitParseToList<int>().Max());
+            
         }
     }
 }
