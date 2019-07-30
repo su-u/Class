@@ -15,6 +15,15 @@ namespace CPL
     {
         private static void Main(string[] args)
         {
+            var list = ReadLine().TrySplitParseToList<int>();
+            string[] hina = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"};
+            hina[list[0] - 1] = hina[list[0] - 1] + "\n";
+            hina[list[0] + list[1] - 1] = hina[list[0] + list[1] - 1] + "\n";
+            hina[list[0] + list[1] + list[2] - 1] = hina[list[0] + list[1] + list[2] - 1] + "\n";
+            foreach (var i in hina)
+            {
+                Write(i);
+            }
         }
     }
 }
