@@ -17,7 +17,7 @@ namespace CPL
         {
             var n = ReadLine().TryParse<int>();
             var list = ReadLineOne<int>(n);
-            WriteLine(list.Average());
+            WriteLine((int)list.Average());
         }
     }
 }
