@@ -15,6 +15,8 @@ namespace CPL
     {
         private static void Main(string[] args)
         {
+            var list = ReadLine().TrySplitParseToList<int>().Average();
+            WriteLine(list >= ReadLine().TryParse<int>()?"pass":"failure");
         }
     }
 }
