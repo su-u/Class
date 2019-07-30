@@ -15,6 +15,9 @@ namespace CPL
     {
         private static void Main(string[] args)
         {
+            var list = "141592653589793".ToCharArray();
+            var n = ReadLine().TryParse<int>();
+            WriteLine("3." + new string(list.Take(n).ToArray()));
         }
     }
 }
