@@ -15,6 +15,8 @@ namespace CPL
     {
         private static void Main(string[] args)
         {
+            var list = ReadLineOne<string>(3).DuplicateCount().DuplicateOrderByDescending();
+            WriteLine(list[0].Item1);
         }
     }
 }
