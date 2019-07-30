@@ -15,6 +15,8 @@ namespace CPL
     {
         private static void Main(string[] args)
         {
+            var count = ReadLine().ToCharArray().Length;
+            WriteLine(count >= 11 ? "OK":$"{11-count}");
         }
     }
 }
