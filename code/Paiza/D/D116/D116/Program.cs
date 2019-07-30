@@ -15,6 +15,7 @@ namespace CPL
     {
         private static void Main(string[] args)
         {
+            WriteLine(Math.Truncate(ReadLine().TryParse<int>() / 100.0) * 100 );
         }
     }
 }
