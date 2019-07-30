@@ -15,6 +15,8 @@ namespace CPL
     {
         private static void Main(string[] args)
         {
+            var s = ReadLine().Trim();
+            WriteLine(s == "candy" || s == "chocolate"?"Thanks!":"No!");
         }
     }
 }
