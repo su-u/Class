@@ -15,6 +15,23 @@ namespace CPL
     {
         private static void Main(string[] args)
         {
+            var s = ReadLine().Trim().ToCharArray();
+            var an = s.Count(x => x == '_');
+            var hai = s.Count(x => x == '-');
+            var a = "";
+            if (an == hai)
+            {
+                a = new string(s).Replace("-","_");
+            }else if (an > hai)
+            {
+                a = new string(s).Replace("-","_");
+            }
+
+            else
+            {
+                a = new string(s).Replace("_","-");
+            }
+            WriteLine(a);
         }
     }
 }
