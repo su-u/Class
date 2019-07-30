@@ -15,6 +15,8 @@ namespace CPL
     {
         private static void Main(string[] args)
         {
+            var list = ReadLine().Trim().ToCharArray();
+            WriteLine(list.Count(x => x != list[0]) > 0 ? "No":$"{new System.String(list)}");
         }
     }
 }
