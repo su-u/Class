@@ -15,6 +15,8 @@ namespace CPL
     {
         private static void Main(string[] args)
         {
+            var t = ReadLine().TrySplitParseToList<int>();
+            WriteLine((t[0] >= 25 || t[1] <= 40) && !(t[0] >= 25 && t[1] <= 40) ? "Yes":"No");
         }
     }
 }
