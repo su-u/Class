@@ -15,6 +15,12 @@ namespace CPL
     {
         private static void Main(string[] args)
         {
+            var s = ReadLine().Trim().ToCharArray();
+            int a = 0;
+            a += s.Count(x => x == 'I');
+            a += s.Count(x => x == 'l');
+            a += s.Count(x => x == 'i');
+            WriteLine(a > 0 ? "caution":new string(s));
         }
     }
 }
