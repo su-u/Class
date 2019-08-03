@@ -15,6 +15,8 @@ namespace CPL
     {
         private static void Main(string[] args)
         {
+            var s = ReadLine().TrySplitParseToList<int>();
+            WriteLine(s[0] * (s[2] / 100.0) - s[0] * (s[1] / 100.0));
         }
     }
 }
