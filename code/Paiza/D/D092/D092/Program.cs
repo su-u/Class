@@ -15,6 +15,20 @@ namespace CPL
     {
         private static void Main(string[] args)
         {
+            var s1 = ReadLine().TrySplitParseToList<int>();
+            var s2 = ReadLine().TrySplitParseToList<int>();
+
+            var ss1 = ((double)s1[2] / (s1[0] * s1[1]));
+            var ss2 = ((double)s2[2] / (s2[0] * s2[1]));
+            var a = ss1 < ss2 ? s1 : s2;
+            if (ss1 == ss2)
+            {
+                WriteLine($"DRAW");
+            }
+            else
+            {
+                WriteLine($"{a[0]} {a[1]} {a[2]}");
+            }
         }
     }
 }
