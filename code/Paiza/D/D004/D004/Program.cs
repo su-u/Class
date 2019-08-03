@@ -15,6 +15,17 @@ namespace CPL
     {
         private static void Main(string[] args)
         {
+            var n = ReadLine().TryParse<int>();
+            var list = ReadLineOne<string>(n);
+
+
+            Write("Hello ");
+            for (int i = 0; i < list.Count; i++)
+            {
+                Write($"{list[i]}");
+                if (i != list.Count - 1) Write(",");
+            }
+            WriteLine(".");
         }
     }
 }
