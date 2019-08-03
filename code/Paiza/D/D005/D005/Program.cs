@@ -15,6 +15,22 @@ namespace CPL
     {
         private static void Main(string[] args)
         {
+            var n = ReadLine().TrySplitParseToList<int>();
+            var m = n[0];
+            var mm = n[1];
+            var s = "";
+            var list = new List<int>(20);
+            list.Add(m);
+            for (int i = 0; i < 10 - 1; i++)
+            {
+                list.Add(list[i] + mm);
+            }
+
+            foreach (var i in list)
+            {
+                s += (i.ToString() + " ");
+            }
+            WriteLine(s.Trim());
         }
     }
 }
