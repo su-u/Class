@@ -15,6 +15,12 @@ namespace CPL
     {
         private static void Main(string[] args)
         {
+            var n = ReadLine().TrySplitParseToList<int>();
+            var c = n[0].ToString() + n[1].ToString();
+            var s = c.ToCharArray();
+            var a = s.Count(i => i != s[0]);
+            WriteLine(a > 0 ? "No":"Yes");
+
         }
     }
 }
