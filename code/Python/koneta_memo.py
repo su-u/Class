@@ -1,4 +1,5 @@
 #%%
+from typing import List, Tuple
 
 sum = 1_0_0_0
 sum2 = 10_00_00_00
@@ -21,12 +22,12 @@ print(x)
 
 #%%
 condition = True
-x = 3 if condition else 4
+x:int = 3 if condition else 4
 print(x)
 
 
 #%%
-names = ['Tom', 'ppp', 'Taro']
+names: List[str] = ['Tom', 'ppp', 'Taro']
 index = 0
 
 for name in names:
@@ -38,6 +39,10 @@ for index, name in enumerate(names, start=1):
     print(index, name)
 
 #%%
-new_dict = dict(enumerate(names))
+from typing import Tuple
+nameTuple: Tuple[int, str] = enumerate(names)
+new_dict = dict(nameTuple)
 print(new_dict)
+
+
 
