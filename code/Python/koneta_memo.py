@@ -26,3 +26,18 @@ print(x)
 
 
 #%%
+names = ['Tom', 'ppp', 'Taro']
+index = 0
+
+for name in names:
+    print(index, name)
+    index += 1
+
+#%%
+for index, name in enumerate(names, start=1):
+    print(index, name)
+
+#%%
+new_dict = dict(enumerate(names))
+print(new_dict)
+
