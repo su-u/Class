@@ -22,8 +22,6 @@ int main(int argc, char* argv[])
 
 	int size;
 	int height, width;
-	int k, j;
-	int value;
 
 	IMG_YUV *img, *img_out;        //8bit-YUVデータのポインタ
 	IMG_RGB *img_rgb, *img_rgb2;   //8bit-RGBデータのポインタ
@@ -92,23 +90,21 @@ int main(int argc, char* argv[])
 
 //--------------------------処理はここへ（画像処理部分）---------------------------------------------
 
-	int jj, kk;
-	double dvalue;
 
-	for (k = 1; k < height - 1; k++) {      /* 画像の上下のふち1列は計算しない */
-		for (j = 1; j < width - 1; j++) {        /* 画像の左右のふち1列は計算しない */
+    for (auto k = 1; k < height - 1; k++) {      /* 画像の上下のふち1列は計算しない */
+		for (auto j = 1; j < width - 1; j++) {        /* 画像の左右のふち1列は計算しない */
 
 			std::vector<int> v;
 			int data[9] = { 0 };
-			for (kk = -1; kk <= 1; kk++) {
-				for (jj = -1; jj <= 1; jj++) {
+			for (auto kk = -1; kk <= 1; kk++) {
+				for (auto jj = -1; jj <= 1; jj++) {
 					v.push_back(img->Y[j + jj + (k + kk)*width]);
 				}
 			}
 			std::sort(v.begin(), v.end());
-			dvalue = (double)v[5];
+			const auto value = static_cast<double>(v[5]);
 
-			img_out->Y[j + k * width] = rounding(dvalue);     // rounding()は，実数値を0～255の範囲の整数値にする関数 
+			img_out->Y[j + k * width] = rounding(value);     // rounding()は，実数値を0～255の範囲の整数値にする関数 
 
 		}
 	}

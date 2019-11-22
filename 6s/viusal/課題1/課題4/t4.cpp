@@ -22,8 +22,6 @@ int main(int argc, char* argv[])
 
 	int size;
 	int height, width;
-	int k, j;
-	int value;
 
 	IMG_YUV *img, *img_out;        //8bit-YUVデータのポインタ
 	IMG_RGB *img_rgb, *img_rgb2;   //8bit-RGBデータのポインタ
@@ -93,32 +91,20 @@ int main(int argc, char* argv[])
 //--------------------------処理はここへ（画像処理部分）---------------------------------------------
 
 	int jj, kk;
-	//int w[5][5] = { 
-	//	1,  4,  6,  4, 1, 
-	//	4, 16, 24, 16, 4, 
-	//	6, 24, 36, 24, 6,
-	//	4, 16, 24, 16, 4,
-	//	1,  4,  6,  4, 1
-	//};   /* フィルタ係数（分子） */
-
-	int w[3][3] = { 1, 2, 1, 2, 4, 2, 1, 2, 1 };   /* フィルタ係数（分子） */
-
-	int ws = 16;                                   /* フィルタ係数（分母）*/
-	double dvalue;
-
-	int DEF = 1;
+    int k, j;
+    int DEF = 8;
+    int ws = (DEF * 2 + 1) * (DEF * 2 + 1);
 
 	for (k = DEF; k < height - DEF; k++) {      /* 画像の上下のふち1列は計算しない */
 		for (j = DEF; j < width - DEF; j++) {        /* 画像の左右のふち1列は計算しない */
 
-			value = 0;
+			int value = 0;
 			for (kk = -DEF; kk <= DEF; kk++) {
 				for (jj = -DEF; jj <= DEF; jj++) {
-					value = value + img->Y[j + jj + (k + kk)*width] * w[jj + 1][kk + 1];	  // 積和演算
+					value = value + img->Y[j + jj + (k + kk)*width];	  // 積和演算
 				}
 			}
-			dvalue = (double)value / ws;
-
+			const auto dvalue = static_cast<double>(value / ws);
 			img_out->Y[j + k * width] = rounding(dvalue);     // rounding()は，実数値を0～255の範囲の整数値にする関数 
 
 		}
