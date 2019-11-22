@@ -15,10 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="function.cpp">
+    <ClCompile Include="sample01.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="t4.cpp">
+    <ClCompile Include="function.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -26,5 +26,10 @@
     <ClInclude Include="sample.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\30166652.jpg">
+      <Filter>ソース ファイル</Filter>
+    </Image>
   </ItemGroup>
 </Project>
