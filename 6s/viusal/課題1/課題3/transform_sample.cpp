@@ -14,10 +14,8 @@ int main(int argc, char* argv[])
 
 	 int size;
 	 int height,width;
-	 int k,j;
-	 int value;
 
-	 IMG_YUV *img, *img_out;        //8bit-YUVデータのポインタ
+     IMG_YUV *img, *img_out;        //8bit-YUVデータのポインタ
 	 IMG_RGB *img_rgb, *img_rgb2;   //8bit-RGBデータのポインタ
 
 	 int hist_original[256], hist_output[256];
@@ -94,25 +92,53 @@ int main(int argc, char* argv[])
 
 	printf(" Image processing start =====> \n");
 
-//--------------------------処理はここへ--------------------------------------------------
-	int cvalue;
-	cvalue = 60;
+    auto cvalue = (height * width) / 256;
+    printf("cvalue: %d\n", cvalue);
 
-	for(k=0; k<height; k++){
-		for(j=0; j<width; j++){
+    auto max = 0;
+    for (auto k = 0; k < height; k++) {
+        for (auto j = 0; j < width; j++) {
+             max = img_out->Y[j + k * width] > max ? img_out->Y[j + k * width]: max;
+        }
+    }
+    printf("max: %d\n", max);
 
-			value = img->Y[j + k*width] + cvalue;	  // 輝度をcvalueだけ加算
+    for (auto k = 0; k < height; k++) {
+        for (auto j = 0; j < width; j++) {
+            auto value = img->Y[j + k * width] + 100;	  // 輝度をcvalueだけ加算
+            img_out->Y[j + k*width] = rounding_integer(value);	  // rounding_integer()は0～255の範囲に収める関数
+        }
+    }
 
-			img_out->Y[j + k*width] = rounding_integer(value);	  // rounding_integer()は0～255の範囲に収める関数
+    histogram_image(img, hist_original, 256);  // 原画
+    histogram_image(img_out, hist_output, 256); // 処理画
 
+    const auto h = static_cast<int>(max / (height * width));
+    const auto s = (height * width);
+    printf("h:%d\n", h);
+    printf("s:%d\n", s);
+
+	for(auto k = 0; k<height; k++){
+		for(auto j = 0; j<width; j++){
+            //auto value = img->Y[j + k * width] + cvalue;	  // 輝度をcvalueだけ加算
+            const auto z = array_sum(hist_output, img_out->Y[j + k * width]);
+
+            const auto dst = static_cast<double>(z) / s * max;
+            //printf("z:%d\n", z);
+            //printf("s:%d\n", s);
+            //printf("max:%d\n", max);
+            //printf("dst:%lf\n", dst);
+
+			img_out->Y[j + k * width] = rounding_integer(static_cast<int>(dst));	  // rounding_integer()は0～255の範囲に収める関数
 		}
 	}
 
 	/* ヒストグラム作成 */
-	histogram_image(img, hist_original, 256);  // 原画
+
+    histogram_image(img, hist_original, 256);  // 原画
 	histogram_image(img_out, hist_output, 256); // 処理画
 
-	for (int i = 0; i < 256; i++) {
+	for (auto i = 0; i < 256; i++) {
 		fprintf(fp, "%d,%d, %d \n", i, hist_original[i], hist_output[i]);       // ヒストグラムのファイル出力
 	}
 
@@ -172,4 +198,16 @@ void  histogram_image(IMG_YUV *img, int hist[], int levelmax)
 		}
 	}
 
+}
+
+auto array_sum(const int* array, const size_t max_index) -> int
+{
+    auto sum = 0;
+
+    for (size_t i = 0; i < max_index; ++i)
+    {
+        sum += array[i];
+    }
+
+    return sum;
 }

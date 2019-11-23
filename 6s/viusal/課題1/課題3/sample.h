@@ -38,3 +38,4 @@ void  setvalue_image(IMG_YUV *img1, int Yvalue, int Uvalue, int Vvalue);
 
 unsigned char rounding(double dv);
 unsigned char rounding_integer(int idv);
+int array_sum(const int *array, size_t max_index);
