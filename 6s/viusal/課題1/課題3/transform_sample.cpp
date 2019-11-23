@@ -5,7 +5,7 @@ void  histogram_image(IMG_YUV *img, int hist[], int levelmax);
 
 int main(int argc, char* argv[])
 {
-     FILE *infile, *outfile, *fp;
+     FILE *infile, *outfile;
 	 char infname1[512];
      char outfname1[512];
 	 char csvfname[512];
@@ -54,7 +54,7 @@ int main(int argc, char* argv[])
 		 exit(-1);
      }
 
-	 fp = fopen(csvfname, "w");
+	 FILE* fp = fopen(csvfname, "w");
 	 if (fp == NULL) {
 		 printf("CSV File open error = %s\n", csvfname);
 		 return -1;
@@ -105,8 +105,8 @@ int main(int argc, char* argv[])
 
     for (auto k = 0; k < height; k++) {
         for (auto j = 0; j < width; j++) {
-            auto value = img->Y[j + k * width] + 100;	  // ‹P“x‚ðcvalue‚¾‚¯‰ÁŽZ
-            img_out->Y[j + k*width] = rounding_integer(value);	  // rounding_integer()‚Í0`255‚Ì”ÍˆÍ‚ÉŽû‚ß‚éŠÖ”
+            auto value = img->Y[j + k * width] + 100;
+            img_out->Y[j + k*width] = rounding_integer(value);
         }
     }
 
