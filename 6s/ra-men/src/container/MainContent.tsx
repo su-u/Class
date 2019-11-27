@@ -7,17 +7,25 @@ const Wrapper = styled.div`
     width: 80%;
 `;
 
+const Img = styled.img`
+    width: 100%;
+`;
+
 interface Props {
     data: RamenData;
 }
 
 const MainContent = (props:Props) => {
     const { data } = props;
-    const { name } = data;
+    const { name, img, pd } = data;
     return (
         <>
             <Wrapper>
-                {name}
+                <h1>{name}</h1>
+                <Img src={`img/${img}`} />
+                <iframe
+                    src={`https://www.google.com/maps/embed?pb=${pd}`}
+                    width="600" height="450" frameBorder="0"></iframe>
             </Wrapper>
         </>
     );

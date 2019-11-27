@@ -35,7 +35,7 @@ module.exports = {
             template: path.resolve(__dirname, './src/html/index.html')
         }),
         new CleanWebpackPlugin(),
-        // new CopyPlugin([{ from: './src/public', to: '.' }]),
+        new CopyPlugin([{ from: './src/public', to: '.' }]),
     ],
     // externals: {
     //     "react": "React",

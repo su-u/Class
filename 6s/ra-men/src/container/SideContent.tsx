@@ -21,6 +21,7 @@ const SideContent = () => {
     return (
         <>
             <Wrapper>
+                <h2>ラーメンリスト</h2>
                 <ul>
                     {
                         DATA.map((x, i) => (
