@@ -5,7 +5,16 @@ import { DATA } from "@/DataBase";
 
 
 const Wrapper = styled.div`
-    width: 70%;
+    position: sticky;
+    margin-bottom: 0;
+     top: 10px;
+     z-index: 1;
+     ul {
+        width: 100%;
+        & > li {
+            width: 100%;
+        }
+    }
 `;
 
 const SideContent = () => {

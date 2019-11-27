@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     output: {
@@ -33,7 +34,8 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, './src/html/index.html')
         }),
-        new CleanWebpackPlugin({ cleanOnceBeforeBuildPatterns:['!img/*'] }),
+        new CleanWebpackPlugin(),
+        // new CopyPlugin([{ from: './src/public', to: '.' }]),
     ],
     // externals: {
     //     "react": "React",

@@ -1,15 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
+import { RamenData } from "@/DataBase";
 
 const Wrapper = styled.div`
-    width: 70%;
+    display: block;
+    width: 80%;
 `;
 
-const MainContent = () => {
+interface Props {
+    data: RamenData;
+}
+
+const MainContent = (props:Props) => {
+    const { data } = props;
+    const { name } = data;
     return (
         <>
             <Wrapper>
-                main
+                {name}
             </Wrapper>
         </>
     );

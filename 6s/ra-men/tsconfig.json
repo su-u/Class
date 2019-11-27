@@ -3,7 +3,7 @@
     "./src/*"
   ],
   "compilerOptions": {
-    "outDir": "./public",
+    "outDir": "./dist",
     "sourceMap": true,
     "strict": true,
     "strictFunctionTypes": true,
