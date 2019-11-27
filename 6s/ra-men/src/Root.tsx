@@ -1,15 +1,15 @@
 import React from 'react';
-import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import { Switch, Route, HashRouter } from 'react-router-dom';
 import App from '@/App';
 import Top from '@/container/Top';
 
 export default () => (
     <>
-        <BrowserRouter>
+        <HashRouter>
             <Switch>
                 <Route exact path={'/'} component={Top} />
                 <Route path={'/:name'} component={App} />
             </Switch>
-        </BrowserRouter>
+        </HashRouter>
     </>
 );
