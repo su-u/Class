@@ -1,18 +1,13 @@
 import React from 'react';
-import { RouteComponentProps, useParams } from 'react-router-dom'
-import { ramenByName } from '@/DataBase';
+import { useParams } from 'react-router-dom'
+import { ramenByName, defaultData } from '@/DataBase';
 
-interface Props extends RouteComponentProps<{}> {
-    name: string;
-}
-
-const App = (props: Props) => {
-    const { id } = useParams();
-    const selectedData = ramenByName(id);
+const App = () => {
+    const { name } = useParams();
+    const selectedData = name === undefined ? defaultData : ramenByName(name);
 
         return(
         <>
-            {id}
             {selectedData !== undefined && (
                <h1>{selectedData.name}</h1>
             )}

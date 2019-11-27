@@ -8,7 +8,7 @@ export default () => (
         <BrowserRouter>
             <Switch>
                 <Route exact path={'/'} component={Top} />
-                <Route path={'/:id'} component={App} />
+                <Route path={'/:name'} component={App} />
             </Switch>
         </BrowserRouter>
     </>

@@ -6,11 +6,15 @@ const Top = () => {
     return (
         <>
             <h1>top</h1>
+            <ul>
             {
-                DATA.map(x => (
-                    <Link key={x.name} to={`/${x.name}`}>{x.name}</Link>
+                DATA.map((x, i) => (
+                    <li key={i}>
+                        <Link to={`/${x.name}`}>{x.name}</Link>
+                    </li>
                 ))
             }
+            </ul>
         </>
     );
 };
