@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {DATA} from '@/DataBase';
+import { DATA } from '@/DataBase';
 
 const Top = () => {
     return (

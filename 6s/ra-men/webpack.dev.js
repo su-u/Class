@@ -2,7 +2,6 @@ const merge = require('webpack-merge');
 const common = require('./webpack.config.js');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = merge(common, {
@@ -42,7 +41,6 @@ module.exports = merge(common, {
     },
     plugins: [
         new HardSourceWebpackPlugin(),
-        new CleanWebpackPlugin(),
         new webpack.HotModuleReplacementPlugin()
     ]
 });

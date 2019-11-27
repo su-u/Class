@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
     output: {
@@ -32,6 +33,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, './src/html/index.html')
         }),
+        new CleanWebpackPlugin({ cleanOnceBeforeBuildPatterns:['!img/*'] }),
     ],
     // externals: {
     //     "react": "React",

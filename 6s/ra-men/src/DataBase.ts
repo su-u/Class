@@ -6,7 +6,7 @@ export type RamenData = {
 
 export const DATA: RamenData[] = [
     {
-        name: 'ramen1',
+        name: 'ラーメン1',
         desc: 'aa',
         img: 'aaa'
     },
