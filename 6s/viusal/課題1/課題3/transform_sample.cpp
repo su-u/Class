@@ -103,13 +103,6 @@ int main(int argc, char* argv[])
     }
     printf("max: %d\n", max);
 
-    for (auto k = 0; k < height; k++) {
-        for (auto j = 0; j < width; j++) {
-            auto value = img->Y[j + k * width] + 100;
-            img_out->Y[j + k*width] = rounding_integer(value);
-        }
-    }
-
     histogram_image(img, hist_original, 256);  // Œ´‰æ
     histogram_image(img_out, hist_output, 256); // ˆ—‰æ
 
@@ -121,7 +114,7 @@ int main(int argc, char* argv[])
 	for(auto k = 0; k<height; k++){
 		for(auto j = 0; j<width; j++){
             //auto value = img->Y[j + k * width] + cvalue;	  // ‹P“x‚ğcvalue‚¾‚¯‰ÁZ
-            const auto z = array_sum(hist_output, img_out->Y[j + k * width]);
+            const auto z = array_sum(hist_output, img->Y[j + k * width]);
 
             const auto dst = static_cast<double>(z) / s * max;
             //printf("z:%d\n", z);
@@ -129,9 +122,16 @@ int main(int argc, char* argv[])
             //printf("max:%d\n", max);
             //printf("dst:%lf\n", dst);
 
-			img_out->Y[j + k * width] = rounding_integer(static_cast<int>(dst));	  // rounding_integer()‚Í0`255‚Ì”ÍˆÍ‚Éû‚ß‚éŠÖ”
+			img_out->Y[j + k * width] = rounding(dst);	  // rounding_integer()‚Í0`255‚Ì”ÍˆÍ‚Éû‚ß‚éŠÖ”
 		}
 	}
+
+    for (size_t k = 0; k < height; k++) {
+        for (size_t j = 0; j < width; j++) {
+            const int value = img_out->Y[j + k * width];
+            img_out->Y[j + k * width] = rounding_integer(value);
+        }
+    }
 
 	/* ƒqƒXƒgƒOƒ‰ƒ€ì¬ */
 
