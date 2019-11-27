@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom'
 import styled from "styled-components";
-import {defaultData, ramenByName, RamenData} from '@/DataBase';
+import { ramenByName } from '@/DataBase';
 import MainContent from "@/container/MainContent";
 import SideContent from "@/container/SideContent";
 
@@ -15,13 +15,17 @@ const Wrapper = styled.div`
 
 const App = () => {
     let { name } = useParams();
-    const selectedData = ramenByName(name);
+    let selectedData = undefined;
+    if(name !== undefined)
+        selectedData = ramenByName(name);
 
     return(
         <>
             <>
                 <Wrapper>
-                    <MainContent data={selectedData}/>
+                    {selectedData !== undefined && (
+                        <MainContent data={selectedData}/>
+                    )}
                     <SideContent/>
                 </Wrapper>
             </>

@@ -1,7 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 
 module.exports = {
     output: {
@@ -13,7 +13,7 @@ module.exports = {
         rules: [
             {
                 test: /\.tsx$/,
-                use: ['thread-loader', 'cache-loader', 'babel-loader'],
+                use: ['thread-loader', 'cache-loader'],
                 include: path.resolve('src'),
                 exclude: /node_modules/,
             },
@@ -34,11 +34,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, './src/html/index.html')
         }),
-        new CleanWebpackPlugin(),
         new CopyPlugin([{ from: './src/public', to: '.' }]),
+        new HardSourceWebpackPlugin(),
     ],
-    // externals: {
-    //     "react": "React",
-    //     "react-dom": "ReactDOM",
-    // },
 };

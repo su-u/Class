@@ -19,6 +19,7 @@
     "@babel/core": "^7.7.2",
     "@babel/preset-env": "^7.7.1",
     "@babel/preset-react": "^7.7.0",
+    "@babel/preset-typescript": "^7.7.4",
     "@types/chai": "^4.2.5",
     "@types/enzyme": "^3.10.3",
     "@types/enzyme-adapter-react-16": "^1.0.5",
@@ -72,7 +73,7 @@
   },
   "scripts": {
     "build:d": "webpack --config ./webpack.dev.js --display-error-details --progress",
-    "build:p": "webpack --config webpack.prod.js --display-error-details --progress",
+    "build:p": "webpack --config ./webpack.prod.js --display-error-details --progress",
     "development": "yarn run-p build:development",
     "production": "yarn run-p build:production",
     "docker:production": "docker-compose up --build -d & yarn webpack:production",
