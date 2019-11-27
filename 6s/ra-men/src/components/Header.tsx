@@ -7,7 +7,7 @@ const HeaderComponent = () => {
         <>
             <Header>
                 <Title>
-                    <Link to={`/`}>津田沼ラーメンマップ</Link>
+                    <Link to={`/`}><img src={'./img/logo.svg'} /></Link>
                 </Title>
             </Header>
         </>
@@ -18,6 +18,7 @@ const Header = styled.div`
     top: 0;
     width: 100%;
     background-color: #202124;
+    border-bottom: #CF000D 5px solid;
     height: 60px;
     color: white;
     display: flex;
@@ -25,11 +26,10 @@ const Header = styled.div`
 
 const Title = styled.div`
     padding-left: 30px;
-    padding-top: 10px;
+    padding-top: 15px;
     font-size: 30px;
     > a {
-        text-decoration: none;
-        color: white;
+      display: inline-flex;
     }
 `;
 

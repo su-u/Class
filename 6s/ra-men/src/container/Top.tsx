@@ -4,7 +4,7 @@ import SideContent from "@/container/SideContent";
 
 const Wrapper = styled.div`
     width: 100%;
-    max-width: 800px;
+    max-width: 850px;
     display: -webkit-flex;
     display: flex;
     margin: 20px auto 0;
@@ -12,7 +12,7 @@ const Wrapper = styled.div`
 
 const Main = styled.div`
     display: block;
-    width: 80%;
+    width: 600px;
 `;
 
 const Top = () => {
