@@ -1,0 +1,39 @@
+/* CSS Document */
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    &.hmenu {
+        padding-left: 15px;
+        background-color: red;
+        text-align: center;
+
+        li {
+            width: 180px;
+            display: inline-block;
+            background-color: red;
+            margin: 0;
+        }
+
+        a {
+            color: white;
+            line-height: 40px;
+            text-decoration: none;
+            font-weight: bold;
+            text-align: center;
+            display: block;
+
+            &:hover {
+                background-color: #FB88A;
+                color: #6a0204;
+            }
+
+            &.active {
+                color: black;
+            }
+        }
+    }
+}
