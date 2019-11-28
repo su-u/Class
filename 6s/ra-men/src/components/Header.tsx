@@ -7,7 +7,7 @@ const HeaderComponent = () => {
         <>
             <Header>
                 <Title>
-                    <Link to={`/`}><img src={'./img/logo.svg'} /></Link>
+                    <Link to={`/`}><img src={'./img/logo.png'} /></Link>
                 </Title>
             </Header>
         </>
@@ -30,6 +30,9 @@ const Title = styled.div`
     font-size: 30px;
     > a {
       display: inline-flex;
+      > img {
+        height: 40px;
+      }
     }
 `;
 
