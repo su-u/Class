@@ -9,9 +9,15 @@ const Wrapper = styled.div`
     margin-bottom: 0;
     top: 10px; 
     z-index: 1;
-    margin-left: 20px;
+    margin-left: 30px;
+    background-color: #ffbebe;
+    padding: 15px;
+    margin-bottom: 50px;
+    
      ul {
         width: 100%;
+        padding: 0;
+        list-style-type: none;
         & > li {
             width: 100%;
         }

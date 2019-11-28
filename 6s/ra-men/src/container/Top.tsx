@@ -15,11 +15,16 @@ const Main = styled.div`
     width: 600px;
 `;
 
+const Img = styled.img`
+    width: 100%;
+`;
+
 const Top = () => {
     return (
         <>
             <Wrapper>
                 <Main>
+                    <Img src={'./img/naritake.jpg'} />
                     津田沼駅周辺には、おいしいラーメン屋さんがいっぱいあります。このサイトではその中でも人気のお店を紹介します。ぜひ一度味わってみましょう。
                 </Main>
                 <SideContent/>

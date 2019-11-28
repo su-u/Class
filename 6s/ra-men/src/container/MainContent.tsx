@@ -6,6 +6,7 @@ import Heading from "@/components/Heading";
 const Wrapper = styled.div`
     display: block;
     width: 600px;
+    margin-bottom: 50px;
 `;
 
 const Img = styled.img`
