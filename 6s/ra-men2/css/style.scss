@@ -1,8 +1,23 @@
 /* CSS Document */
 
+$breakpoints: (
+    'sm': 'screen and (max-width: 640px)',
+    'md': 'screen and (max-width: 768px)',
+    'lg': 'screen and (max-width: 1000px)',
+    'xl': 'screen and (max-width: 1200px)'
+) !default;
+
+//メディアクエリ用
+@mixin mq($breakpoint: md) {
+    @media #{map-get($breakpoints, $breakpoint)} {
+        @content;
+    }
+}
+
 body {
 	margin: 0;
-	padding: 0;
+  padding: 0;
+  width: 100%;
 }
 
 ul {
@@ -39,17 +54,31 @@ ul {
 
 .header{
   background-color: black;
-  // height: 70px;
+  width: 100%;
 
   .logo{
-    height: 50px;
+    height: 40px;
     margin: 10px 10px 8px 30px;
+    @include mq(sm){
+      margin-left: 10px;
+      width: 90%;
+      height: auto;
+    }
   }
 }
 
 main.article{
-  width: 700px;
+  width: 750px;
   margin: 0 auto;
+  @include mq(md){
+    width: 95%;
+  }
+
+  h1{
+    @include mq(sm){
+      font-size: 1.7rem;
+    }
+  }
 
   section{
     margin-top: 20px;
@@ -76,7 +105,7 @@ main.article{
   }
 
   p{
-    line-height: 1.6;
+    line-height: 1.7;
   }
 
   .map{
