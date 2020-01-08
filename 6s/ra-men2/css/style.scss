@@ -27,8 +27,7 @@ ul {
 			display: block;
 			
 			&:hover {
-				background-color: #FB88A0;
-				color: #6A0204;
+				background-color: #C80000;
 			}
 			
 			&.active {
@@ -48,7 +47,37 @@ ul {
   }
 }
 
-.article{
+main.article{
   width: 700px;
   margin: 0 auto;
+
+  section{
+    margin-top: 20px;
+
+    &.card{
+      padding: 5px 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+
+      h2{
+        margin-top: 5px;
+      }
+    }
+  }
+
+  img.top{
+    width: 100%;
+  }
+
+  .first-color{
+    &::first-letter{
+      color: red;
+    }
+  }
+
+
+
+  .map{
+    width: 100%;
+    height: 500px;
+  }
 }
