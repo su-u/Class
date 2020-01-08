@@ -67,8 +67,8 @@ ul {
   }
 }
 
-main.article{
-  width: 750px;
+div.article{
+  width: 800px;
   margin: 0 auto;
   @include mq(md){
     width: 95%;
