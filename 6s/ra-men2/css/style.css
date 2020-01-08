@@ -40,7 +40,7 @@ ul.hmenu a.active {
 
 .header .logo {
   height: 50px;
-  margin: 10px 10px 8px 20px;
+  margin: 10px 10px 8px 30px;
 }
 
 main.article {
@@ -54,6 +54,7 @@ main.article section {
 
 main.article section.card {
   padding: 5px 10px;
+  border-radius: 1px;
   -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
           box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
@@ -68,6 +69,10 @@ main.article img.top {
 
 main.article .first-color::first-letter {
   color: red;
+}
+
+main.article p {
+  line-height: 1.6;
 }
 
 main.article .map {
