@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* CSS Document */
 body {
   margin: 0;
@@ -104,5 +105,76 @@ div.article .map {
 
 footer {
   text-align: center;
+}
+
+.tile-wrapper {
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 10px;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+  -ms-grid-rows: auto;
+      grid-template-rows: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .tile-wrapper {
+    -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .tile-wrapper {
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+  }
+}
+
+.tile-wrapper .tile {
+  position: relative;
+  z-index: 1;
+  /* 必要であればリンク要素の重なりのベース順序指定 */
+  background: #eee;
+  padding: 15px;
+  font-size: 12px;
+  overflow: auto;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  border-radius: 3px;
+}
+
+@media screen and (max-width: 768px) {
+  .tile-wrapper .tile {
+    width: 60%;
+    max-width: 220px;
+    margin: 20px auto 0 auto;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .tile-wrapper .tile {
+    width: 80%;
+  }
+}
+
+.tile-wrapper .tile img {
+  height: 115px;
+  border-radius: 1px;
+}
+
+.tile-wrapper .tile:hover {
+  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.tile-wrapper .tile a {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  text-indent: -999px;
 }
 /*# sourceMappingURL=style.css.map */
