@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "ICS.js",
   "dependencies": {
-    "mocha": "^6.1.4"
+    "mocha": "^10.2.0"
   },
   "devDependencies": {
     "linq": "^3.2.0"
